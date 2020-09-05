@@ -7,7 +7,7 @@ default: &default
 
 development:
   <<: *default
-  database: example_development
+  database: walletest_development
   username: postgres
   password:
   host: postgres
@@ -18,7 +18,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: example_test
+  database: walletest_test
   username: postgres
   password:
   host: postgres
@@ -26,4 +26,4 @@ test:
 
 production:
   <<: *default
-  database: example_production
+  database: walletest_production
