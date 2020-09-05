@@ -31,3 +31,54 @@ Metrics/BlockLength:
     - 'Gemfile'
     - 'config/routes.rb'
     - 'config/environments/**/*'
+
+Layout/EndOfLine:
+  Enabled: false
+
+Lint/UselessAssignment:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: true
+  Max: 15
+
+Metrics/MethodLength:
+  Enabled: true
+  Max: 15
+
+Style/BracesAroundHashParameters:
+  Enabled: true
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+
+Style/ClassMethods:
+  Enabled: true
+
+Style/Documentation:
+  Enabled: false
+
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+Style/For:
+  EnforcedStyle: for
+
+Style/GuardClause:
+  Enabled: false
+
+Style/MethodCallWithoutArgsParentheses:
+  Enabled: false
+
+Style/MethodCallWithArgsParentheses:
+  Enabled: true
+
+Style/NegatedIf:
+  EnforcedStyle: postfix
+
+Style/StringLiterals:
+  EnforcedStyle: single_quotes
+
+Style/TernaryParentheses:
+  Enabled: true
+  EnforcedStyle: require_parentheses
