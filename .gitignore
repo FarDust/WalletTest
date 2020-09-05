@@ -26,6 +26,7 @@
 .byebug_history
 
 # Ignore keys for decrypting credentials.
+/config/master.key
 /config/credentials/test.key
 /config/credentials/development.key
 /config/credentials/production.key
