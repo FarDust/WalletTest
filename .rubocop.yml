@@ -46,9 +46,6 @@ Metrics/MethodLength:
   Enabled: true
   Max: 15
 
-Style/BracesAroundHashParameters:
-  Enabled: true
-
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
 
