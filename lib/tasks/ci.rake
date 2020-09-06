@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 if Rails.env.development? || Rails.env.test?
-  require 'rubocop/rake_task'
-  require 'scss_lint/rake_task'
-  require 'bundler/audit'
+  require('rubocop/rake_task')
+  require('scss_lint/rake_task')
+  require('bundler/audit')
 
   RuboCop::RakeTask.new
   SCSSLint::RakeTask.new do |t|
@@ -22,6 +22,6 @@ if Rails.env.development? || Rails.env.test?
   task erblint: :environment do
     sh 'bundle exec erblint --lint-all'
   end
-  task linters: %i[rubocop brakeman audit eslint scss_lint erblint]
-  task default: %i[linters]
+  task(linters: %i[rubocop brakeman audit eslint scss_lint erblint])
+  task(default: %i[linters])
 end

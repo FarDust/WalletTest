@@ -27,7 +27,6 @@ Layout/LineLength:
 
 Metrics/BlockLength:
   Exclude:
-    - 'spec/**/*'
     - 'Gemfile'
     - 'config/routes.rb'
     - 'config/environments/**/*'
@@ -48,6 +47,9 @@ Metrics/MethodLength:
 
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
+  Exclude:
+    - 'app/channels/application_cable/**/*'
+    - 'config/application.rb'
 
 Style/ClassMethods:
   Enabled: true
