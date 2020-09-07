@@ -60,6 +60,7 @@ group :test do
   # rspec-rails is a testing framework for Rails 3+.
   gem 'rspec-rails', '~> 4.0.1'
   # Making tests easy on the fingers and eyes
+  gem 'factory_bot_rails'
   gem 'shoulda-matchers', '~> 4.4.1'
 end
 
