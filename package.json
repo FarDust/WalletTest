@@ -10,11 +10,12 @@
   },
   "version": "0.1.0",
   "devDependencies": {
-    "webpack-dev-server": "^3.11.0",
+    "babel-eslint": "^10.1.0",
     "eslint": "7.7.0",
-    "eslint-config-google": "^0.14.0"
+    "eslint-config-google": "^0.14.0",
+    "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
-    "eslint": "eslint --ext .js,.es6 app/javascripts"
+    "eslint": "eslint --ext .js,.es6 app/javascript"
   }
 }
