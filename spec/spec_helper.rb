@@ -20,10 +20,10 @@ SimpleCov.start('rails') do
   enable_coverage(:line)
   minimum_coverage(line: 42, branch: 40)
   add_filter('vendor')
-  add_filter("app/channels/application_cable/channel.rb")
-  add_filter("app/channels/application_cable/connection.rb")
-  add_filter("app/jobs/application_job.rb")
-  add_filter("app/mailers/application_mailer.rb")
+  add_filter('app/channels/application_cable/channel.rb')
+  add_filter('app/channels/application_cable/connection.rb')
+  add_filter('app/jobs/application_job.rb')
+  add_filter('app/mailers/application_mailer.rb')
 end
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
