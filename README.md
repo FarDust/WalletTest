@@ -1,4 +1,17 @@
 # Group 02 Wallet App
+Entrega 1 (16/09)
+
+- [X] Modelo de datos
+- [ ] Mock-ups
+- [ ] Relatos de usuario
+- [ ] Planificación de relatos en las distintas entregas
+- [ ] Configuración de ambiente de desarrollo
+- [ ] CRUD de usuarios
+- [ ] Lógica de sesiones
+- [ ] Tests de modelos / controladores / vistas / rutas
+
+
+
 
 ## Development setup
 
