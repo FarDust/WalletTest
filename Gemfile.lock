@@ -57,6 +57,8 @@ GEM
       tzinfo (~> 1.1)
       zeitwerk (~> 2.2, >= 2.2.2)
     ast (2.4.1)
+    autoprefixer-rails (9.8.6.3)
+      execjs
     bcrypt (3.1.16)
     better_html (1.0.15)
       actionview (>= 4.0)
@@ -69,6 +71,9 @@ GEM
     bindex (0.8.1)
     bootsnap (1.4.8)
       msgpack (~> 1.0)
+    bootstrap-sass (3.4.1)
+      autoprefixer-rails (>= 5.2.1)
+      sassc (>= 2.0.0)
     brakeman (4.9.0)
     builder (3.2.4)
     bundler-audit (0.7.0.1)
@@ -94,6 +99,7 @@ GEM
       rubocop (~> 0.79)
       smart_properties
     erubi (1.9.0)
+    execjs (2.7.0)
     factory_bot (6.1.0)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.1.0)
@@ -274,6 +280,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap (>= 1.4.2)
+  bootstrap-sass
   brakeman (~> 4.9.0)
   bundler-audit (~> 0.7.0)
   byebug
