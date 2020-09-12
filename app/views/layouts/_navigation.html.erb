@@ -5,8 +5,14 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav mr-auto">
                 <li class='nav-item'><%= link_to 'Home', root_path, class: 'nav-link' %></li>
-                <li class='nav-item'><%= link_to 'SignIn', new_user_session_path, class: 'nav-link' %></li> 
-                <li class='nav-item'><%= link_to 'SignUp', new_user_registration_path, class: 'nav-link' %></li> 
+                    <% if current_user %>
+                        <li class='nav-item'>
+                           <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %>
+                        </li> 
+                    <% else %>
+                        <li class='nav-item'><%= link_to 'SignIn', new_user_session_path, class: 'nav-link' %></li> 
+                        <li class='nav-item'><%= link_to 'SignUp', new_user_registration_path, class: 'nav-link' %></li> 
+                    <% end %>
             </ul>
         </div>
     </div>
