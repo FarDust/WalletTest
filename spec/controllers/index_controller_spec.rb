@@ -13,4 +13,13 @@ RSpec.describe(IndexController, type: :controller) do
       end
     end
   end
+
+  describe 'GET /' do
+    context 'without login user' do
+      it 'returns 302 redirect' do
+        get(:index)
+        expect(response).to(have_http_status(302))
+      end
+    end
+  end
 end
