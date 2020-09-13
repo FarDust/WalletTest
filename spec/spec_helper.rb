@@ -24,6 +24,11 @@ SimpleCov.start('rails') do
   add_filter('app/channels/application_cable/connection.rb')
   add_filter('app/jobs/application_job.rb')
   add_filter('app/mailers/application_mailer.rb')
+  add_filter('app/controllers/users/confirmations_controller.rb')
+  add_filter('app/controllers/users/omniauth_callbacks_controller.rb')
+  add_filter('app/controllers/users/passwords_controller.rb')
+  add_filter('app/controllers/users/registrations_controller.rb')
+  add_filter('app/controllers/users/unlocks_controller.rb')
 end
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
