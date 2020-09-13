@@ -15,34 +15,39 @@
  */
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
-$primaryColor3: #AD2121;
-$primaryColor2: #FF6363;
-$primaryColor: #FA494A;
-$secondaryColor: #10AD3C;
-$secondaryColor2: #48FA7B;
-$textDefault: black;
+$primaryColor3: #ad2121;
+$primaryColor2: #ff6363;
+$primaryColor: #fa494a;
+$secondaryColor: #10ad3c;
+$secondaryColor2: #48fa7b;
+$textDefault: #000000;
 $backgroundDefault: rgb(223, 223, 223);
 
 .navbar {
-        margin-bottom: 0;
         background: $primaryColor;
+        margin-bottom: 0;
 }
+
 body {
         background: $backgroundDefault;
         color: $textDefault;
         font-family: 'Merriweather', sans-serif;
 }
+
 h1,
 h2 {
         font-weight: bold;
 }
+
 p {
-        font-size: 16px;
         color: $textDefault;
+        font-size: 16px;
 }
+
 a:visited {
         color: $primaryColor;
 }
+
 .jumbotron {
         background: $primaryColor2;
         color: $textDefault;
@@ -52,27 +57,32 @@ a:visited {
                 font-size: 26px;
         }
 }
+
 .link {
         color: $textDefault;
 }
+
 .btn-primary {
-        color: $textDefault;
         border-color: $textDefault;
+        color: $textDefault;
         margin-bottom: 5px;
 }
+
 .btn-sm {
         background-color: $textDefault;
         display: inline-block;
 }
+
 img,
 video,
 audio {
         margin-top: 20px;
         max-width: 80%;
 }
+
 caption {
 
-        float: left;
         clear: both;
+        float: left;
 
 }
