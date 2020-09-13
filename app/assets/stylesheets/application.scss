@@ -1,88 +1,87 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
-@import "../../../node_modules/bootstrap/scss/bootstrap";
 
-$primaryColor3: #ad2121;
-$primaryColor2: #ff6363;
-$primaryColor: #fa494a;
-$secondaryColor: #10ad3c;
-$secondaryColor2: #48fa7b;
-$textDefault: #000000;
-$backgroundDefault: rgb(223, 223, 223);
+//  * This is a manifest file that'll be compiled into application.css, which will include all the files
+//  * listed below.
+//  *
+//  * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+//  * vendor/assets/stylesheets directory can be referenced here using a relative path.
+//  *
+//  * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+//  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+//  * files in this directory. Styles in this file should be added after the last require_* statement.
+//  * It is generally better to create a new file per style scope.
+//  *
+//  *= require_tree .
+//  *= require_self
+
+@import '../../../node_modules/bootstrap/scss/bootstrap';
+
+$primary-color-3: #AD2121;
+$primary-color-2: #FF6363;
+$primary-color: #FA494A;
+$secondary-color: #10AD3C;
+$secondary-color-2: #48FA7B;
+$text-default: #000;
+$background-default: rgb(223, 223, 223);
 
 .navbar {
-        background: $primaryColor;
-        margin-bottom: 0;
+  background: $primary-color;
+  margin-bottom: 0;
 }
 
 body {
-        background: $backgroundDefault;
-        color: $textDefault;
-        font-family: 'Merriweather', sans-serif;
+  background: $background-default;
+  color: $text-default;
+  font-family: 'Merriweather', sans-serif;
 }
 
 h1,
 h2 {
-        font-weight: bold;
+  font-weight: bold;
 }
 
 p {
-        color: $textDefault;
-        font-size: 16px;
+  color: $text-default;
+  font-size: 16px;
 }
 
 a:visited {
-        color: $primaryColor;
+  color: $primary-color;
 }
 
 .jumbotron {
-        background: $primaryColor2;
-        color: $textDefault;
-        text-align: center;
-        p {
-                color: $textDefault;
-                font-size: 26px;
-        }
+  background: $primary-color-2;
+  color: $text-default;
+  text-align: center;
+
+  p {
+    color: $text-default;
+    font-size: 26px;
+  }
 }
 
 .link {
-        color: $textDefault;
+  color: $text-default;
 }
 
 .btn-primary {
-        border-color: $textDefault;
-        color: $textDefault;
-        margin-bottom: 5px;
+  border-color: $text-default;
+  color: $text-default;
+  margin-bottom: 5px;
 }
 
 .btn-sm {
-        background-color: $textDefault;
-        display: inline-block;
+  background-color: $text-default;
+  display: inline-block;
 }
 
 img,
 video,
 audio {
-        margin-top: 20px;
-        max-width: 80%;
+  margin-top: 20px;
+  max-width: 80%;
 }
 
 caption {
-
-        clear: both;
-        float: left;
-
+  clear: both;
+  float: left;
 }
