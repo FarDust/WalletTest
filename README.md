@@ -5,14 +5,17 @@ Link: https://walletest-reborn.herokuapp.com/
 ## Entrega 1 (16/09)
 
 - [X] Modelo de datos
-- [ ] Mock-ups
-- [ ] Relatos de usuario
-- [ ] Planificación de relatos en las distintas entregas
-- [ ] Configuración de ambiente de desarrollo
-- [ ] CRUD de usuarios
-- [ ] Lógica de sesiones
-- [ ] Tests de modelos / controladores / vistas / rutas
+- [X] Mock-ups
+- [X] Relatos de usuario
+- [X] Planificación de relatos en las distintas entregas
+- [X] Configuración de ambiente de desarrollo
+- [X] CRUD de usuarios
+- [X] Lógica de sesiones
+- [X] Tests de modelos / controladores / vistas / rutas
 
++ Modelo de datos y Mock-ups se encuentran en la carpeta [docs](https://github.com/IIC3745-2020-2/grupo02/tree/master/docs)
++ [HU](https://github.com/IIC3745-2020-2/grupo02/issues) se encuentran en las issue del repo 
++ La planificación de las HU se encuentra en forma de ([milestones](https://github.com/IIC3745-2020-2/grupo02/milestones), lo cual se encuentran en las issue del repo 
 
 
 
