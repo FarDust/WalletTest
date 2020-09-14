@@ -52,6 +52,7 @@ group :development, :test do
   gem 'rubocop-performance', '~> 1.7.1', require: false
   gem 'rubocop-rails', '~> 2.7.1', require: false
   gem 'rubocop-rspec', '~> 1.43.2', require: false
+  gem 'rubycritic', require: false
   # Configurable tool for writing clean and consistent SCSS
   gem 'scss_lint', '~> 0.59.0', require: false
 end
