@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :movements
+  resources :accounts
   resources :natural_people
   resources :categories
   devise_for :users, controllers: {
