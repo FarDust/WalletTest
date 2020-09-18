@@ -4,14 +4,15 @@
 #
 # Table name: movements
 #
-#  id          :bigint           not null, primary key
-#  account_id  :bigint           not null
-#  balance     :integer
-#  amount      :integer
-#  comment     :text
-#  category_id :bigint           not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id            :bigint           not null, primary key
+#  category_id   :bigint           not null
+#  account_id    :bigint           not null
+#  fecha         :datetime
+#  final_balance :integer
+#  amount        :integer
+#  comment       :text
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 class Movement < ApplicationRecord
   belongs_to :category

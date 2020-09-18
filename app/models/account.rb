@@ -5,11 +5,11 @@
 # Table name: accounts
 #
 #  id         :bigint           not null, primary key
+#  user_id    :bigint           not null
+#  balance    :integer
 #  type       :string
 #  currency   :string
-#  balance    :integer
-#  quota      :string
-#  user_id    :bigint           not null
+#  quota      :integer
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
