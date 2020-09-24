@@ -29,6 +29,7 @@ gem('jbuilder', '~> 2.7')
 gem('bootstrap-sass')
 gem('cancan')
 gem('devise')
+gem('sentry-raven')
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
