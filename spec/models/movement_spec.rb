@@ -13,9 +13,11 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
-class Movement < ApplicationRecord
-  validates :amount, presence: true
-  validates :final_balance, presence: true
-  belongs_to :category
-  belongs_to :account
+require('rails_helper')
+
+RSpec.describe(Movement, type: :model) do
+  context 'with attributes val' do
+    it { is_expected.to(validate_presence_of(:final_balance)) }
+    it { is_expected.to(validate_presence_of(:amount)) }
+  end
 end

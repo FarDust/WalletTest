@@ -14,8 +14,10 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #
-class Debt < ApplicationRecord
-  validates :amount, presence: true
-  belongs_to :acreedor, polymorphic: true
-  belongs_to :deudor, polymorphic: true
+require('rails_helper')
+
+RSpec.describe(Debt, type: :model) do
+  context 'with attributes val' do
+    it { is_expected.to(validate_presence_of(:amount)) }
+  end
 end

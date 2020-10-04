@@ -8,7 +8,10 @@
 #  name        :string
 #  description :text
 #
-class Category < ApplicationRecord
-  validates :name, presence: true
-  has_many :movements, dependent: :restrict_with_error
+require('rails_helper')
+
+RSpec.describe(Category, type: :model) do
+  context 'with attributes val' do
+    it { is_expected.to(validate_presence_of(:name)) }
+  end
 end

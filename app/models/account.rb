@@ -15,4 +15,7 @@
 #
 class Account < ApplicationRecord
   belongs_to :user
+  validates :balance, presence: true
+  validates :type, presence: true
+  validates :currency, presence: true
 end

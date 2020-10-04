@@ -11,10 +11,12 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-class NaturalPerson < ApplicationRecord
-  validates :nombre, presence: true
-  validates :apellido, presence: true
-  validates :rut, presence: true
-  has_many :debts, as: :deudor, dependent: :restrict_with_error
-  has_many :debts, as: :acreedor, dependent: :restrict_with_error
+require('rails_helper')
+
+RSpec.describe(NaturalPerson, type: :model) do
+  context 'with attributes val' do
+    it { is_expected.to(validate_presence_of(:nombre)) }
+    it { is_expected.to(validate_presence_of(:apellido)) }
+    it { is_expected.to(validate_presence_of(:rut)) }
+  end
 end
