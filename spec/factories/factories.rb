@@ -18,5 +18,39 @@ FactoryBot.define do
     currency {"US"}
     quota {"200"}
   end
-  
+
+  factory :natural_person do 
+    nombre {"Jhon"}
+    apelldio {"Doe"}
+  end
+
+  factory :debt do 
+    amount {3000}
+    for_user 
+
+    trait :for_user do
+      association :acreedor, factory: :user
+      association :deudor, factory: :user
+    end
+
+    trait :for_natural_acreedor do 
+      association :acreedor, factory: :natural_person
+      association :deudor, factory: :user
+    end
+
+    trait :for_natural_deudor do 
+      association :acreedor, factory: :user
+      association :deudor, factory: :natural_person
+    end
+    
+  end
+
+  factory :movement do 
+    category
+    account
+    final_balance {2322}
+    amount {2323}
+  end
+
+
 end

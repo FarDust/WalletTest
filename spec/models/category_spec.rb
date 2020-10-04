@@ -19,12 +19,11 @@ RSpec.describe(Category, type: :model) do
     it 'use valid data' do
       category = build(:category)
       expect(category).to(be_valid)
-  
     end
+
     it 'use invalid data' do
       category = build(:category, name: nil)
-      expect(category).to_not(be_valid)
+      expect(category).not_to(be_valid)
     end
   end
-
 end

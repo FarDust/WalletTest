@@ -25,4 +25,12 @@ RSpec.describe(Account, type: :model) do
   context 'with associations val' do
     it { is_expected.to(belong_to(:user).required) }
   end
+
+  context 'when create account' do
+    it 'use valid data' do
+      account = build(:account)
+      expect(account).to(be_valid)
+    end
+    # falta generar validor para que otros tipos de cuentan no tengan balance negativo
+  end
 end

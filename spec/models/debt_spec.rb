@@ -20,4 +20,16 @@ RSpec.describe(Debt, type: :model) do
   context 'with attributes val' do
     it { is_expected.to(validate_presence_of(:amount)) }
   end
+
+  context 'when create debt' do
+    it 'use valid data' do
+      debt = build(:debt)
+      expect(debt).to(be_valid)
+    end
+
+    it 'use invvalid data no amount' do
+      debt = build(:debt, amount: nil)
+      expect(debt).not_to(be_valid)
+    end
+  end
 end
