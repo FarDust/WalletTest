@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Movements</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Account</th>
+      <th>Fecha</th>
+      <th>Final balance</th>
+      <th>Amount</th>
+      <th>Comment</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movements.each do |movement| %>
+      <tr>
+        <td><%= movement.category_id %></td>
+        <td><%= movement.account_id %></td>
+        <td><%= movement.fecha %></td>
+        <td><%= movement.final_balance %></td>
+        <td><%= movement.amount %></td>
+        <td><%= movement.comment %></td>
+        <td><%= link_to 'Show', movement %></td>
+        <td><%= link_to 'Edit', edit_movement_path(movement) %></td>
+        <td><%= link_to 'Destroy', movement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Movement', new_movement_path %>
