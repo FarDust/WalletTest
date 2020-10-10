@@ -17,9 +17,9 @@ ActiveRecord::Schema.define(version: 2020_10_04_163350) do
 
   create_table "accounts", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.integer "balance"
-    t.string "type"
-    t.string "currency"
+    t.integer "balance_cents", default: 0, null: false
+    t.string "balance_currency", default: "CLP", null: false
+    t.string "account_type"
     t.integer "quota"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
