@@ -26,6 +26,8 @@ class AccountsController < ApplicationController
   # POST /accounts
   # POST /accounts.json
   def create
+    create_params = account_params
+    create_params[:user_id] = current_user.id
     @account = Account.new(account_params)
     respond_to do |format|
       if @account.save
@@ -80,7 +82,6 @@ class AccountsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def account_params
-    params.require(:account).permit(:user_id,
-                                    :balance, :account_type, :currency, :quota)
+    params.require(:account).permit(:balance, :account_type, :currency, :quota)
   end
 end
