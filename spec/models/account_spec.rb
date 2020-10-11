@@ -31,6 +31,10 @@ RSpec.describe(Account, type: :model) do
       account = build(:account)
       expect(account).to(be_valid)
     end
+    it 'credit cannot have postive balance' do
+      account2 = build(:user, type: "credit", balance: 1)
+      expect(account2).to_not be_valid
+    end
     # falta generar validor para que otros tipos de cuentan no tengan balance negativo
   end
 end
