@@ -1,29 +1,10 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong>User:</strong>
-  <%= @account.user_id %>
-</p>
-
-<p>
-  <strong>Balance:</strong>
-  <%= @account.balance %>
-</p>
-
-<p>
-  <strong>Type:</strong>
-  <%= @account.account_type %>
-</p>
-
-<p>
-  <strong>Currency:</strong>
-  <%= @account.balance_currency %>
-</p>
-
-<p>
-  <strong>Quota:</strong>
-  <%= @account.quota %>
-</p>
-
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <%= render(template: 'accounts/_summary.html.erb', locals: { account: @account, current_user: current_user } ) %>
+    </div>
+  </div>
+</div>
 <%= link_to 'Edit', edit_account_path(@account) %> |
 <%= link_to 'Back', accounts_path %>
