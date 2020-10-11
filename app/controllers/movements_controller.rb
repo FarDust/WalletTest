@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class MovementsController < ApplicationController
+  before_action :set_account
   before_action :set_movement, only: %i[show edit update destroy]
 
   # GET /movements
@@ -16,7 +17,7 @@ class MovementsController < ApplicationController
 
   # GET /movements/new
   def new
-    @movement = Movement.new
+    @movement = @account.movements.new
   end
 
   # GET /movements/1/edit
@@ -77,6 +78,10 @@ class MovementsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_movement
     @movement = Movement.find(params[:id])
+  end
+
+  def set_account
+    @account = Account.find(params[:account_id])
   end
 
   # Only allow a list of trusted parameters through.

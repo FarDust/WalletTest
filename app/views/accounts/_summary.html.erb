@@ -11,5 +11,6 @@
       Current balance: $<%= account.balance %> <%= account.balance_currency %> <br>
       Quota: <%= account.quota %>
     </p>
+    <%= link_to 'Transacciones', account_movements_path(account) %>
   </div>
 </div>

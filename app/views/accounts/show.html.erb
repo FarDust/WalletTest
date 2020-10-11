@@ -2,7 +2,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
-      <%= render(template: 'accounts/_summary.html.erb', locals: { account: @account, current_user: current_user } ) %>
+      <%= render(partial: 'summary', locals: { account: @account, current_user: current_user } ) %>
     </div>
   </div>
 </div>

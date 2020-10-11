@@ -18,6 +18,7 @@ class Account < ApplicationRecord
   validates :balance_cents, presence: true
   validates :account_type, presence: true
   monetize :balance_cents
+  has_many :movements
 
   COMMON_TYPE = 'common'
   DEBT_TYPE = 'debt'
