@@ -28,7 +28,7 @@ class AccountsController < ApplicationController
   def create
     create_params = account_params
     create_params[:user_id] = current_user.id
-    @account = Account.new(account_params)
+    @account = Account.new(create_params)
     respond_to do |format|
       if @account.save
         msg = 'Account was successfully created.'
