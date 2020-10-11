@@ -18,4 +18,14 @@ class Account < ApplicationRecord
   validates :balance_cents, presence: true
   validates :account_type, presence: true
   monetize :balance_cents
+
+  COMMON_TYPE = 'common'
+  DEBT_TYPE = 'debt'
+  CREDIT_TYPE = 'credit'
+
+  TYPES = {
+    COMMON_TYPE => 'Corriente',
+    DEBT_TYPE => 'Débito',
+    CREDIT_TYPE => 'Crédito'
+  }
 end
