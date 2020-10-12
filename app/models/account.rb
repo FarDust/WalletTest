@@ -14,8 +14,12 @@
 #  updated_at   :datetime         not null
 #
 class Account < ApplicationRecord
+
+  register_currency :clp
+
   belongs_to :user
   validates :balance_cents, presence: true
   validates :account_type, presence: true
-  monetize :balance_cents
+  
+  monetize :balance_cents, with_model_currency: :balance_currency
 end
