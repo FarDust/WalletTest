@@ -30,8 +30,10 @@ class MovementsController < ApplicationController
     @movement = @account.movements.new(movement_params)
     respond_to do |format|
       if @movement.save
-        msg = 'Movement was successfully created.'
-        format.html { redirect_to account_movements_path(@account), notice: msg }
+        format.html do
+          redirect_to account_movements_path(@account),
+                      notice: 'Movement was successfully created.'
+        end
         format.json { render :show, status: :created, location: @movement }
       else
         format.html { render :new }
@@ -48,8 +50,10 @@ class MovementsController < ApplicationController
   def update
     respond_to do |format|
       if @movement.update(movement_params)
-        msg = 'Movement was successfully updated.'
-        format.html { redirect_to account_movements_path(@account), notice: msg }
+        format.html do
+          redirect_to account_movements_path(@account),
+                      notice: 'Movement was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @movement }
       else
         format.html { render :edit }

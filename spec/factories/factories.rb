@@ -13,9 +13,8 @@ FactoryBot.define do
 
   factory :account do
     user
-    balance { 3000 }
-    type { 'credito' }
-    currency { 'US' }
+    balance_cents { 3000 }
+    account_type { 'credit' }
     quota { '200' }
   end
 

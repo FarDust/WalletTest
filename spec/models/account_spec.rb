@@ -17,9 +17,8 @@ require('rails_helper')
 
 RSpec.describe(Account, type: :model) do
   context 'with attributes val ' do
-    it { is_expected.to(validate_presence_of(:balance)) }
+    it { is_expected.to(validate_presence_of(:balance_cents)) }
     it { is_expected.to(validate_presence_of(:account_type)) }
-    it { is_expected.to(validate_presence_of(:currency)) }
   end
 
   context 'with associations val' do

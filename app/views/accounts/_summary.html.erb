@@ -1,13 +1,13 @@
-<div class="card card-profile">
-  <div class="card-avatar">
-    <a href="javascript:;">
-      <%= image_tag("wallet.jpg", alt: 'wallet image', class: 'img') %>
+<div class='card card-profile'>
+  <div class='card-avatar'>
+    <a href='javascript:;'>
+      <%= image_tag('wallet.jpg', alt: 'wallet image', class: 'img') %>
     </a>
   </div>
-  <div class="card-body">
-    <h6 class="card-category text-gray"><%= account.account_type %> account</h6>
-    <h4 class="card-title"><%= current_user.name %> account <%= account.id %></h4>
-    <p class="card-description">
+  <div class='card-body'>
+    <h6 class='card-category text-gray'><%= account.account_type %> account</h6>
+    <h4 class='card-title'><%= current_user.name %> account <%= account.id %></h4>
+    <p class='card-description'>
       Current balance: $<%= account.balance %> <%= account.balance_currency %> <br>
       Quota: <%= account.quota %>
     </p>
