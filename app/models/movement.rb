@@ -14,8 +14,24 @@
 #  updated_at    :datetime         not null
 #
 class Movement < ApplicationRecord
-  validates :amount, presence: true
-  validates :final_balance, presence: true
   belongs_to :category
   belongs_to :account
+  validates :amount, presence: true
+  # validates :final_balance, presence: true
+  validates :amount, numericality: { other_than: 0 }
+  before_create :set_final_balance
+  after_create :set_account_balance
+
+  private
+
+  def set_final_balance
+    if account.can_transact?(amount)
+      self.final_balance = account.balance_cents + amount
+    end
+    errors.add(:amount, account.transaction_type_error)
+  end
+
+  def set_account_balance
+    account.update(balance: final_balance)
+  end
 end

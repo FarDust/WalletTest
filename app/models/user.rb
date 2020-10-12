@@ -22,4 +22,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :debts, as: :deudor, dependent: :destroy
   has_many :debts, as: :acreedor, dependent: :destroy
+  has_many :accounts
 end

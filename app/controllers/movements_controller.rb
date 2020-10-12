@@ -27,12 +27,11 @@ class MovementsController < ApplicationController
   # POST /movements
   # POST /movements.json
   def create
-    @movement = Movement.new(movement_params)
-
+    @movement = @account.movements.new(movement_params)
     respond_to do |format|
       if @movement.save
         msg = 'Movement was successfully created.'
-        format.html { redirect_to @movement, notice: msg }
+        format.html { redirect_to account_movements_path(@account), notice: msg }
         format.json { render :show, status: :created, location: @movement }
       else
         format.html { render :new }
@@ -50,7 +49,7 @@ class MovementsController < ApplicationController
     respond_to do |format|
       if @movement.update(movement_params)
         msg = 'Movement was successfully updated.'
-        format.html { redirect_to @movement, notice: msg }
+        format.html { redirect_to account_movements_path(@account), notice: msg }
         format.json { render :show, status: :ok, location: @movement }
       else
         format.html { render :edit }
@@ -68,7 +67,7 @@ class MovementsController < ApplicationController
     @movement.destroy
     respond_to do |format|
       msg = 'Movement was successfully destroyed.'
-      format.html { redirect_to movements_url, notice: msg }
+      format.html { redirect_to account_movements_path(@account), notice: msg }
       format.json { head :no_content }
     end
   end
@@ -87,6 +86,6 @@ class MovementsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def movement_params
     params.require(:movement).permit(:category_id,
-                                     :fecha, :final_balance, :amount, :comment)
+                                     :final_balance, :amount, :comment)
   end
 end

@@ -1,1 +1,62 @@
-<p>Coloquen aca su form</p>
+<%= form_with(model: movement, url: account_movements_path(@account), local: true) do |form| %>
+  <% if movement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(movement.errors.count, 'error') %> prohibited this movement from being saved:</h2>
+
+      <ul>
+        <% movement.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header card-header-info">
+            <h4 class="card-title">Movement Management Form</h4>
+            <p class="card-category">Complete your movement</p>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <%= form.label(:category_id, class: 'bmd-label-floating') %>
+                    <%= form.select(:category_id,
+                                    Category.all.pluck(:name, :id),
+                                    {
+                                      include_blank: 'Selecciona categoría',
+                                    },
+                                    class: 'form-control',
+                                    required: true) %>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group bmd-form-group">
+                    <%= form.label(:amount, class: 'bmd-label-floating') %></label>
+                    <%= form.number_field(:amount, class: 'form-control', required: true) %>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group bmd-form-group">
+                    <%= form.label(:comment, class: 'bmd-label-floating') %>
+                    <%= form.text_area(:comment, class: 'form-control') %>
+                  </div>
+                </div>
+              </div>
+              <%= form.submit('Summit new changes', class: 'btn btn-info pull-right') %>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

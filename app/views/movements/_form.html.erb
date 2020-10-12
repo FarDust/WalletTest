@@ -1,4 +1,5 @@
-<%= form_with(url: account_movements_path(@account), local: true) do |form| %>
+<% url = movement.id ? account_movement_path(@account, movement) : account_movements_path(@account) %>
+<%= form_with(model: movement, url: url, local: true) do |form| %>
   <% if movement.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(movement.errors.count, 'error') %> prohibited this movement from being saved:</h2>
