@@ -17,7 +17,7 @@ class Account < ApplicationRecord
   belongs_to :user
   validates :balance_cents, presence: true
   validates :account_type, presence: true
-  validate :credit_does_not_have_positive_balance
+  validate :credit_account_is_valid
   monetize :balance_cents
   has_many :movements, dependent: :destroy
 
@@ -40,15 +40,20 @@ class Account < ApplicationRecord
     when DEBT_TYPE
       'Error de validación por cuenta débito'
     when CREDIT_TYPE
-      'Credit account cannot have a positive balance after a transaction.'
+      'Credit account cannot have a positive balance after a transaction nor exceed quota.'
     else
       'Monto no corresponde'
     end
   end
 
-  def credit_does_not_have_positive_balance
-    if account_type == CREDIT_TYPE && balance > 0
-      errors.add(:positive_credit, 'A credit account cannot have a positive balance.')
+  def credit_account_is_valid
+    if account_type == CREDIT_TYPE
+      if balance > 0
+        errors.add(:positive_credit, 'A credit account cannot have a positive balance.')
+      end
+      if balance.amount.abs > quota
+        errors.add(:exceeds_quota, 'The balance exceeds the defined quota.')  
+      end
     end
   end
 
@@ -67,7 +72,7 @@ class Account < ApplicationRecord
 
   # A credit card cannot have a positive balance. 
   def credit_transact(amount)
-    # TODO: Replace 'CLP' with actual currency.
-    !amount.nil? && !(balance + Money.new(amount, 'CLP') > 0)
+    new_balance_amount = balance + Money.new(amount, balance.currency)
+    !amount.nil? && !(new_balance_amount > 0) && !(new_balance_amount.abs > quota)
   end
 end
