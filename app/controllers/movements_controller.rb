@@ -34,7 +34,7 @@ class MovementsController < ApplicationController
           redirect_to account_movements_path(@account),
                       notice: 'Movement was successfully created.'
         end
-        format.json { render :show, status: :created, location: @movement }
+        format.json { render :show, status: :created }
       else
         format.html { render :new }
         format.json do
@@ -54,7 +54,7 @@ class MovementsController < ApplicationController
           redirect_to account_movements_path(@account),
                       notice: 'Movement was successfully updated.'
         end
-        format.json { render :show, status: :ok, location: @movement }
+        format.json { render :show, status: :ok }
       else
         format.html { render :edit }
         format.json do
