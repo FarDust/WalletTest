@@ -53,10 +53,11 @@ class Account < ApplicationRecord
     !amount.nil?
   end
 
-  # Aca la logica de validar una transaccion para cuenta debito
-  def debt_transact(amount)
-    !amount.nil?
-  end
+ # Como una cuenta corriente solo puede tener saldo positivos o 0
+ # se requiere REVISAR
+ def debt_transact(amount)
+  return (!amount.nil? && amount >= 0) ? true  : false 
+end
 
   # Aca la logica de validar una transaccion para cuenta credito
   def credit_transact(amount)

@@ -24,6 +24,12 @@ FactoryBot.define do
     account_type { 'common' }
   end
 
+  factory :debt_account do
+    user
+    balance_cents { 100 }
+    account_type { 'debt' }
+  end
+
   factory :natural_person do
     nombre { 'Jhon' }
     apellido { 'Doe' }
