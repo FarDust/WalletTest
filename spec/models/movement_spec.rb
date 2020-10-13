@@ -31,5 +31,30 @@ RSpec.describe(Movement, type: :model) do
       debt = build(:movement, amount: nil)
       expect(debt).not_to(be_valid)
     end
+
+    it 'use invvalid data no amount' do
+      account = build(:account, account_type: 'common')
+      account.save
+      debt = account.movements.create()
+      expect(debt).not_to(be_valid)
+    end
+
+    it 'match common account balance' do
+      account = build(:account, account_type: 'common')
+      category = build(:category)
+      account.save
+      category.save
+      movement = account.movements.create(amount: 300, category: category)
+      expect(movement.final_balance).to(match(account.balance_cents))
+    end
+
+    it 'match debt account balance' do
+      account = build(:account, account_type: 'debt')
+      category = build(:category)
+      account.save
+      category.save
+      movement = account.movements.create(category: category)
+      expect(movement).to(be_invalid)
+    end
   end
 end

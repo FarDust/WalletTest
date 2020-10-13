@@ -19,10 +19,54 @@ class Account < ApplicationRecord
   validates :account_type, presence: true
   validate :credit_does_not_have_positive_balance
   monetize :balance_cents
+  has_many :movements, dependent: :destroy
 
   def credit_does_not_have_positive_balance
     if account_type == "credit" && balance > 0
       errors.add(:positive_credit, 'A credit account cannot have a positve balance.')
     end
+  end
+
+  COMMON_TYPE = 'common'
+  DEBT_TYPE = 'debt'
+  CREDIT_TYPE = 'credit'
+
+  TYPES = {
+    COMMON_TYPE => 'Corriente',
+    DEBT_TYPE => 'Débito',
+    CREDIT_TYPE => 'Crédito'
+  }.freeze
+
+  def can_transact?(amount)
+    send("#{account_type}_transact", amount)
+  end
+
+  def transaction_type_error
+    case account_type
+    when DEBT_TYPE
+      'Error de validación por cuenta débito'
+    when CREDIT_TYPE
+      'Error de validación por cuenta crédito'
+    else
+      'Monto no corresponde'
+    end
+  end
+
+  private
+
+  # Como una cuenta corriente puede tener saldo positivo o negativo,
+  # no necesita validacion
+  def common_transact(amount)
+    !amount.nil?
+  end
+
+  # Aca la logica de validar una transaccion para cuenta debito
+  def debt_transact(amount)
+    !amount.nil?
+  end
+
+  # Aca la logica de validar una transaccion para cuenta credito
+  def credit_transact(amount)
+    !amount.nil?
   end
 end

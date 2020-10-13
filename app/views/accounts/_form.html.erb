@@ -24,24 +24,28 @@
           <div class="card-body">
             <form>
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-6">
                   <div class="form-group bmd-form-group">
                     <%= form.label(:balance, class: 'bmd-label-floating') %></label>
-                    <%= form.number_field(:balance, class: 'form-control') %>
+                    <%= form.number_field(:balance, class: 'form-control', required: true) %>
                   </div>
                 </div>
-                <div class="col-md-4">
-                  <div class="form-group bmd-form-group">
-                    <%= form.label(:account_type, class: 'bmd-label-floating') %>
-                    <%= form.text_field(:account_type, class: 'form-control') %>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
                 <div class="col-md-6">
                   <div class="form-group bmd-form-group">
                     <%= form.label(:quota, class: 'bmd-label-floating') %>
                     <%= form.number_field(:quota, class: 'form-control') %>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <%= form.label(:account_type, class: 'bmd-label-floating') %>
+                    <%= form.select(:account_type,
+                                    Account::TYPES.map { |k, v| [v, k] },
+                                    {
+                                      include_blank: 'Selecciona tipo de cuenta'
+                                    },
+                                    class: 'form-control',
+                                    required: true) %>
                   </div>
                 </div>
               </div>

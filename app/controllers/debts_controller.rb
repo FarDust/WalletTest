@@ -27,7 +27,6 @@ class DebtsController < ApplicationController
   # POST /debts.json
   def create
     @debt = Debt.new(debt_params)
-
     respond_to do |format|
       if @debt.save
         msg = 'Debt was successfully created.'

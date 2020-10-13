@@ -26,9 +26,7 @@ class AccountsController < ApplicationController
   # POST /accounts
   # POST /accounts.json
   def create
-    create_params = account_params
-    create_params[:user_id] = current_user.id
-    @account = Account.new(create_params)
+    @account = current_user.accounts.new(account_params)
     respond_to do |format|
       if @account.save
         msg = 'Account was successfully created.'
