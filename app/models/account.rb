@@ -22,4 +22,21 @@ class Account < ApplicationRecord
   validates :account_type, presence: true
   
   monetize :balance_cents, with_model_currency: :balance_currency
+
+  valid_account_types = ["Current", "Debit", "Credit"].to_set()
+
+  def self.update(params)
+    if self.account_type == "Current" && params[:quota]
+      raise "Current accounts dosen't have any quota"
+    end
+    super.save(params)
+  end
+
+  def self.save
+    if !(valid_account_types.include?(params.account_type))
+      raise "Must be type" + valid_account_types.map(&:inspect).join(' or ')
+    end
+    super.save
+  end
+
 end
