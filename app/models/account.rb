@@ -21,12 +21,6 @@ class Account < ApplicationRecord
   monetize :balance_cents
   has_many :movements, dependent: :destroy
 
-  def credit_does_not_have_positive_balance
-    if account_type == "credit" && balance > 0
-      errors.add(:positive_credit, 'A credit account cannot have a positve balance.')
-    end
-  end
-
   COMMON_TYPE = 'common'
   DEBT_TYPE = 'debt'
   CREDIT_TYPE = 'credit'
@@ -49,6 +43,12 @@ class Account < ApplicationRecord
       'Error de validación por cuenta crédito'
     else
       'Monto no corresponde'
+    end
+  end
+
+  def credit_does_not_have_positive_balance
+    if account_type == CREDIT_TYPE && balance > 0
+      errors.add(:positive_credit, 'A credit account cannot have a positive balance.')
     end
   end
 
