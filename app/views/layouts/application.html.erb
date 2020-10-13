@@ -7,6 +7,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -15,8 +17,10 @@
     <header>
       <%= render 'layouts/navigation' %>
     </header>
-    <main role="main">
-      <%= content_for?(:content) ? yield(:content) : yield %>
-    </main>
+    <div class="content">
+      <main role="main">
+        <%= content_for?(:content) ? yield(:content) : yield %>
+      </main>
+    </div>
   </body>
 </html>

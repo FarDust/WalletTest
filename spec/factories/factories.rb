@@ -13,15 +13,21 @@ FactoryBot.define do
 
   factory :account do
     user
-    balance { 3000 }
-    type { 'credito' }
-    currency { 'US' }
+    balance_cents { 3000 }
+    account_type { 'credit' }
     quota { '200' }
+  end
+
+  factory :common_account do
+    user
+    balance_cents { 100 }
+    account_type { 'common' }
   end
 
   factory :natural_person do
     nombre { 'Jhon' }
-    apelldio { 'Doe' }
+    apellido { 'Doe' }
+    rut { '11111111-1' }
   end
 
   factory :movement do

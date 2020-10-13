@@ -11,32 +11,50 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label(:user_id) %>
-    <%= form.text_field(:user_id) %>
-  </div>
-
-  <div class="field">
-    <%= form.label(:balance) %>
-    <%= form.number_field(:balance) %>
-  </div>
-
-  <div class="field">
-    <%= form.label(:type) %>
-    <%= form.text_field(:type) %>
-  </div>
-
-  <div class="field">
-    <%= form.label(:currency) %>
-    <%= form.text_field(:currency) %>
-  </div>
-
-  <div class="field">
-    <%= form.label(:quota) %>
-    <%= form.number_field(:quota) %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Account Management Form</h4>
+            <p class="card-category">Complete your account</p>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group bmd-form-group">
+                    <%= form.label(:balance, class: 'bmd-label-floating') %></label>
+                    <%= form.number_field(:balance, class: 'form-control', required: true) %>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group bmd-form-group">
+                    <%= form.label(:quota, class: 'bmd-label-floating') %>
+                    <%= form.number_field(:quota, class: 'form-control') %>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <%= form.label(:account_type, class: 'bmd-label-floating') %>
+                    <%= form.select(:account_type,
+                                    Account::TYPES.map { |k, v| [v, k] },
+                                    {
+                                      include_blank: 'Selecciona tipo de cuenta'
+                                    },
+                                    class: 'form-control',
+                                    required: true) %>
+                  </div>
+                </div>
+              </div>
+              <%= form.submit('Summit new changes', class: 'btn btn-primary pull-right') %>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 <% end %>
