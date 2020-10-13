@@ -30,6 +30,7 @@ gem('bootstrap-sass')
 gem('cancan')
 gem('devise')
 gem('money-rails', '~>1.12')
+gem('sentry-raven')
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
