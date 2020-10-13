@@ -40,7 +40,7 @@ class Account < ApplicationRecord
     when DEBT_TYPE
       'Error de validación por cuenta débito'
     when CREDIT_TYPE
-      'Error de validación por cuenta crédito'
+      'Credit account cannot have a positive balance after a transaction.'
     else
       'Monto no corresponde'
     end
@@ -65,8 +65,9 @@ class Account < ApplicationRecord
     !amount.nil?
   end
 
-  # Aca la logica de validar una transaccion para cuenta credito
+  # A credit card cannot have a positive balance. 
   def credit_transact(amount)
-    !amount.nil?
+    # TODO: Replace 'CLP' with actual currency.
+    !amount.nil? && !(balance + Money.new(amount, 'CLP') > 0)
   end
 end
