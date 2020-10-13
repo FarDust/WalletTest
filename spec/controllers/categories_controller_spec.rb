@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe AccountsController, type: :controller do
+RSpec.describe CategoriesController, type: :controller do
   describe 'GET #index' do
     login_user
     before { get :index } 
@@ -20,8 +20,8 @@ RSpec.describe AccountsController, type: :controller do
   describe 'POST #create failed' do
     login_user
     before do
-      account = build(:account, account_type: nil)
-      post :create, params: { account: account.as_json, format: :json }
+      category = build(:category, name: nil)
+      post :create, params: { category: category.as_json, format: :json }
     end
 
     it { should respond_with(:unprocessable_entity) }
@@ -30,8 +30,8 @@ RSpec.describe AccountsController, type: :controller do
   describe 'POST #create success' do
     login_user
     before do
-      account = build(:account)
-      post :create, params: { account: account.as_json, format: :json }
+      category = build(:category)
+      post :create, params: { category: category.as_json, format: :json }
     end
 
     it { should respond_with(:created) }
@@ -40,18 +40,18 @@ RSpec.describe AccountsController, type: :controller do
   describe 'POST #update success' do
     login_user
     before do
-      @account = create(:account)
-      put :update, params: { id: @account.id, account: { balance_cents: 400 } }
+      @category = create(:category)
+      put :update, params: { id: @category.id, category: { balance_cents: 400 } }
     end
 
-    it { should redirect_to(@account) }
+    it { should redirect_to(@category) }
   end
 
   describe 'POST #update failed' do
     login_user
     before do
-      @account = create(:account)
-      put :update, params: { id: @account.id, account: { account_type: nil }, format: :json }
+      @category = create(:category)
+      put :update, params: { id: @category.id, category: { name: nil }, format: :json }
     end
 
     it { should respond_with(:unprocessable_entity) }
@@ -60,10 +60,10 @@ RSpec.describe AccountsController, type: :controller do
   describe 'DELETE #destroy failed' do
     login_user
     before do
-      @account = create(:account)
-      delete :destroy, params: { id: @account.id }
+      @category = create(:category)
+      delete :destroy, params: { id: @category.id }
     end
 
-    it { should redirect_to(accounts_path) }
+    it { should redirect_to(categories_path) }
   end
 end

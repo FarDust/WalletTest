@@ -6,8 +6,7 @@ RSpec.describe MovementsController, type: :controller do
   describe 'GET #index' do
     login_user
     before do
-      @account = build(:account)
-      @account.save
+      @account = create(:account)
       get :index, params: { account_id: @account.id }
     end
 
@@ -17,8 +16,7 @@ RSpec.describe MovementsController, type: :controller do
   describe 'GET #new' do
     login_user
     before do
-      @account = build(:account)
-      @account.save
+      @account = create(:account)
       @movement = Movement.new
       get :new, params: { account_id: @account.id }
     end
@@ -29,8 +27,7 @@ RSpec.describe MovementsController, type: :controller do
   describe 'POST #create failed' do
     login_user
     before do
-      @account = build(:account)
-      @account.save
+      @account = create(:account)
       movement = @account.movements.create(amount: 300)
       post :create, params: { account_id: @account.id, movement: movement.as_json, format: :json }
     end
@@ -41,10 +38,8 @@ RSpec.describe MovementsController, type: :controller do
   describe 'POST #create success' do
     login_user
     before do
-      @account = build(:account)
-      @account.save
-      category = build(:category)
-      category.save
+      @account = create(:account)
+      category = create(:category)
       movement = @account.movements.create(amount: 300, category: category)
       post :create, params: { account_id: @account.id, movement: movement.as_json }
     end
@@ -55,10 +50,8 @@ RSpec.describe MovementsController, type: :controller do
   describe 'POST #update success' do
     login_user
     before do
-      @account = build(:account)
-      @account.save
-      category = build(:category)
-      category.save
+      @account = create(:account)
+      category = create(:category)
       movement = @account.movements.create!(amount: 300, category: category)
       put :update, params: { account_id: @account.id, id: movement.id, movement: movement.as_json }
     end
@@ -69,10 +62,8 @@ RSpec.describe MovementsController, type: :controller do
   describe 'POST #update failed' do
     login_user
     before do
-      @account = build(:account)
-      @account.save
-      category = build(:category)
-      category.save
+      @account = create(:account)
+      category = create(:category)
       movement = @account.movements.create!(amount: 300, category: category)
       put :update, params: { account_id: @account.id, id: movement.id, movement: { amount: 0 }, format: :json }
     end
@@ -80,13 +71,11 @@ RSpec.describe MovementsController, type: :controller do
     it { should respond_with(:unprocessable_entity) }
   end
 
-  describe 'POST #update failed' do
+  describe 'DELETE #destroy failed' do
     login_user
     before do
-      @account = build(:account)
-      @account.save
-      category = build(:category)
-      category.save
+      @account = create(:account)
+      category = create(:category)
       movement = @account.movements.create!(amount: 300, category: category)
       delete :destroy, params: { account_id: @account.id, id: movement.id }
     end
