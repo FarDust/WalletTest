@@ -8,6 +8,6 @@ RSpec.describe('accounts/index') do
 
     render
 
-    expect(rendered).to(match(/Accounts/)))
+    expect(rendered).to(match(/Accounts/)) 
   end
 end
