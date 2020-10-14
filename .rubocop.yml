@@ -40,11 +40,11 @@ Lint/UselessAssignment:
 
 Metrics/AbcSize:
   Enabled: true
-  Max: 15
+  Max: 16
 
 Metrics/MethodLength:
   Enabled: true
-  Max: 15
+  Max: 16
 
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact

@@ -29,8 +29,8 @@ class NaturalPeopleController < ApplicationController
     @natural_person = NaturalPerson.new(natural_person_params)
 
     respond_to do |format|
+      var = @natural_person
       if @natural_person.save
-        var = @natural_person
         msg = 'Natural person was successfully created.'
         format.html { redirect_to var, notice: msg }
         format.json { render :show, status: :created, location: var }

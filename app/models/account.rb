@@ -23,6 +23,18 @@ class Account < ApplicationRecord
   monetize :balance_cents, with_model_currency: :balance_currency
 
   valid_account_types = %w[Current Debit Credit].to_set()
+  
+  has_many :movements, dependent: :destroy
+
+  COMMON_TYPE = 'common'
+  DEBT_TYPE = 'debt'
+  CREDIT_TYPE = 'credit'
+
+  TYPES = {
+    COMMON_TYPE => 'Corriente',
+    DEBT_TYPE => 'Débito',
+    CREDIT_TYPE => 'Crédito'
+  }.freeze
 
   def self.update(params)
     if account_type == 'Current' && params[:quota]
@@ -38,5 +50,38 @@ class Account < ApplicationRecord
     end
 
     super.save
+  end
+
+  def can_transact?(amount)
+    send("#{account_type}_transact", amount)
+  end
+
+  def transaction_type_error
+    case account_type
+    when DEBT_TYPE
+      'Error de validación por cuenta débito'
+    when CREDIT_TYPE
+      'Error de validación por cuenta crédito'
+    else
+      'Monto no corresponde'
+    end
+  end
+
+  private
+
+  # Como una cuenta corriente puede tener saldo positivo o negativo,
+  # no necesita validacion
+  def common_transact(amount)
+    !amount.nil?
+  end
+
+  # Aca la logica de validar una transaccion para cuenta debito
+  def debt_transact(amount)
+    !amount.nil?
+  end
+
+  # Aca la logica de validar una transaccion para cuenta credito
+  def credit_transact(amount)
+    !amount.nil?
   end
 end

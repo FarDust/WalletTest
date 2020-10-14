@@ -25,7 +25,7 @@
     <div class="content">
       <main role="main">
         <%= content_for?(:content) ? yield(:content) : yield %>
-      </main> 
+      </main>
     </div>
     <%= javascript_pack_tag 'material-dashboard', 'data-turbolinks-track': 'reload' %>
   </body>
