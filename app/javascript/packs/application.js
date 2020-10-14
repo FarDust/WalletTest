@@ -5,10 +5,6 @@
 
 import "bootstrap"
 import "../../assets/stylesheets/application"
-import "../../assets/vendor/material-dashboard/js/core/bootstrap-material-design.min"
-import "../../assets/vendor/material-dashboard/js/plugins/perfect-scrollbar.jquery.min"
-import "../../assets/vendor/material-dashboard/js/plugins/bootstrap-notify"
-import "../../assets/vendor/material-dashboard/js/material-dashboard"
 
 require("@rails/ujs").start()
 require("turbolinks").start()

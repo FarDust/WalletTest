@@ -84,7 +84,7 @@ RSpec.describe(MovementsController, type: :controller) do
     it { is_expected.to(respond_with(:unprocessable_entity)) }
   end
 
-  describe 'DE  LETE #destroy failed' do
+  describe 'DELETE #destroy failed' do
     login_user
     before do
       account = create(:account)

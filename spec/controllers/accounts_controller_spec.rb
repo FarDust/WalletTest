@@ -31,7 +31,9 @@ RSpec.describe(AccountsController, type: :controller) do
     login_user
     before do
       account = build(:account)
-      post :create, params: { account: account.as_json, format: :json }
+      request_params = account.as_json
+      request_params[:currency] = request_params[:balance_currency]
+      post :create, params: { account: request_params, format: :json }
     end
 
     it { is_expected.to(respond_with(:created)) }
@@ -52,7 +54,7 @@ RSpec.describe(AccountsController, type: :controller) do
     before do
       account = create(:account)
       put :update,
-          params: { id: account.id, account: { account_type: nil } },
+          params: { id: account.id, account: { balance: nil } },
           format: :json
     end
 

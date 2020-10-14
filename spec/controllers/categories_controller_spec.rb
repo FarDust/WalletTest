@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require('rails_helper')
 
 RSpec.describe(CategoriesController, type: :controller) do
   describe 'GET #index' do
@@ -51,9 +51,10 @@ RSpec.describe(CategoriesController, type: :controller) do
     login_user
     before do
       category = create(:category)
-      put :update,
-          params: { id: category.id, category: { name: nil } },
-          format: :json
+      put :update, params: {
+        id: category.id,
+        category: { name: nil }, format: :json
+      }
     end
 
     it { is_expected.to(respond_with(:unprocessable_entity)) }

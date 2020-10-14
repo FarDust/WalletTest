@@ -1,5 +1,7 @@
 # frozen_string_literal: false
 
+require('account')
+
 FactoryBot.define do
   factory :user do
     sequence(:email) { |n| "test-#{n.to_s.rjust(3, '0')}@example.com" }
@@ -13,9 +15,10 @@ FactoryBot.define do
 
   factory :account do
     user
-    balance_cents { 3000 }
+    balance { 3000 }
     account_type { 'credit' }
-    quota { '200' }
+    balance_currency { 'CLP' }
+    quota { 200 }
   end
 
   factory :natural_person do

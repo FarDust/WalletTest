@@ -20,6 +20,7 @@ AllCops:
     - 'vendor/**/*'
     - 'bin/**/*'
     - 'node_modules/**/*'
+    - 'config/initializers/money.rb'
 
 Layout/LineLength:
   IgnoredPatterns: ['\A\s*#']

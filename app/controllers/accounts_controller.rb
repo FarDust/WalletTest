@@ -6,7 +6,7 @@ class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
-    @accounts = Account.all
+    @accounts = Account.where(user: current_user)
   end
 
   # GET /accounts/1
@@ -26,7 +26,7 @@ class AccountsController < ApplicationController
   # POST /accounts
   # POST /accounts.json
   def create
-    @account = current_user.accounts.new(account_params)
+    @account = Account.new(create_params)
     respond_to do |format|
       if @account.save
         msg = 'Account was successfully created.'
@@ -46,7 +46,7 @@ class AccountsController < ApplicationController
   # PATCH/PUT /accounts/1.json
   def update
     respond_to do |format|
-      if @account.update(account_params)
+      if @account.update(account_params.except(:currency).except(:account_type))
         msg = 'Account was successfully updated.'
         format.html { redirect_to(@account, notice: msg) }
         format.json { render(:show, status: :ok, location: @account) }
@@ -80,6 +80,13 @@ class AccountsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def account_params
-    params.require(:account).permit(:balance, :account_type, :currency, :quota)
+    params.require(:account).permit(:balance, :account_type, :quota, :currency)
+  end
+
+  def create_params
+    return_params = account_params
+    return_params[:user_id] = current_user.id
+    return_params[:balance_currency] = account_params[:currency]
+    return_params.except(:currency)
   end
 end

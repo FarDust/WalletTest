@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require('rails_helper')
 
 RSpec.describe(NaturalPeopleController, type: :controller) do
   describe 'GET #index' do
@@ -21,9 +21,10 @@ RSpec.describe(NaturalPeopleController, type: :controller) do
     login_user
     before do
       natural_person = build(:natural_person, nombre: nil)
-      post :create,
-           params: { natural_person: natural_person.as_json },
-           format: :json
+      post :create, params: {
+        natural_person: natural_person.as_json,
+        format: :json
+      }
     end
 
     it { is_expected.to(respond_with(:unprocessable_entity)) }
@@ -33,9 +34,10 @@ RSpec.describe(NaturalPeopleController, type: :controller) do
     login_user
     before do
       natural_person = build(:natural_person)
-      post :create,
-           params: { natural_person: natural_person.as_json },
-           format: :json
+      post :create, params: {
+        natural_person: natural_person.as_json,
+        format: :json
+      }
     end
 
     it { is_expected.to(respond_with(:created)) }
@@ -45,12 +47,10 @@ RSpec.describe(NaturalPeopleController, type: :controller) do
     login_user
     before do
       natural_person = create(:natural_person)
-      put :update,
-          params: {
-            id: natural_person.id,
-            natural_person: { balance_cents: 400 }
-          },
-          format: :json
+      put :update, params: {
+        id: natural_person.id,
+        natural_person: { balance_cents: 400 }
+      }
     end
 
     it { is_expected.to(respond_with(:ok)) }
@@ -60,9 +60,11 @@ RSpec.describe(NaturalPeopleController, type: :controller) do
     login_user
     before do
       natural_person = create(:natural_person)
-      put :update,
-          params: { id: natural_person.id, natural_person: { nombre: nil } },
-          format: :json
+      put :update, params: {
+        id: natural_person.id,
+        natural_person: { nombre: nil },
+        format: :json
+      }
     end
 
     it { is_expected.to(respond_with(:unprocessable_entity)) }
