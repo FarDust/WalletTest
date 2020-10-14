@@ -18,7 +18,7 @@ RSpec.describe('movements/new') do
     @movement = Movement.new
     render(template: 'movements/new')
 
-    expect(rendered).to(match(/Debt Form/))
+    expect(rendered).to(match(/Movement Management Form/))
   end
 
   it 'display common movement form' do
