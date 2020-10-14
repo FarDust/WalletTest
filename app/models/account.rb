@@ -61,6 +61,6 @@ end
 
   # Aca la logica de validar una transaccion para cuenta credito
   def credit_transact(amount)
-    !amount.nil?
+    !amount.nil?save
   end
 end
