@@ -48,6 +48,7 @@ RSpec.describe(Movement, type: :model) do
       expect(movement.final_balance).to(match(account.balance_cents))
     end
 
+    # REVISAR continuidad
     it 'match debt account balance' do
       account = build(:account, account_type: 'debt')
       category = build(:category)

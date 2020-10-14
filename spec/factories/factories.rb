@@ -24,6 +24,7 @@ FactoryBot.define do
     account_type { 'common' }
   end
 
+  # EVALUAR utilidad
   factory :debt_account do
     user
     balance_cents { 100 }

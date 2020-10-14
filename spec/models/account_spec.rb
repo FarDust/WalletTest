@@ -38,6 +38,5 @@ RSpec.describe(Account, type: :model) do
       account = build(:account, account_type: "debt", balance: 1, quota: 0)
       expect(account.quota).to eq(0)
     end
-    # falta generar validor para que otros tipos de cuentan no tengan balance negativo
   end
 end
