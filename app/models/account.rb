@@ -17,7 +17,6 @@ class Account < ApplicationRecord
   belongs_to :user
   validates :balance_cents, presence: true
   validates :account_type, presence: true
-  validate :debit_account_is_valid
   monetize :balance_cents
   has_many :movements, dependent: :destroy
 
@@ -54,24 +53,9 @@ class Account < ApplicationRecord
     !amount.nil?
   end
 
-  # Como una cuenta corriente solo puede tener saldo positivos o 0
-  # se requiere REVISAR
+  # Aca la logica de validar una transaccion para cuenta debito
   def debt_transact(amount)
-    new_balance_amount = (balance + Money.new(amount, balance.currency)).amount
-    !amount.nil? && new_balance_amount >= 0
-  end
-
-  # Robado del commit del Alonso. Valida que la cuenta de debito cumpla
-  # con no tener balance negativo
-  def debit_account_is_valid
-    if account_type == DEBT_TYPE
-      if balance.negative?
-        errors.add(
-          :negative_balance,
-          'A credit account cannot have a negative balance.'
-        )
-      end
-    end
+    !amount.nil?
   end
 
   # Aca la logica de validar una transaccion para cuenta credito

@@ -40,29 +40,9 @@ RSpec.describe(Movement, type: :model) do
       expect(movement.final_balance).to(match(common_acc.balance_cents))
     end
 
-    # REVISAR continuidad (inminente lastre from Chelo's branch 2)
     it 'match debt balance' do
       account = create(:account, account_type: 'debt')
       movement = account.movements.create(category: category)
-      expect(movement).to(be_invalid)
-    end
-
-    # REVISAR continuidad (inminente lastre from Chelo's branch 1)
-    it 'match debt account balance' do
-      account = build(:account, account_type: 'debt')
-      category = build(:category)
-      account.save
-      category.save
-      movement = account.movements.create(category: category)
-      expect(movement).to(be_invalid)
-    end
-
-    it 'new debit balance cannot be negative' do
-      account = build(:account, account_type: 'debt', balance: 1, quota: 0)
-      category = build(:category)
-      account.save
-      category.save
-      movement = account.movements.create(amount: -2, category: category)
       expect(movement).to(be_invalid)
     end
   end

@@ -11,24 +11,12 @@ RSpec.describe('form', type: :view) do
     expect(rendered).to(match(/Credit Form/))
   end
 
-  # NEWBIE
   it 'display debt movement form' do
     @account = create(:account, account_type: 'debt')
     @movement = Movement.new
     render(template: 'movements/new')
 
     expect(rendered).to(match(/Debt Form/))
-  end
-  
-  # REVISAR nuevamente una referencia a credit y common branches
-  # OLDIE
-  it 'display debt movement form 2' do
-    @account = build(:account, account_type: 'debt')
-    @account.save
-    @movement = Movement.new
-    render(template: 'movements/new')
-
-    expect(rendered).to(match(/Movement Management Form/))
   end
 
   it 'display common movement form' do
