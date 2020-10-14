@@ -90,7 +90,7 @@ class Account < ApplicationRecord
   # con no tener balance negativo
   def debit_account_is_valid
     if account_type  == DEBT_TYPE
-      if balance.negative
+      if balance.negative?
         errors.add(
           :negative_balance,
           'A credit account cannot have a negative balance.')
