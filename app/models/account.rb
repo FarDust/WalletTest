@@ -14,22 +14,45 @@
 #  updated_at   :datetime         not null
 #
 class Account < ApplicationRecord
+  register_currency :clp
+
   belongs_to :user
   validates :balance_cents, presence: true
   validates :account_type, presence: true
   validate :credit_account_is_valid
-  monetize :balance_cents
+  monetize :balance_cents, with_model_currency: :balance_currency
   has_many :movements, dependent: :destroy
+
+  VALID_TYPES = %w[common debt credit].to_set()
 
   COMMON_TYPE = 'common'
   DEBT_TYPE = 'debt'
   CREDIT_TYPE = 'credit'
 
   TYPES = {
-    COMMON_TYPE => 'Corriente',
-    DEBT_TYPE => 'Débito',
-    CREDIT_TYPE => 'Crédito'
+    COMMON_TYPE => 'Common',
+    DEBT_TYPE => 'Debit',
+    CREDIT_TYPE => 'Credit'
   }.freeze
+
+  def update(params)
+    if account_type == DEBT_TYPE && params[:quota]
+      errors[:base] << "debt accounts dosen't have any quota"
+      return false
+    end
+
+    super
+  end
+
+  def save
+    if VALID_TYPES.exclude?(account_type)
+      error = 'Must be type ' + VALID_TYPES.map(&:inspect).join(' or ') + 'and we get ' + account_type # rubocop:disable Style/StringConcatenation
+      errors[:base] << error
+      return false
+    end
+
+    super
+  end
 
   def can_transact?(amount)
     send("#{account_type}_transact", amount)

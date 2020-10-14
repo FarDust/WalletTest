@@ -20,6 +20,7 @@ AllCops:
     - 'vendor/**/*'
     - 'bin/**/*'
     - 'node_modules/**/*'
+    - 'config/initializers/money.rb'
 
 Layout/LineLength:
   IgnoredPatterns: ['\A\s*#']
@@ -30,6 +31,7 @@ Metrics/BlockLength:
     - 'Gemfile'
     - 'config/routes.rb'
     - 'config/environments/**/*'
+    - 'spec/controllers/*'
 
 Layout/EndOfLine:
   Enabled: false

@@ -21,11 +21,16 @@ require('sprockets/railtie')
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+Raven.configure do |config|
+  config.dsn = 'https://4d91d7d146554618b434ef6cb866c40d@o412727.ingest.sentry.io/5440557'
+end
+
 module WalleTest
   # Application class
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults(6.0)
+    config.filter_parameters << :password
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

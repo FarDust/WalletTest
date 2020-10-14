@@ -4,13 +4,13 @@ module AccountsHelper
   def account_form(account)
     case account.account_type
     when Account::DEBT_TYPE
-      'debt_form'
+      'movements/debt_form'
     when Account::CREDIT_TYPE
-      'credit_form'
+      'movements/credit_form'
     when Account::COMMON_TYPE
-      'common_form'
+      'movements/common_form'
     else
-      'form'
+      'movements/form'
     end
   end
 end

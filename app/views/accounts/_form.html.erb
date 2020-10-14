@@ -24,30 +24,41 @@
           <div class="card-body">
             <form>
               <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group bmd-form-group">
-                    <%= form.label(:balance, class: 'bmd-label-floating') %></label>
-                    <%= form.number_field(:balance, class: 'form-control', required: true) %>
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <%= form.label(:balance, class: 'bmd-label-floating') %>
+                    <%= form.number_field(:balance, class: 'form-control', min: 0) %>
                   </div>
                 </div>
-                <div class="col-md-6">
+                
+              </div>
+              <div class="row">
+                <% if !account.id %>
+                  <div class="col-md-5">
+                    <div class="form-group">
+                      <%= form.label(:account_type) %>
+                      <%= form.select(:account_type, options_for_select([ "common", "debit", "credit"], "common"), {} ,{class: 'form-control selectpicker', "data-style"=> "btn btn-link"}) %>
+                    </div>
+                  </div>
+                <% end %>
+                <% if !account.id %>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <%= form.label(:currency) %>
+                      <%= form.select(:currency, options_for_select(["CLP", "USD"], "CLP"), {} ,{class: 'form-control selectpicker', "data-style"=> "btn btn-link", hideen: true}) %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <div class="row">
+                <% if account.account_type != "Current" %>
+                <div class="col-md-8">
                   <div class="form-group bmd-form-group">
                     <%= form.label(:quota, class: 'bmd-label-floating') %>
-                    <%= form.number_field(:quota, class: 'form-control') %>
+                    <%= form.number_field(:quota, class: 'form-control', min: 0) %>
                   </div>
                 </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <%= form.label(:account_type, class: 'bmd-label-floating') %>
-                    <%= form.select(:account_type,
-                                    Account::TYPES.map { |k, v| [v, k] },
-                                    {
-                                      include_blank: 'Selecciona tipo de cuenta'
-                                    },
-                                    class: 'form-control',
-                                    required: true) %>
-                  </div>
-                </div>
+                <% end %>
               </div>
               <%= form.submit('Summit new changes', class: 'btn btn-primary pull-right') %>
               <div class="clearfix"></div>

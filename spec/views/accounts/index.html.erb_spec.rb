@@ -2,12 +2,12 @@
 
 require('rails_helper')
 
-RSpec.describe("accounts/index") do
+RSpec.describe('index', type: :view) do
   it 'displays all the accounts' do
     assign(:accounts, [])
 
-    render
+    render(template: 'accounts/index')
 
-    expect(rendered).to match /Accounts/
+    expect(rendered).to(match(/Accounts/))
   end
 end
