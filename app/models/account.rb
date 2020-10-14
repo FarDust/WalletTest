@@ -22,8 +22,8 @@ class Account < ApplicationRecord
 
   monetize :balance_cents, with_model_currency: :balance_currency
 
-  valid_account_types = %w[Current Debit Credit].to_set()
-  
+  valid_account_types = %w[common debt credit].to_set()
+
   has_many :movements, dependent: :destroy
 
   COMMON_TYPE = 'common'
@@ -31,14 +31,14 @@ class Account < ApplicationRecord
   CREDIT_TYPE = 'credit'
 
   TYPES = {
-    COMMON_TYPE => 'Corriente',
-    DEBT_TYPE => 'Débito',
-    CREDIT_TYPE => 'Crédito'
+    COMMON_TYPE => 'Common',
+    DEBT_TYPE => 'Debit',
+    CREDIT_TYPE => 'Credit'
   }.freeze
 
   def self.update(params)
-    if account_type == 'Current' && params[:quota]
-      raise("Current accounts dosen't have any quota")
+    if account_type == DEBT_TYPE && params[:quota]
+      raise("debt accounts dosen't have any quota")
     end
 
     super.save(params)

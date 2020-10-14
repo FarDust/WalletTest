@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require('rails_helper')
 
-RSpec.describe CategoriesController, type: :controller do
+RSpec.describe(CategoriesController, type: :controller) do
   describe 'GET #index' do
     login_user
-    before { get :index } 
+    before { get :index }
 
-    it { should respond_with(200) }
+    it { is_expected.to(respond_with(200)) }
   end
 
   describe 'GET #new' do
     login_user
     before { get :new }
 
-    it { should respond_with(200) }
+    it { is_expected.to(respond_with(200)) }
   end
 
   describe 'POST #create failed' do
@@ -24,7 +24,7 @@ RSpec.describe CategoriesController, type: :controller do
       post :create, params: { category: category.as_json, format: :json }
     end
 
-    it { should respond_with(:unprocessable_entity) }
+    it { is_expected.to(respond_with(:unprocessable_entity)) }
   end
 
   describe 'POST #create success' do
@@ -34,7 +34,7 @@ RSpec.describe CategoriesController, type: :controller do
       post :create, params: { category: category.as_json, format: :json }
     end
 
-    it { should respond_with(:created) }
+    it { is_expected.to(respond_with(:created)) }
   end
 
   describe 'POST #update success' do
@@ -44,7 +44,7 @@ RSpec.describe CategoriesController, type: :controller do
       put :update, params: { id: @category.id, category: { balance_cents: 400 } }
     end
 
-    it { should redirect_to(@category) }
+    it { is_expected.to(redirect_to(@category)) }
   end
 
   describe 'POST #update failed' do
@@ -54,7 +54,7 @@ RSpec.describe CategoriesController, type: :controller do
       put :update, params: { id: @category.id, category: { name: nil }, format: :json }
     end
 
-    it { should respond_with(:unprocessable_entity) }
+    it { is_expected.to(respond_with(:unprocessable_entity)) }
   end
 
   describe 'DELETE #destroy failed' do
@@ -64,6 +64,6 @@ RSpec.describe CategoriesController, type: :controller do
       delete :destroy, params: { id: @category.id }
     end
 
-    it { should redirect_to(categories_path) }
+    it { is_expected.to(redirect_to(categories_path)) }
   end
 end

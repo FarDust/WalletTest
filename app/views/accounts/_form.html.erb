@@ -37,7 +37,7 @@
                   <div class="col-md-5">
                     <div class="form-group">
                       <%= form.label(:account_type) %>
-                      <%= form.select(:account_type, options_for_select([ "Current", "Debit", "Credit"], "Current"), {} ,{class: 'form-control selectpicker', "data-style"=> "btn btn-link"}) %>
+                      <%= form.select(:account_type, options_for_select([ "common", "debit", "credit"], "common"), {} ,{class: 'form-control selectpicker', "data-style"=> "btn btn-link"}) %>
                     </div>
                   </div>
                 <% end %>

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'rails_helper'
+require('rails_helper')
 
-RSpec.describe MovementsController, type: :controller do
+RSpec.describe(MovementsController, type: :controller) do
   describe 'GET #index' do
     login_user
     before do
@@ -10,7 +10,7 @@ RSpec.describe MovementsController, type: :controller do
       get :index, params: { account_id: @account.id }
     end
 
-    it { should respond_with(200) }
+    it { is_expected.to(respond_with(200)) }
   end
 
   describe 'GET #new' do
@@ -21,7 +21,7 @@ RSpec.describe MovementsController, type: :controller do
       get :new, params: { account_id: @account.id }
     end
 
-    it { should respond_with(200) }
+    it { is_expected.to(respond_with(200)) }
   end
 
   describe 'POST #create failed' do
@@ -32,7 +32,7 @@ RSpec.describe MovementsController, type: :controller do
       post :create, params: { account_id: @account.id, movement: movement.as_json, format: :json }
     end
 
-    it { should respond_with(:unprocessable_entity) }
+    it { is_expected.to(respond_with(:unprocessable_entity)) }
   end
 
   describe 'POST #create success' do
@@ -44,7 +44,7 @@ RSpec.describe MovementsController, type: :controller do
       post :create, params: { account_id: @account.id, movement: movement.as_json }
     end
 
-    it { should redirect_to(account_movements_path(@account)) }
+    it { is_expected.to(redirect_to(account_movements_path(@account))) }
   end
 
   describe 'POST #update success' do
@@ -56,7 +56,7 @@ RSpec.describe MovementsController, type: :controller do
       put :update, params: { account_id: @account.id, id: movement.id, movement: movement.as_json }
     end
 
-    it { should redirect_to(account_movements_path(@account)) }
+    it { is_expected.to(redirect_to(account_movements_path(@account))) }
   end
 
   describe 'POST #update failed' do
@@ -68,7 +68,7 @@ RSpec.describe MovementsController, type: :controller do
       put :update, params: { account_id: @account.id, id: movement.id, movement: { amount: 0 }, format: :json }
     end
 
-    it { should respond_with(:unprocessable_entity) }
+    it { is_expected.to(respond_with(:unprocessable_entity)) }
   end
 
   describe 'DELETE #destroy failed' do
@@ -80,6 +80,6 @@ RSpec.describe MovementsController, type: :controller do
       delete :destroy, params: { account_id: @account.id, id: movement.id }
     end
 
-    it { should redirect_to(account_movements_path(@account)) }
+    it { is_expected.to(redirect_to(account_movements_path(@account))) }
   end
 end
