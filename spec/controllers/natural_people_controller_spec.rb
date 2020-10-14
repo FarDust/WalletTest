@@ -53,7 +53,7 @@ RSpec.describe(NaturalPeopleController, type: :controller) do
       }
     end
 
-    it { is_expected.to(respond_with(:ok)) }
+    it { is_expected.to(respond_with(:redirect)) }
   end
 
   describe 'POST #update failed' do
