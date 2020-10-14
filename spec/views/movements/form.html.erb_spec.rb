@@ -12,13 +12,14 @@ RSpec.describe("movements/new") do
     expect(rendered).to(match(/Credit Form/))
   end
 
+  # REVISAR nuevamente una referencia a credit y common branches
   it 'display debt movement form' do
     @account = build(:account, account_type: 'debt')
     @account.save
     @movement = Movement.new
     render(template: 'movements/new')
 
-    expect(rendered).to(match(/Debt Form/))
+    expect(rendered).to(match(/Movement Management Form/))
   end
 
   it 'display common movement form' do
