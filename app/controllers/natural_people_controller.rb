@@ -32,11 +32,11 @@ class NaturalPeopleController < ApplicationController
       var = @natural_person
       if @natural_person.save
         msg = 'Natural person was successfully created.'
-        format.html { redirect_to var, notice: msg }
-        format.json { render :show, status: :created, location: var }
+        format.html { redirect_to(var, notice: msg) }
+        format.json { render(:show, status: :created, location: var) }
       else
-        format.html { render :new }
-        format.json { render json: var.errors, status: :unprocessable_entity }
+        format.html { render(:new) }
+        format.json { render(json: var.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -47,13 +47,13 @@ class NaturalPeopleController < ApplicationController
     respond_to do |format|
       if @natural_person.update(natural_person_params)
         msg = 'Natural person was successfully updated.'
-        format.html { redirect_to @natural_person, notice: msg }
-        format.json { render :show, status: :ok, location: @natural_person }
+        format.html { redirect_to(@natural_person, notice: msg) }
+        format.json { render(:show, status: :ok, location: @natural_person) }
       else
-        format.html { render :edit }
+        format.html { render(:edit) }
         format.json do
-          render json: @natural_person.errors,
-                 status: :unprocessable_entity
+          render(json: @natural_person.errors,
+                 status: :unprocessable_entity)
         end
       end
     end
@@ -65,8 +65,8 @@ class NaturalPeopleController < ApplicationController
     @natural_person.destroy
     respond_to do |format|
       msg = 'Natural person was successfully destroyed.'
-      format.html { redirect_to natural_people_url, notice: msg }
-      format.json { head :no_content }
+      format.html { redirect_to(natural_people_url, notice: msg) }
+      format.json { head(:no_content) }
     end
   end
 

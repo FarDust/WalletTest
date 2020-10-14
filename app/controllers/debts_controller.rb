@@ -30,13 +30,13 @@ class DebtsController < ApplicationController
     respond_to do |format|
       if @debt.save
         msg = 'Debt was successfully created.'
-        format.html { redirect_to @debt, notice: msg }
-        format.json { render :show, status: :created, location: @debt }
+        format.html { redirect_to(@debt, notice: msg) }
+        format.json { render(:show, status: :created, location: @debt) }
       else
-        format.html { render :new }
+        format.html { render(:new) }
         format.json do
-          render json: @debt.errors,
-                 status: :unprocessable_entity
+          render(json: @debt.errors,
+                 status: :unprocessable_entity)
         end
       end
     end
@@ -48,11 +48,13 @@ class DebtsController < ApplicationController
     respond_to do |format|
       if @debt.update(debt_params)
         msg = 'Debt was successfully updated.'
-        format.html { redirect_to @debt, notice: msg }
-        format.json { render :show, status: :ok, location: @debt }
+        format.html { redirect_to(@debt, notice: msg) }
+        format.json { render(:show, status: :ok, location: @debt) }
       else
-        format.html { render :edit }
-        format.json { render json: @debt.errors, status: :unprocessable_entity }
+        format.html { render(:edit) }
+        format.json do
+          render(json: @debt.errors, status: :unprocessable_entity)
+        end
       end
     end
   end
@@ -63,8 +65,8 @@ class DebtsController < ApplicationController
     @debt.destroy
     respond_to do |format|
       msg = 'Debt was successfully destroyed.'
-      format.html { redirect_to debts_url, notice: msg }
-      format.json { head :no_content }
+      format.html { redirect_to(debts_url, notice: msg) }
+      format.json { head(:no_content) }
     end
   end
 

@@ -2,19 +2,19 @@
 
 require 'rails_helper'
 
-RSpec.describe AccountsController, type: :controller do
+RSpec.describe(AccountsController, type: :controller) do
   describe 'GET #index' do
     login_user
-    before { get :index } 
+    before { get :index }
 
-    it { should respond_with(200) }
+    it { is_expected.to(respond_with(200)) }
   end
 
   describe 'GET #new' do
     login_user
     before { get :new }
 
-    it { should respond_with(200) }
+    it { is_expected.to(respond_with(200)) }
   end
 
   describe 'POST #create failed' do
@@ -24,7 +24,7 @@ RSpec.describe AccountsController, type: :controller do
       post :create, params: { account: account.as_json, format: :json }
     end
 
-    it { should respond_with(:unprocessable_entity) }
+    it { is_expected.to(respond_with(:unprocessable_entity)) }
   end
 
   describe 'POST #create success' do
@@ -34,36 +34,38 @@ RSpec.describe AccountsController, type: :controller do
       post :create, params: { account: account.as_json, format: :json }
     end
 
-    it { should respond_with(:created) }
+    it { is_expected.to(respond_with(:created)) }
   end
 
   describe 'POST #update success' do
     login_user
     before do
-      @account = create(:account)
-      put :update, params: { id: @account.id, account: { balance_cents: 400 } }
+      account = create(:account)
+      put :update, params: { id: account.id, account: { balance_cents: 400 } }
     end
 
-    it { should redirect_to(@account) }
+    it { is_expected.to(redirect_to(Account.last)) }
   end
 
   describe 'POST #update failed' do
     login_user
     before do
-      @account = create(:account)
-      put :update, params: { id: @account.id, account: { account_type: nil }, format: :json }
+      account = create(:account)
+      put :update,
+          params: { id: account.id, account: { account_type: nil } },
+          format: :json
     end
 
-    it { should respond_with(:unprocessable_entity) }
+    it { is_expected.to(respond_with(:unprocessable_entity)) }
   end
 
   describe 'DELETE #destroy failed' do
     login_user
     before do
-      @account = create(:account)
-      delete :destroy, params: { id: @account.id }
+      account = create(:account)
+      delete :destroy, params: { id: account.id }
     end
 
-    it { should redirect_to(accounts_path) }
+    it { is_expected.to(redirect_to(accounts_path)) }
   end
 end

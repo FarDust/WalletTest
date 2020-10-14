@@ -21,7 +21,7 @@ test:
   database: walletest_test
   username: postgres
   password: postgres
-  host: postgres
+  host: localhost
   port: 5432
 
 production:
