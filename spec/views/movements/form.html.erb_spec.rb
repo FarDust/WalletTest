@@ -4,27 +4,27 @@ require('rails_helper')
 
 RSpec.describe('movements/new') do
   it 'display credit movement form' do
-    account = build(:account, account_type: 'credit')
-    account.save
-    movement = Movement.new
+    @account = build(:account, account_type: 'credit')
+    @account.save
+    @movement = Movement.new
     render(template: 'movements/new')
 
     expect(rendered).to(match(/Credit Form/))
   end
 
   it 'display debt movement form' do
-    account = build(:account, account_type: 'debt')
-    account.save
-    movement = Movement.new
+    @account = build(:account, account_type: 'debt')
+    @account.save
+    @movement = Movement.new
     render(template: 'movements/new')
 
     expect(rendered).to(match(/Debt Form/))
   end
 
   it 'display common movement form' do
-    account = build(:account, account_type: 'common')
-    account.save
-    movement = Movement.new
+    @account = build(:account, account_type: 'common')
+    @account.save
+    @movement = Movement.new
 
     render(template: 'movements/new')
 
@@ -32,9 +32,9 @@ RSpec.describe('movements/new') do
   end
 
   it "dosen't display default movement form" do
-    account = build(:account, account_type: 'test')
-    account.save
-    movement = Movement.new
+    @account = build(:account, account_type: 'test')
+    @account.save
+    @movement = Movement.new
 
     expect { render(template: 'movements/new') }.to(
       raise_exception(ActionView::Template::Error)

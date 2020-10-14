@@ -44,7 +44,7 @@ RSpec.describe(DebtsController, type: :controller) do
       put :update, params: { id: debt.id, debt: { balance_cents: 400 } }
     end
 
-    it { is_expected.to(redirect_to(debt)) }
+    it { is_expected.to(redirect_to(Debt.last)) }
   end
 
   describe 'POST #update failed' do

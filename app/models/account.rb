@@ -36,7 +36,7 @@ class Account < ApplicationRecord
     CREDIT_TYPE => 'Credit'
   }.freeze
 
-  def before_update(params)
+  def update(params)
     if account_type == DEBT_TYPE && params[:quota]
       errors[:base] << "debt accounts dosen't have any quota"
       return false

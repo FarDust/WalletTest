@@ -44,7 +44,7 @@ RSpec.describe(CategoriesController, type: :controller) do
       put :update, params: { id: category.id, category: { balance_cents: 400 } }
     end
 
-    it { is_expected.to(redirect_to(category)) }
+    it { is_expected.to(redirect_to(Category.last)) }
   end
 
   describe 'POST #update failed' do
@@ -52,9 +52,9 @@ RSpec.describe(CategoriesController, type: :controller) do
     before do
       category = create(:category)
       put :update, params: {
-         id: category.id,
-         category: { name: nil }, format: :json 
-        }
+        id: category.id,
+        category: { name: nil }, format: :json
+      }
     end
 
     it { is_expected.to(respond_with(:unprocessable_entity)) }
