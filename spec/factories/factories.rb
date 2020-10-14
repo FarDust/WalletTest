@@ -1,4 +1,5 @@
 # frozen_string_literal: false
+require('account')
 
 FactoryBot.define do
   factory :user do
@@ -16,7 +17,7 @@ FactoryBot.define do
     balance { 3000 }
     account_type { 'credit' }
     balance_currency { 'CLP' }
-    quota { '200' }
+    quota { 200 }
   end
 
   factory :common_account do

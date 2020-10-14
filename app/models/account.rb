@@ -22,7 +22,7 @@ class Account < ApplicationRecord
 
   monetize :balance_cents, with_model_currency: :balance_currency
 
-  valid_account_types = %w[common debt credit].to_set()
+  VALID_TYPES = %w[common debt credit].to_set()
 
   has_many :movements, dependent: :destroy
 
@@ -36,20 +36,22 @@ class Account < ApplicationRecord
     CREDIT_TYPE => 'Credit'
   }.freeze
 
-  def self.update(params)
+  def update(params)
     if account_type == DEBT_TYPE && params[:quota]
-      raise("debt accounts dosen't have any quota")
+      self.errors[:base] << "debt accounts dosen't have any quota"
+      return false
     end
 
-    super.save(params)
+    super
   end
 
-  def self.save
-    if valid_account_types.exclude?(params.account_type)
-      raise('Must be type' + valid_account_types.map(&:inspect).join(' or ')) # rubocop:disable Style/StringConcatenation
+  def save
+    if VALID_TYPES.exclude?(account_type)
+      self.errors[:base] << 'Must be type ' + VALID_TYPES.map(&:inspect).join(' or ') + 'and we get ' + account_type # rubocop:disable Style/StringConcatenation
+      return false
     end
 
-    super.save
+    super
   end
 
   def can_transact?(amount)

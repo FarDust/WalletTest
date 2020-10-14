@@ -32,4 +32,11 @@ RSpec.describe(Account, type: :model) do
     end
     # falta generar validor para que otros tipos de cuentan no tengan balance negativo
   end
+
+  context 'when update debt account' do
+    it 'use invalid quota' do
+      account = build(:debt_account)
+      expect(account.update({quota: 200})).to_not(be_truthy)
+    end
+  end
 end
