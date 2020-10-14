@@ -45,7 +45,7 @@ class Account < ApplicationRecord
     super
   end
 
-  def before_save
+  def save
     if VALID_TYPES.exclude?(account_type)
       error = 'Must be type ' + VALID_TYPES.map(&:inspect).join(' or ') + 'and we get ' + account_type # rubocop:disable Style/StringConcatenation
       errors[:base] << error
