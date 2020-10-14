@@ -30,7 +30,6 @@ Metrics/BlockLength:
     - 'Gemfile'
     - 'config/routes.rb'
     - 'config/environments/**/*'
-    - 'spec/controllers/*'
 
 Layout/EndOfLine:
   Enabled: false
