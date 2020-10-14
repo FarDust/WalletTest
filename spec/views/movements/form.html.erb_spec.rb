@@ -2,7 +2,7 @@
 
 require('rails_helper')
 
-RSpec.describe("movements/new") do
+RSpec.describe('movements/new') do
   it 'display credit movement form' do
     @account = build(:account, account_type: 'credit')
     @account.save

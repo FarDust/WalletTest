@@ -27,9 +27,7 @@ class AccountsController < ApplicationController
   # POST /accounts.json
   def create
     @account = current_user.accounts.new(account_params)
-    if @account.account_type = 'debt'
-      @account.quota = 0
-    end
+    @account.quota = 0 if @account.account_type == 'debt'
     respond_to do |format|
       if @account.save
         msg = 'Account was successfully created.'

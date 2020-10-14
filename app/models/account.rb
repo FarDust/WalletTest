@@ -57,16 +57,19 @@ class Account < ApplicationRecord
   # Como una cuenta corriente solo puede tener saldo positivos o 0
   # se requiere REVISAR
   def debt_transact(amount)
-  new_balance_amount = (balance + Money.new(amount, balance.currency)).amount
-  !amount.nil? && new_balance_amount >= 0 
+    new_balance_amount = (balance + Money.new(amount, balance.currency)).amount
+    !amount.nil? && new_balance_amount >= 0
   end
 
-  # Robado del commit del Alonso. Valida que la cuenta de débito cumpla
+  # Robado del commit del Alonso. Valida que la cuenta de debito cumpla
   # con no tener balance negativo
   def debit_account_is_valid
-    if account_type  == DEBT_TYPE
-      if balance < 0
-        errors.add(:negative_balance, 'A credit account cannot have a negative balance.')
+    if account_type == DEBT_TYPE
+      if balance.negative?
+        errors.add(
+          :negative_balance,
+          'A credit account cannot have a negative balance.'
+        )
       end
     end
   end

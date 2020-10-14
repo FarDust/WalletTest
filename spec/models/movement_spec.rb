@@ -59,7 +59,7 @@ RSpec.describe(Movement, type: :model) do
     end
 
     it 'new debit balance cannot be negative' do
-      account = build(:account, account_type: "debt", balance: 1, quota: 0)
+      account = build(:account, account_type: 'debt', balance: 1, quota: 0)
       category = build(:category)
       account.save
       category.save
