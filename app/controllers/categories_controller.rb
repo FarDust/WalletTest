@@ -31,13 +31,13 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       if @category.save
         msg = 'Category was successfully created.'
-        format.html { redirect_to @category, notice: msg }
-        format.json { render :show, status: :created, location: @category }
+        format.html { redirect_to(@category, notice: msg) }
+        format.json { render(:show, status: :created, location: @category) }
       else
-        format.html { render :new }
+        format.html { render(:new) }
         format.json do
-          render json: @category.errors,
-                 status: :unprocessable_entity
+          render(json: @category.errors,
+                 status: :unprocessable_entity)
         end
       end
     end
@@ -49,13 +49,13 @@ class CategoriesController < ApplicationController
     respond_to do |format|
       if @category.update(category_params)
         msg = 'Category was successfully updated.'
-        format.html { redirect_to @category, notice: msg }
-        format.json { render :show, status: :ok, location: @category }
+        format.html { redirect_to(@category, notice: msg) }
+        format.json { render(:show, status: :ok, location: @category) }
       else
-        format.html { render :edit }
+        format.html { render(:edit) }
         format.json do
-          render json: @category.errors,
-                 status: :unprocessable_entity
+          render(json: @category.errors,
+                 status: :unprocessable_entity)
         end
       end
     end
@@ -67,8 +67,8 @@ class CategoriesController < ApplicationController
     @category.destroy
     respond_to do |format|
       msg = 'Category was successfully destroyed.'
-      format.html { redirect_to categories_url, notice: msg }
-      format.json { head :no_content }
+      format.html { redirect_to(categories_url, notice: msg) }
+      format.json { head(:no_content) }
     end
   end
 

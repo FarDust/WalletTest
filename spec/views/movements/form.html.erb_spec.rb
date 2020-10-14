@@ -2,10 +2,9 @@
 
 require('rails_helper')
 
-RSpec.describe("movements/new") do
+RSpec.describe('form', type: :view) do
   it 'display credit movement form' do
-    @account = build(:account, account_type: 'credit')
-    @account.save
+    @account = create(:account, account_type: 'credit')
     @movement = Movement.new
     render(template: 'movements/new')
 
@@ -13,8 +12,7 @@ RSpec.describe("movements/new") do
   end
 
   it 'display debt movement form' do
-    @account = build(:account, account_type: 'debt')
-    @account.save
+    @account = create(:account, account_type: 'debt')
     @movement = Movement.new
     render(template: 'movements/new')
 
@@ -22,8 +20,7 @@ RSpec.describe("movements/new") do
   end
 
   it 'display common movement form' do
-    @account = build(:account, account_type: 'common')
-    @account.save
+    @account = create(:account, account_type: 'common')
     @movement = Movement.new
 
     render(template: 'movements/new')
@@ -32,8 +29,7 @@ RSpec.describe("movements/new") do
   end
 
   it 'display default movement form' do
-    @account = build(:account, account_type: 'test')
-    @account.save
+    @account = create(:account, account_type: 'test')
     @movement = Movement.new
 
     render(template: 'movements/new')
