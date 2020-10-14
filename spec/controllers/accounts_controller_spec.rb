@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require('rails_helper')
+require 'rails_helper'
 
 RSpec.describe(AccountsController, type: :controller) do
   describe 'GET #index' do
@@ -42,28 +42,20 @@ RSpec.describe(AccountsController, type: :controller) do
   describe 'POST #update success' do
     login_user
     before do
-      @account = create(:account)
-      put :update, params: { id: @account.id, account: { balance_cents: 400 } }
+      account = create(:account)
+      put :update, params: { id: account.id, account: { balance_cents: 400 } }
     end
 
-    it { is_expected.to(redirect_to(@account)) }
+    it { is_expected.to(redirect_to(Account.last)) }
   end
 
-  describe 'POST #update account_type failed' do
+  describe 'POST #update failed' do
     login_user
     before do
-      @account = create(:account)
-      put :update, params: { id: @account.id, account: { account_type: nil }, format: :json }
-    end
-
-    it { should respond_with(:unprocessable_entity) }
-  end
-
-  describe 'POST #update balance failed' do
-    login_user
-    before do
-      @account = create(:account)
-      put :update, params: { id: @account.id, account: { balance: nil }, format: :json }
+      account = create(:account)
+      put :update,
+          params: { id: account.id, account: { balance: nil } },
+          format: :json
     end
 
     it { is_expected.to(respond_with(:unprocessable_entity)) }
@@ -72,8 +64,8 @@ RSpec.describe(AccountsController, type: :controller) do
   describe 'DELETE #destroy failed' do
     login_user
     before do
-      @account = create(:account)
-      delete :destroy, params: { id: @account.id }
+      account = create(:account)
+      delete :destroy, params: { id: account.id }
     end
 
     it { is_expected.to(redirect_to(accounts_path)) }
