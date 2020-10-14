@@ -36,18 +36,19 @@ class Account < ApplicationRecord
     CREDIT_TYPE => 'Credit'
   }.freeze
 
-  def update(params)
+  def before_update(params)
     if account_type == DEBT_TYPE && params[:quota]
-      self.errors[:base] << "debt accounts dosen't have any quota"
+      errors[:base] << "debt accounts dosen't have any quota"
       return false
     end
 
     super
   end
 
-  def save
+  def before_save
     if VALID_TYPES.exclude?(account_type)
-      self.errors[:base] << 'Must be type ' + VALID_TYPES.map(&:inspect).join(' or ') + 'and we get ' + account_type # rubocop:disable Style/StringConcatenation
+      error = 'Must be type ' + VALID_TYPES.map(&:inspect).join(' or ') + 'and we get ' + account_type # rubocop:disable Style/StringConcatenation
+      errors[:base] << error
       return false
     end
 

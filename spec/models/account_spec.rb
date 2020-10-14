@@ -36,7 +36,7 @@ RSpec.describe(Account, type: :model) do
   context 'when update debt account' do
     it 'use invalid quota' do
       account = build(:debt_account)
-      expect(account.update({quota: 200})).to_not(be_truthy)
+      expect(account.update({ quota: 200 })).not_to(be_truthy)
     end
   end
 end

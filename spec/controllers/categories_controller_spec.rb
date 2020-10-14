@@ -40,18 +40,21 @@ RSpec.describe(CategoriesController, type: :controller) do
   describe 'POST #update success' do
     login_user
     before do
-      @category = create(:category)
-      put :update, params: { id: @category.id, category: { balance_cents: 400 } }
+      category = create(:category)
+      put :update, params: { id: category.id, category: { balance_cents: 400 } }
     end
 
-    it { is_expected.to(redirect_to(@category)) }
+    it { is_expected.to(redirect_to(category)) }
   end
 
   describe 'POST #update failed' do
     login_user
     before do
-      @category = create(:category)
-      put :update, params: { id: @category.id, category: { name: nil }, format: :json }
+      category = create(:category)
+      put :update, params: {
+         id: category.id,
+         category: { name: nil }, format: :json 
+        }
     end
 
     it { is_expected.to(respond_with(:unprocessable_entity)) }
@@ -60,8 +63,8 @@ RSpec.describe(CategoriesController, type: :controller) do
   describe 'DELETE #destroy failed' do
     login_user
     before do
-      @category = create(:category)
-      delete :destroy, params: { id: @category.id }
+      category = create(:category)
+      delete :destroy, params: { id: category.id }
     end
 
     it { is_expected.to(redirect_to(categories_path)) }

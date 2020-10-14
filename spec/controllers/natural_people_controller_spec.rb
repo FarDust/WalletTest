@@ -21,7 +21,10 @@ RSpec.describe(NaturalPeopleController, type: :controller) do
     login_user
     before do
       natural_person = build(:natural_person, nombre: nil)
-      post :create, params: { natural_person: natural_person.as_json, format: :json }
+      post :create, params: {
+        natural_person: natural_person.as_json,
+        format: :json 
+        }
     end
 
     it { is_expected.to(respond_with(:unprocessable_entity)) }
@@ -40,18 +43,18 @@ RSpec.describe(NaturalPeopleController, type: :controller) do
   describe 'POST #update success' do
     login_user
     before do
-      @natural_person = create(:natural_person)
-      put :update, params: { id: @natural_person.id, natural_person: { balance_cents: 400 } }
+      natural_person = create(:natural_person)
+      put :update, params: { id: natural_person.id, natural_person: { balance_cents: 400 } }
     end
 
-    it { is_expected.to(redirect_to(@natural_person)) }
+    it { is_expected.to(redirect_to(natural_person)) }
   end
 
   describe 'POST #update failed' do
     login_user
     before do
-      @natural_person = create(:natural_person)
-      put :update, params: { id: @natural_person.id, natural_person: { nombre: nil }, format: :json }
+      natural_person = create(:natural_person)
+      put :update, params: { id: natural_person.id, natural_person: { nombre: nil }, format: :json }
     end
 
     it { is_expected.to(respond_with(:unprocessable_entity)) }
@@ -60,8 +63,8 @@ RSpec.describe(NaturalPeopleController, type: :controller) do
   describe 'DELETE #destroy failed' do
     login_user
     before do
-      @natural_person = create(:natural_person)
-      delete :destroy, params: { id: @natural_person.id }
+      natural_person = create(:natural_person)
+      delete :destroy, params: { id: natural_person.id }
     end
 
     it { is_expected.to(redirect_to(natural_people_path)) }

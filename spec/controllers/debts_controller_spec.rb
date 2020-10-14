@@ -40,18 +40,18 @@ RSpec.describe(DebtsController, type: :controller) do
   describe 'POST #update success' do
     login_user
     before do
-      @debt = create(:debt)
-      put :update, params: { id: @debt.id, debt: { balance_cents: 400 } }
+      debt = create(:debt)
+      put :update, params: { id: debt.id, debt: { balance_cents: 400 } }
     end
 
-    it { is_expected.to(redirect_to(@debt)) }
+    it { is_expected.to(redirect_to(debt)) }
   end
 
   describe 'POST #update failed' do
     login_user
     before do
-      @debt = create(:debt)
-      put :update, params: { id: @debt.id, debt: { amount: nil }, format: :json }
+      debt = create(:debt)
+      put :update, params: { id: debt.id, debt: { amount: nil }, format: :json }
     end
 
     it { is_expected.to(respond_with(:unprocessable_entity)) }
@@ -60,8 +60,8 @@ RSpec.describe(DebtsController, type: :controller) do
   describe 'DELETE #destroy failed' do
     login_user
     before do
-      @debt = create(:debt)
-      delete :destroy, params: { id: @debt.id }
+      debt = create(:debt)
+      delete :destroy, params: { id: debt.id }
     end
 
     it { is_expected.to(redirect_to(debts_path)) }
