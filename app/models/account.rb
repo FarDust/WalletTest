@@ -19,12 +19,11 @@ class Account < ApplicationRecord
   belongs_to :user
   validates :balance_cents, presence: true
   validates :account_type, presence: true
-
+  validate :credit_account_is_valid
   monetize :balance_cents, with_model_currency: :balance_currency
+  has_many :movements, dependent: :destroy
 
   VALID_TYPES = %w[common debt credit].to_set()
-
-  has_many :movements, dependent: :destroy
 
   COMMON_TYPE = 'common'
   DEBT_TYPE = 'debt'
@@ -64,9 +63,20 @@ class Account < ApplicationRecord
     when DEBT_TYPE
       'Error de validación por cuenta débito'
     when CREDIT_TYPE
-      'Error de validación por cuenta crédito'
+      'Credit account cannot have a positive balance after a transaction nor exceed quota.'
     else
       'Monto no corresponde'
+    end
+  end
+
+  def credit_account_is_valid
+    if account_type == CREDIT_TYPE
+      if balance > 0
+        errors.add(:positive_credit, 'A credit account cannot have a positive balance.')
+      end
+      if balance.amount.abs > quota
+        errors.add(:exceeds_quota, 'The balance exceeds the defined quota.')  
+      end
     end
   end
 
@@ -83,8 +93,9 @@ class Account < ApplicationRecord
     !amount.nil?
   end
 
-  # Aca la logica de validar una transaccion para cuenta credito
+  # A credit card cannot have a positive balance. 
   def credit_transact(amount)
-    !amount.nil?
+    new_balance_amount = (balance + Money.new(amount, balance.currency)).amount
+    !amount.nil? && !(new_balance_amount > 0) && !(new_balance_amount.abs > quota)
   end
 end
