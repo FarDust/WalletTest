@@ -1,6 +1,7 @@
 # Group 02 Wallet App
 
-Link: https://walletest-reborn.herokuapp.com/
+Staging server linked to development branch: https://walletest-reborn.herokuapp.com/
+Production server linked to master branch: https://walletest-born.herokuapp.com/
 
 ## Entrega 1 (16/09)
 
