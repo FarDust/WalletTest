@@ -50,3 +50,5 @@ Production server linked to master branch: https://walletest-born.herokuapp.com/
 * Fix eslint offences automatically: `docker-compose exec web yarn run eslint --fix --ext .js,.es6 app/javascripts`
 * Fix rubocop offences automatically: `docker-compose exec web rubocop -a`
 * Fix erblint offences automatically: `docker-compose exec web bundle exec erblint --lint-all -a`
+
+* Populate database `docker-compose run --rm web rails db:seed` (works and doesn't die) and [useful website](https://makeitrealcamp.gitbook.io/ruby-on-rails-5/seeds)
