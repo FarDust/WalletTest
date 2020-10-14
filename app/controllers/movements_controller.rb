@@ -31,15 +31,15 @@ class MovementsController < ApplicationController
     respond_to do |format|
       if @movement.save
         format.html do
-          redirect_to account_movements_path(@account),
-                      notice: 'Movement was successfully created.'
+          redirect_to(account_movements_path(@account),
+                      notice: 'Movement was successfully created.')
         end
-        format.json { render :show, status: :created }
+        format.json { render(json: @movement, status: :created) }
       else
-        format.html { render :new }
+        format.html { render(:new) }
         format.json do
-          render json: @movement.errors,
-                 status: :unprocessable_entity
+          render(json: @movement.errors,
+                 status: :unprocessable_entity)
         end
       end
     end
@@ -51,15 +51,16 @@ class MovementsController < ApplicationController
     respond_to do |format|
       if @movement.update(movement_params)
         format.html do
-          redirect_to account_movements_path(@account),
-                      notice: 'Movement was successfully updated.'
+          redirect_to(account_movements_path(@account),
+                      status: :ok,
+                      notice: 'Movement was successfully updated.')
         end
-        format.json { render :show, status: :ok }
+        format.json { render(json: @movement, status: :ok) }
       else
-        format.html { render :edit }
+        format.html { render(:edit) }
         format.json do
-          render json: @movement.errors,
-                 status: :unprocessable_entity
+          render(json: @movement.errors,
+                 status: :unprocessable_entity)
         end
       end
     end
@@ -71,8 +72,8 @@ class MovementsController < ApplicationController
     @movement.destroy
     respond_to do |format|
       msg = 'Movement was successfully destroyed.'
-      format.html { redirect_to account_movements_path(@account), notice: msg }
-      format.json { head :no_content }
+      format.html { redirect_to(account_movements_path(@account), notice: msg) }
+      format.json { head(:no_content) }
     end
   end
 

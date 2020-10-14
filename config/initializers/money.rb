@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 Money.locale_backend = :currency
 
 MoneyRails.configure do |config|
@@ -42,21 +43,6 @@ MoneyRails.configure do |config|
   #                            default: 'USD'
   #                          }
 
-  # Register a custom currency
-  #
-  # Example:
-  # config.register_currency = {
-  #   priority:            1,
-  #   iso_code:            "EU4",
-  #   name:                "Euro with subunit of 4 digits",
-  #   symbol:              "€",
-  #   symbol_first:        true,
-  #   subunit:             "Subcent",
-  #   subunit_to_unit:     10000,
-  #   thousands_separator: ".",
-  #   decimal_mark:        ","
-  # }
-
   # Specify a rounding mode
   # Any one of:
   #
@@ -99,7 +85,6 @@ MoneyRails.configure do |config|
   #
   # Example:
   # Money.new(10_000_00, 'USD').format # => $10,000.00
-  # Money.new(10_000_00, 'EUR').format # => €10.000,00
   #
   # In case you don't need localization and would like to use default values
   # (can be redefined using config.default_format):

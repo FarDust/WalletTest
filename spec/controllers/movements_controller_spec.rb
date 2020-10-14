@@ -80,6 +80,6 @@ RSpec.describe(MovementsController, type: :controller) do
       delete :destroy, params: { account_id: @account.id, id: movement.id }
     end
 
-    it { is_expected.to(redirect_to(account_movements_path(@account))) }
+    it { is_expected.to(respond_with(:no_content)) }
   end
 end

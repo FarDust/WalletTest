@@ -1,7 +1,8 @@
 <p id="notice"><%= notice %></p>
-
-<h1>Accounts</h1>
 <div class="container-fluid">
+  <div class="title">
+    <h1>Accounts</h1>
+  </div>
   <div class="row">
     <% @accounts.each do |account| %>
       <div class="col-lg-3 col-md-6 col-sm-6">
@@ -31,7 +32,9 @@
     </div>
     <% end %>
   </div>
+  <br>
+  <%= link_to 'New Account', new_account_path %>
 </div>
-<br>
 
-<%= link_to 'New Account', new_account_path %>
+
+

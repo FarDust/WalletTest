@@ -30,7 +30,7 @@
                     <%= form.select(:category_id,
                                     Category.all.pluck(:name, :id),
                                     {
-                                      include_blank: 'Selecciona categoría',
+                                      include_blank: 'Selecciona categoría'
                                     },
                                     class: 'form-control',
                                     required: true) %>

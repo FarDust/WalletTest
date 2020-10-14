@@ -20,12 +20,6 @@ FactoryBot.define do
     quota { 200 }
   end
 
-  factory :common_account do
-    user
-    balance_cents { 100 }
-    account_type { 'common' }
-  end
-
   factory :natural_person do
     nombre { 'Jhon' }
     apellido { 'Doe' }

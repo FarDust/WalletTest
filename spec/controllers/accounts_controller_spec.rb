@@ -49,17 +49,17 @@ RSpec.describe(AccountsController, type: :controller) do
     it { is_expected.to(redirect_to(@account)) }
   end
 
-  # describe 'POST #update failed' do
-  #  login_user
-  #  before do
-  #    @account = create(:account)
-  #    put :update, params: { id: @account.id, account: { account_type: nil }, format: :json }
-  #  end
-  #
-  #  it { should respond_with(:unprocessable_entity) }
-  # end
+  describe 'POST #update account_type failed' do
+    login_user
+    before do
+      @account = create(:account)
+      put :update, params: { id: @account.id, account: { account_type: nil }, format: :json }
+    end
 
-  describe 'POST #update failed' do
+    it { should respond_with(:unprocessable_entity) }
+  end
+
+  describe 'POST #update balance failed' do
     login_user
     before do
       @account = create(:account)

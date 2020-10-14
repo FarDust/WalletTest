@@ -30,13 +30,13 @@ class AccountsController < ApplicationController
     respond_to do |format|
       if @account.save
         msg = 'Account was successfully created.'
-        format.html { redirect_to @account, notice: msg }
-        format.json { render :show, status: :created, location: @account }
+        format.html { redirect_to(@account, notice: msg) }
+        format.json { render(:show, status: :created, location: @account) }
       else
-        format.html { render :new }
+        format.html { render(:new) }
         format.json do
-          render json: @account.errors,
-                 status: :unprocessable_entity
+          render(json: @account.errors,
+                 status: :unprocessable_entity)
         end
       end
     end
@@ -48,13 +48,13 @@ class AccountsController < ApplicationController
     respond_to do |format|
       if @account.update(account_params.except(:currency).except(:account_type))
         msg = 'Account was successfully updated.'
-        format.html { redirect_to @account, notice: msg }
-        format.json { render :show, status: :ok, location: @account }
+        format.html { redirect_to(@account, notice: msg) }
+        format.json { render(:show, status: :ok, location: @account) }
       else
-        format.html { render :edit }
+        format.html { render(:edit) }
         format.json do
-          render json: @account.errors,
-                 status: :unprocessable_entity
+          render(json: @account.errors,
+                 status: :unprocessable_entity)
         end
       end
     end
@@ -66,8 +66,8 @@ class AccountsController < ApplicationController
     @account.destroy
     respond_to do |format|
       msg = 'Account was successfully destroyed.'
-      format.html { redirect_to accounts_url, notice: msg }
-      format.json { head :no_content }
+      format.html { redirect_to(accounts_url, notice: msg) }
+      format.json { head(:no_content) }
     end
   end
 

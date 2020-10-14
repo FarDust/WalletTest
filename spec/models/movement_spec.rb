@@ -16,43 +16,32 @@
 require('rails_helper')
 
 RSpec.describe(Movement, type: :model) do
-  context 'with attributes val' do
-    it { is_expected.to(validate_presence_of(:final_balance)) }
-    it { is_expected.to(validate_presence_of(:amount)) }
-  end
-
   context 'when create movement' do
+    let(:category) { FactoryBot.create(:category) }
+    let(:common_acc) { FactoryBot.create(:account, account_type: 'common') }
+
     it 'use valid data' do
       debt = build(:movement)
       expect(debt).to(be_valid)
     end
 
-    it 'use invvalid data no amount' do
+    it 'use invalid data no amount' do
       debt = build(:movement, amount: nil)
       expect(debt).not_to(be_valid)
     end
 
-    it 'use invvalid data no amount' do
-      account = build(:account, account_type: 'common')
-      account.save
-      debt = account.movements.create()
+    it 'use invalid data empty' do
+      debt = common_acc.movements.create()
       expect(debt).not_to(be_valid)
     end
 
-    it 'match common account balance' do
-      account = build(:account, account_type: 'common')
-      category = build(:category)
-      account.save
-      category.save
-      movement = account.movements.create(amount: 300, category: category)
-      expect(movement.final_balance).to(match(account.balance_cents))
+    it 'match common balance' do
+      movement = common_acc.movements.create(amount: 300, category: category)
+      expect(movement.final_balance).to(match(common_acc.balance_cents))
     end
 
-    it 'match debt account balance' do
-      account = build(:account, account_type: 'debt')
-      category = build(:category)
-      account.save
-      category.save
+    it 'match debt balance' do
+      account = create(:account, account_type: 'debt')
       movement = account.movements.create(category: category)
       expect(movement).to(be_invalid)
     end
