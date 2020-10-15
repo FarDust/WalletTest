@@ -15,6 +15,9 @@
 #
 require('rails_helper')
 
+# Deshabilitamos esta regla para poder hacer tests con @variable.
+# rubocop:disable RSpec/InstanceVariable
+
 RSpec.describe(Movement, type: :model) do
   context 'when create movement, watch data validness' do
     let(:category) { FactoryBot.create(:category) }
@@ -39,13 +42,13 @@ RSpec.describe(Movement, type: :model) do
   context 'when create movements, watch match balance' do
     let(:category) { FactoryBot.create(:category) }
     let(:common_acc) { FactoryBot.create(:account, account_type: 'common') }
-    
+   
     it 'match common balance' do
       movement = common_acc.movements.create(amount: 300, category: category)
       expect(movement.final_balance).to(match(common_acc.balance_cents))
     end
 
-      # REVISAR continuidad
+    # REVISAR continuidad
     it 'match debt balance' do
       account = create(:account, account_type: 'debt')
       movement = account.movements.create(category: category)
@@ -79,3 +82,4 @@ RSpec.describe(Movement, type: :model) do
     end
   end
 end
+# rubocop:enable RSpec/InstanceVariable
