@@ -2,7 +2,10 @@
 
 require('rails_helper')
 
-RSpec.describe('movements/new') do
+# Deshabilitamos esta regla para poder hacer tests con @variable.
+# rubocop:disable RSpec/InstanceVariable
+
+RSpec.describe('movements/new') do # rubocop:disable RSpec/DescribeClass
   it 'display credit movement form' do
     @account = create(:account, account_type: 'credit',
                                 balance_cents: -3000, quota: '3000')
@@ -28,12 +31,14 @@ RSpec.describe('movements/new') do
     expect(rendered).to(match(/Movement Management Form/))
   end
 
-  it "dosen't display default movement form" do
+  it "doesn't display default movement form" do
     @account = create(:account, account_type: 'test')
     @movement = Movement.new
 
-    expect { render(template: 'movements/new') }.to(
-      raise_exception(ActionView::Template::Error)
-    )
+    render(template: 'movements/new')
+
+    expect(rendered).to(match(/New Movement/))
   end
 end
+
+# rubocop:enable RSpec/InstanceVariable
