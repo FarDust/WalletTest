@@ -52,8 +52,8 @@ class Account < ApplicationRecord
   def types_guard
     if VALID_TYPES.exclude?(account_type)
       error = 'Must be type '
-      error += VALID_TYPES.map(&:inspect).join(' or ') # rubocop:disable Style/StringConcatenation
-      error += 'and we get ' + account_type  # rubocop:disable Style/StringConcatenation
+      error += VALID_TYPES.map(&:inspect).join(' or ')
+      error += 'and we get ' + account_type # rubocop:disable Style/StringConcatenation
       errors[:base] << error
       return false
     end
