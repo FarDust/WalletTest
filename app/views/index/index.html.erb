@@ -1,16 +1,16 @@
 <div class="jumbotron">
     <div class="container">
-        <%if current_user %>
+        <% if current_user %>
             <h1>Hello again!</h1>
             <p>Ready to save money!</p>
-        <%else%>
+        <% else %>
             <h1>Want to Save Money?</h1>
             <p>Are you ready to change your habits?</p>
             <br>
             <p>
                 <%= button_to 'Login', new_user_session_path, method: :get, class: 'btn btn-primary btn-lg' %>
             </p>
-        <%end%>
+        <% end %>
     </div>
 </div>
 <div class="container">

@@ -26,7 +26,11 @@ Layout/LineLength:
   IgnoredPatterns: ['\A\s*#']
   Max: 80
 
+RSpec/ExampleLength:
+  Max: 6
+
 Metrics/BlockLength:
+  Max: 30
   Exclude:
     - 'Gemfile'
     - 'config/routes.rb'

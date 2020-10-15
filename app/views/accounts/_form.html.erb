@@ -30,14 +30,14 @@
                     <%= form.number_field(:balance, class: 'form-control') %>
                   </div>
                 </div>
-                
+
               </div>
               <div class="row">
                 <% if !account.id %>
                   <div class="col-md-5">
                     <div class="form-group">
                       <%= form.label(:account_type) %>
-                      <%= form.select(:account_type, options_for_select([ "common", "debt", "credit"], "common"), {} ,{class: 'form-control selectpicker', "data-style"=> "btn btn-link"}) %>
+                      <%= form.select(:account_type, options_for_select(%w[common debt credit], 'common'), {}, { class: 'form-control selectpicker', 'data-style' => 'btn btn-link' }) %>
                     </div>
                   </div>
                 <% end %>
@@ -45,7 +45,7 @@
                   <div class="col-md-3">
                     <div class="form-group">
                       <%= form.label(:currency) %>
-                      <%= form.select(:currency, options_for_select(["CLP", "USD"], "CLP"), {} ,{class: 'form-control selectpicker', "data-style"=> "btn btn-link", hideen: true}) %>
+                      <%= form.select(:currency, options_for_select(%w[CLP USD], 'CLP'), {}, { class: 'form-control selectpicker', 'data-style' => 'btn btn-link', hideen: true }) %>
                     </div>
                   </div>
                 <% end %>

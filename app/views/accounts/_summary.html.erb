@@ -17,12 +17,12 @@
     <span>
       <%= link_to edit_account_path(account), title: 'Edit' do %>
         <i class="material-icons">build</i>
-      <%end%>
+      <% end %>
     </span>
     <span>
-      <%= link_to account, method: :delete, data: { confirm: 'Are you sure?' } , title: 'Destroy' do %>
+      <%= link_to account, method: :delete, data: { confirm: 'Are you sure?' }, title: 'Destroy' do %>
         <i class="material-icons text-danger">delete_forever</i>
-      <%end%>
+      <% end %>
     </span>
   </div>
 </div>
