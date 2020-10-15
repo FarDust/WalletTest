@@ -76,7 +76,7 @@ class Account < ApplicationRecord
         errors.add(:positive_credit, 'A credit account cannot have a positive balance.')
       end
       if balance.amount.abs > quota
-        errors.add(:exceeds_quota, 'The balance exceeds the defined quota.')  
+        errors.add(:exceeds_quota, 'The balance exceeds the defined quota.')
       end
     end
   end
@@ -95,20 +95,21 @@ class Account < ApplicationRecord
     new_balance_amount = (balance + Money.new(amount, balance.currency)).amount
     !amount.nil? && new_balance_amount >= 0
   end
-  
+
   # Robado del commit del Alonso. Valida que la cuenta de debito cumpla
   # con no tener balance negativo
   def debit_account_is_valid
-    if account_type  == DEBT_TYPE
+    if account_type == DEBT_TYPE
       if balance.negative?
         errors.add(
           :negative_balance,
-          'A credit account cannot have a negative balance.')
+          'A credit account cannot have a negative balance.'
+        )
       end
     end
   end
 
-  # A credit card cannot have a positive balance. 
+  # A credit card cannot have a positive balance.
   def credit_transact(amount)
     new_balance_amount = (balance + Money.new(amount, balance.currency)).amount
     !amount.nil? && !(new_balance_amount > 0) && !(new_balance_amount.abs > quota)
