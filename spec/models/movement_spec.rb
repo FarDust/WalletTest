@@ -57,7 +57,7 @@ RSpec.describe(Movement, type: :model) do
     end
 
     it 'new credit balance cannot be positve' do
-      account = build(:account, account_type: "credit", balance: -1, quota: 1)
+      account = build(:account, account_type: 'credit', balance: -1, quota: 1)
       category = build(:category)
       account.save
       category.save
@@ -66,7 +66,7 @@ RSpec.describe(Movement, type: :model) do
     end
 
     it 'new credit balance cannot exceed quota' do
-      account = build(:account, account_type: "credit", balance: -1, quota: 1)
+      account = build(:account, account_type: 'credit', balance: -1, quota: 1)
       category = build(:category)
       account.save
       category.save
