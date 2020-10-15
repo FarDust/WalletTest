@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_13_200305) do
+ActiveRecord::Schema.define(version: 2020_10_15_000940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2020_10_13_200305) do
     t.bigint "balance_cents", default: 0, null: false
     t.string "balance_currency", default: "CLP", null: false
     t.string "account_type"
-    t.integer "quota"
+    t.bigint "quota"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_accounts_on_user_id"
