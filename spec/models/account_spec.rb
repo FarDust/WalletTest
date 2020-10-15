@@ -15,6 +15,8 @@
 #
 require('rails_helper')
 
+# rubocop:disable Metrics/BlockLength
+
 RSpec.describe(Account, type: :model) do
   context 'with attributes val ' do
     it { is_expected.to(validate_presence_of(:balance_cents)) }
@@ -62,3 +64,4 @@ RSpec.describe(Account, type: :model) do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

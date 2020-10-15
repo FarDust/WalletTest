@@ -23,6 +23,9 @@ class AccountsController < ApplicationController
   def edit
   end
 
+  # Deshabilitamos esta regla para mantener la logica del test
+  # rubocop:disable Metrics/AbcSize
+
   # POST /accounts
   # POST /accounts.json
   def create
@@ -42,6 +45,7 @@ class AccountsController < ApplicationController
       end
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   # PATCH/PUT /accounts/1
   # PATCH/PUT /accounts/1.json

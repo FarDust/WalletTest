@@ -2,7 +2,6 @@
 
 require('account')
 # Deshabilitamos esta regla para hacer tests
-# rubocop:disable RSpec/InstanceVariable
 
 FactoryBot.define do
   factory :user do

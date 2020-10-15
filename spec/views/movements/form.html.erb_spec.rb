@@ -3,7 +3,6 @@
 require('rails_helper')
 
 # Deshabilitamos esta regla para poder hacer tests con @variable.
-# rubocop:disable RSpec/InstanceVariable
 
 RSpec.describe('movements/new') do # rubocop:disable RSpec/DescribeClass
   it 'display credit movement form' do
@@ -40,5 +39,3 @@ RSpec.describe('movements/new') do # rubocop:disable RSpec/DescribeClass
     expect(rendered).to(match(/New Movement/))
   end
 end
-
-# rubocop:enable RSpec/InstanceVariable
