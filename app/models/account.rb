@@ -69,7 +69,8 @@ class Account < ApplicationRecord
     when DEBT_TYPE
       'Error de validación por cuenta débito'
     when CREDIT_TYPE
-      'Credit account cannot have a positive balance after a transaction nor exceed quota.'
+      'Credit account cannot have a positive balance after'\
+      ' a transaction nor exceed quota.'
     else
       'Monto no corresponde'
     end
@@ -77,11 +78,17 @@ class Account < ApplicationRecord
 
   def credit_account_is_valid
     if account_type == CREDIT_TYPE
-      if balance > 0
-        errors.add(:positive_credit, 'A credit account cannot have a positive balance.')
+      if balance.positive?
+        errors.add(
+          :positive_credit,
+          'A credit account cannot have a positive balance.'
+        )
       end
       if balance.amount.abs > quota
-        errors.add(:exceeds_quota, 'The balance exceeds the defined quota.')
+        errors.add(
+          :exceeds_quota,
+          'The balance exceeds the defined quota.'
+        )
       end
     end
   end
@@ -117,6 +124,7 @@ class Account < ApplicationRecord
   # A credit card cannot have a positive balance.
   def credit_transact(amount)
     new_balance_amount = (balance + Money.new(amount, balance.currency)).amount
-    !amount.nil? && !(new_balance_amount > 0) && !(new_balance_amount.abs > quota)
+    !amount.nil? && !new_balance_amount.positive? &&
+      new_balance_amount.abs <= quota
   end
 end

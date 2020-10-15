@@ -15,8 +15,11 @@
 #
 require('rails_helper')
 
+# Deshabilitamos esta regla para poder hacer tests con @variable.
+# rubocop:disable Metrics/BlockLength
+
 RSpec.describe(Movement, type: :model) do
-  context 'when create movement' do
+  context 'when create movement, watch data validness' do
     let(:category) { FactoryBot.create(:category) }
     let(:common_acc) { FactoryBot.create(:account, account_type: 'common') }
 
@@ -34,6 +37,11 @@ RSpec.describe(Movement, type: :model) do
       debt = common_acc.movements.create()
       expect(debt).not_to(be_valid)
     end
+  end
+
+  context 'when create movements, watch match balance' do
+    let(:category) { FactoryBot.create(:category) }
+    let(:common_acc) { FactoryBot.create(:account, account_type: 'common') }
 
     it 'match common balance' do
       movement = common_acc.movements.create(amount: 300, category: category)
@@ -46,32 +54,32 @@ RSpec.describe(Movement, type: :model) do
       movement = account.movements.create(category: category)
       expect(movement).to(be_invalid)
     end
+  end
+
+  context 'when create movements, watch balance sign & quota' do
+    let(:category) { FactoryBot.create(:category) }
+    let(:common_acc) { FactoryBot.create(:account, account_type: 'common') }
 
     it 'new debit balance cannot be negative' do
-      account = build(:account, account_type: 'debt', balance: 1, quota: 0)
-      category = build(:category)
-      account.save
-      category.save
+      account = create(:account, account_type: 'debt', balance: 1, quota: 0)
+      category = create(:category)
       movement = account.movements.create(amount: -2, category: category)
       expect(movement).to(be_invalid)
     end
 
     it 'new credit balance cannot be positve' do
-      account = build(:account, account_type: 'credit', balance: -1, quota: 1)
-      category = build(:category)
-      account.save
-      category.save
+      account = create(:account, account_type: 'credit', balance: -1, quota: 1)
+      category = create(:category)
       movement = account.movements.create(amount: 2, category: category)
       expect(movement).to(be_invalid)
     end
 
     it 'new credit balance cannot exceed quota' do
-      account = build(:account, account_type: 'credit', balance: -1, quota: 1)
-      category = build(:category)
-      account.save
-      category.save
+      account = create(:account, account_type: 'credit', balance: -1, quota: 1)
+      category = create(:category)
       movement = account.movements.create(amount: -1, category: category)
       expect(movement).to(be_invalid)
     end
   end
 end
+# rubocop:enable Metrics/BlockLength
