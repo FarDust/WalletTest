@@ -1,6 +1,7 @@
 # frozen_string_literal: false
 
 require('account')
+# Deshabilitamos esta regla para hacer tests
 
 FactoryBot.define do
   factory :user do
