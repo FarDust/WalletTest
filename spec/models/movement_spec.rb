@@ -16,7 +16,7 @@
 require('rails_helper')
 
 RSpec.describe(Movement, type: :model) do
-  context 'when create movement' do
+  context 'when create movement, watch data validness' do
     let(:category) { FactoryBot.create(:category) }
     let(:common_acc) { FactoryBot.create(:account, account_type: 'common') }
 
@@ -34,18 +34,28 @@ RSpec.describe(Movement, type: :model) do
       debt = common_acc.movements.create()
       expect(debt).not_to(be_valid)
     end
+  end
 
+  context 'when create movements, watch match balance' do
+    let(:category) { FactoryBot.create(:category) }
+    let(:common_acc) { FactoryBot.create(:account, account_type: 'common') }
+    
     it 'match common balance' do
       movement = common_acc.movements.create(amount: 300, category: category)
       expect(movement.final_balance).to(match(common_acc.balance_cents))
     end
 
-    # REVISAR continuidad
+      # REVISAR continuidad
     it 'match debt balance' do
       account = create(:account, account_type: 'debt')
       movement = account.movements.create(category: category)
       expect(movement).to(be_invalid)
     end
+  end
+
+  context 'when create movements, watch balance sign' do
+    let(:category) { FactoryBot.create(:category) }
+    let(:common_acc) { FactoryBot.create(:account, account_type: 'common') }
 
     it 'new debit balance cannot be negative' do
       account = create(:account, account_type: 'debt', balance: 1, quota: 0)

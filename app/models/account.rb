@@ -116,6 +116,6 @@ class Account < ApplicationRecord
   # A credit card cannot have a positive balance.
   def credit_transact(amount)
     new_balance_amount = (balance + Money.new(amount, balance.currency)).amount
-    !amount.nil? && !(new_balance_amount.positive?) && new_balance_amount.abs <= quota
+    !amount.nil? && !new_balance_amount.positive? && new_balance_amount.abs <= quota
   end
 end

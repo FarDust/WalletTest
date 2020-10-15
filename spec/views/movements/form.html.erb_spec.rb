@@ -4,7 +4,8 @@ require('rails_helper')
 
 RSpec.describe('movements/new') do
   it 'display credit movement form' do
-    @account = build(:account, account_type: 'credit', balance_cents: -3000, quota: '3000')
+    @account = build(:account, account_type: 'credit',
+       balance_cents: -3000, quota: '3000')
     @account.save
     @movement = Movement.new
     render(template: 'movements/new')
