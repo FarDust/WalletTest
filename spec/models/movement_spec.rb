@@ -56,7 +56,7 @@ RSpec.describe(Movement, type: :model) do
     end
   end
 
-  context 'when create movements, watch balance sign' do
+  context 'when create movements, watch balance sign & quota' do
     let(:category) { FactoryBot.create(:category) }
     let(:common_acc) { FactoryBot.create(:account, account_type: 'common') }
 

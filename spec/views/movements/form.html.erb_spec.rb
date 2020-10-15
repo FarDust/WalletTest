@@ -5,7 +5,7 @@ require('rails_helper')
 RSpec.describe('movements/new') do
   it 'display credit movement form' do
     @account = create(:account, account_type: 'credit',
-       balance_cents: -3000, quota: '3000')
+                                balance_cents: -3000, quota: '3000')
     @movement = Movement.new
     render(template: 'movements/new')
 
@@ -23,7 +23,6 @@ RSpec.describe('movements/new') do
   it 'display common movement form' do
     @account = create(:account, account_type: 'common')
     @movement = Movement.new
-
     render(template: 'movements/new')
 
     expect(rendered).to(match(/Movement Management Form/))
