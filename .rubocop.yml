@@ -20,16 +20,22 @@ AllCops:
     - 'vendor/**/*'
     - 'bin/**/*'
     - 'node_modules/**/*'
+    - 'config/initializers/money.rb'
 
 Layout/LineLength:
   IgnoredPatterns: ['\A\s*#']
   Max: 80
 
+RSpec/ExampleLength:
+  Max: 6
+
 Metrics/BlockLength:
+  Max: 30
   Exclude:
     - 'Gemfile'
     - 'config/routes.rb'
     - 'config/environments/**/*'
+    - 'spec/controllers/*'
 
 Layout/EndOfLine:
   Enabled: false
@@ -39,11 +45,11 @@ Lint/UselessAssignment:
 
 Metrics/AbcSize:
   Enabled: true
-  Max: 15
+  Max: 16
 
 Metrics/MethodLength:
   Enabled: true
-  Max: 15
+  Max: 16
 
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact

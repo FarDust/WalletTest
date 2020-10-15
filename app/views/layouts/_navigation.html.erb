@@ -1,21 +1,33 @@
-<nav class="navbar navbar-dark navbar-static-top navbar-expand-md">
+<nav class="navbar navbar-static-top navbar-expand-md">
     <div class="container">
         <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span>
-        </button> <%= link_to 'WalleTest', root_path, class: 'navbar-brand' %>
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        </button>
+        <div class="navbar-wrapper">
+            <%= link_to 'WalleTest', root_path, class: 'navbar-brand' %>
+          </div>
+        <div class="collapse navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav mr-auto">
                 <li class='nav-item'><%= link_to 'Home', root_path, class: 'nav-link' %></li>
                     <% if current_user %>
                         <li class="nav-item">
-                            <span class="nav-link"><%= current_user.email %></span>
+                            <%= link_to('Accounts', accounts_path(), class: 'nav-link') %>
                         </li>
-                        <li class='nav-item'>
-                           <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn nav-link' %>
-                        </li>
-                    <% else %>
-                        <li class='nav-item'><%= link_to 'SignIn', new_user_session_path, class: 'nav-link' %></li>
-                        <li class='nav-item'><%= link_to 'SignUp', new_user_registration_path, class: 'nav-link' %></li>
                     <% end %>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                <% if current_user %>
+                    <li class="nav-item">
+                        <span class="nav-link"><%= current_user.email %></span>
+                    </li>
+                    <li class='nav-item'>
+                        <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn nav-link' %>
+                    </li>
+                <% else %>
+                    <li class='nav-item'><%= link_to 'SignIn', new_user_session_path, class: 'nav-link' %></li>
+                    <li class='nav-item'><%= link_to 'SignUp', new_user_registration_path, class: 'nav-link' %></li>
+                <% end %>
             </ul>
         </div>
     </div>

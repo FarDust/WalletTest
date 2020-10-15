@@ -18,7 +18,7 @@ require('simplecov')
 SimpleCov.start('rails') do
   enable_coverage(:branch)
   enable_coverage(:line)
-  minimum_coverage(line: 42, branch: 40)
+  minimum_coverage(line: 100, branch: 90)
   add_filter('vendor')
   add_filter('app/channels/application_cable/channel.rb')
   add_filter('app/channels/application_cable/connection.rb')
@@ -29,6 +29,7 @@ SimpleCov.start('rails') do
   add_filter('app/controllers/users/passwords_controller.rb')
   add_filter('app/controllers/users/registrations_controller.rb')
   add_filter('app/controllers/users/unlocks_controller.rb')
+  add_filter('app/models/ability.rb')
 end
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration

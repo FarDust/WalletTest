@@ -10,10 +10,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_09_212517) do
+ActiveRecord::Schema.define(version: 2020_10_15_000940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "balance_cents", default: 0, null: false
+    t.string "balance_currency", default: "CLP", null: false
+    t.string "account_type"
+    t.bigint "quota"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_accounts_on_user_id"
+  end
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+  end
+
+  create_table "debts", force: :cascade do |t|
+    t.integer "interest"
+    t.integer "amount"
+    t.string "acreedor_type", null: false
+    t.bigint "acreedor_id", null: false
+    t.string "deudor_type", null: false
+    t.bigint "deudor_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["acreedor_type", "acreedor_id"], name: "index_debts_on_acreedor_type_and_acreedor_id"
+    t.index ["deudor_type", "deudor_id"], name: "index_debts_on_deudor_type_and_deudor_id"
+  end
+
+  create_table "movements", force: :cascade do |t|
+    t.bigint "category_id", null: false
+    t.bigint "account_id", null: false
+    t.integer "final_balance"
+    t.integer "amount"
+    t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["account_id"], name: "index_movements_on_account_id"
+    t.index ["category_id"], name: "index_movements_on_category_id"
+  end
+
+  create_table "natural_people", force: :cascade do |t|
+    t.string "nombre"
+    t.string "apellido"
+    t.string "rut"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -29,4 +78,7 @@ ActiveRecord::Schema.define(version: 2020_09_09_212517) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "accounts", "users"
+  add_foreign_key "movements", "accounts"
+  add_foreign_key "movements", "categories"
 end

@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :debts
+  resources :accounts do
+    resources :movements
+  end
+  resources :natural_people
+  resources :categories
   devise_for :users, controllers: {
     sessions: 'users/sessions'
   }

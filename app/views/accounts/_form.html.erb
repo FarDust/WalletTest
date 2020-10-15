@@ -1,0 +1,71 @@
+<%= form_with(model: account, local: true) do |form| %>
+  <% if account.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(account.errors.count, 'error') %> prohibited this account from being saved:</h2>
+
+      <ul>
+        <% account.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Account Management Form</h4>
+            <p class="card-category">Complete your account</p>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <%= form.label(:balance, class: 'bmd-label-floating') %>
+                    <%= form.number_field(:balance, class: 'form-control') %>
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                <% if !account.id %>
+                  <div class="col-md-5">
+                    <div class="form-group">
+                      <%= form.label(:account_type) %>
+                      <%= form.select(:account_type, options_for_select(%w[common debt credit], 'common'), {}, { class: 'form-control selectpicker', 'data-style' => 'btn btn-link' }) %>
+                    </div>
+                  </div>
+                <% end %>
+                <% if !account.id %>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <%= form.label(:currency) %>
+                      <%= form.select(:currency, options_for_select(%w[CLP USD], 'CLP'), {}, { class: 'form-control selectpicker', 'data-style' => 'btn btn-link', hideen: true }) %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <div class="row">
+                <% if account.account_type != 'debt' %>
+                <div class="col-md-8">
+                  <div class="form-group bmd-form-group">
+                    <%= form.label(:quota, class: 'bmd-label-floating') %>
+                    <%= form.number_field(:quota, class: 'form-control', min: 0) %>
+                  </div>
+                </div>
+                <% end %>
+              </div>
+              <%= form.submit('Summit new changes', class: 'btn btn-primary pull-right') %>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
