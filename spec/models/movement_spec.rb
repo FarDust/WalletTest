@@ -48,28 +48,22 @@ RSpec.describe(Movement, type: :model) do
     end
 
     it 'new debit balance cannot be negative' do
-      account = build(:account, account_type: 'debt', balance: 1, quota: 0)
-      category = build(:category)
-      account.save
-      category.save
+      account = create(:account, account_type: 'debt', balance: 1, quota: 0)
+      category = create(:category)
       movement = account.movements.create(amount: -2, category: category)
       expect(movement).to(be_invalid)
     end
 
     it 'new credit balance cannot be positve' do
-      account = build(:account, account_type: 'credit', balance: -1, quota: 1)
-      category = build(:category)
-      account.save
-      category.save
+      account = create(:account, account_type: 'credit', balance: -1, quota: 1)
+      category = create(:category)
       movement = account.movements.create(amount: 2, category: category)
       expect(movement).to(be_invalid)
     end
 
     it 'new credit balance cannot exceed quota' do
-      account = build(:account, account_type: 'credit', balance: -1, quota: 1)
-      category = build(:category)
-      account.save
-      category.save
+      account = create(:account, account_type: 'credit', balance: -1, quota: 1)
+      category = create(:category)
       movement = account.movements.create(amount: -1, category: category)
       expect(movement).to(be_invalid)
     end
