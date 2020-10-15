@@ -2,10 +2,13 @@
 
 require('rails_helper')
 
-RSpec.describe('movements/new') do
+# Deshabilitamos esta regla para poder hacer tests con @variable.
+# rubocop:disable RSpec/InstanceVariable
+
+RSpec.describe('movements/new') do # rubocop:disable RSpec/DescribeClass
   it 'display credit movement form' do
-    @account = build(:account, account_type: 'credit', balance_cents: -3000, quota: '3000')
-    @account.save
+    @account = create(:account, account_type: 'credit',
+                                balance_cents: -3000, quota: '3000')
     @movement = Movement.new
     render(template: 'movements/new')
 
@@ -13,8 +16,7 @@ RSpec.describe('movements/new') do
   end
 
   it 'display debt movement form' do
-    @account = build(:account, account_type: 'debt')
-    @account.save
+    @account = create(:account, account_type: 'debt')
     @movement = Movement.new
     render(template: 'movements/new')
 
@@ -22,8 +24,7 @@ RSpec.describe('movements/new') do
   end
 
   it 'display common movement form' do
-    @account = build(:account, account_type: 'common')
-    @account.save
+    @account = create(:account, account_type: 'common')
     @movement = Movement.new
 
     render(template: 'movements/new')
@@ -41,3 +42,5 @@ RSpec.describe('movements/new') do
     )
   end
 end
+
+# rubocop:enable RSpec/InstanceVariable
