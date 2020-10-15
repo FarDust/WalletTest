@@ -31,13 +31,13 @@ RSpec.describe('movements/new') do
     expect(rendered).to(match(/Movement Management Form/))
   end
 
-  it "dosen't display default movement form" do
+  it "display default movement form" do
     @account = build(:account, account_type: 'test')
     @account.save
     @movement = Movement.new
 
-    expect { render(template: 'movements/new') }.to(
-      raise_exception(ActionView::Template::Error)
-    )
+    render(template: 'movements/new')
+
+    expect(rendered).to(match(/New Movement/))
   end
 end
