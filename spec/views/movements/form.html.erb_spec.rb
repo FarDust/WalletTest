@@ -32,7 +32,7 @@ RSpec.describe('movements/new') do # rubocop:disable RSpec/DescribeClass
     expect(rendered).to(match(/Movement Management Form/))
   end
 
-  it "display default movement form" do
+  it 'display default movement form' do
     @account = build(:account, account_type: 'test')
     @account.save
     @movement = Movement.new
