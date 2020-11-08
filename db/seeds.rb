@@ -10,8 +10,16 @@
 
 Category.create!(
   [
-    { name: 'Entretención', description: '' },
-    { name: 'Salario', description: '' },
-    { name: 'Otros', description: '' }
+    { name: 'Business', description: ''},
+    { name: 'Charity', description: ''},
+    { name: 'Debts', description: ''},
+    { name: 'Education', description: ''},
+    { name: 'Enterteinment', description: '' },
+    { name: 'Health', description: ''},
+    { name: 'Incomes', description: '' },
+    { name: 'Restaurants', description: ''},
+    { name: 'Subcriptions', description: ''},
+    { name: 'Travels', description: ''},
+    { name: 'Others', description: '' }
   ]
 )
