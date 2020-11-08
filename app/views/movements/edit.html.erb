@@ -1,6 +1,8 @@
 <h1>Editing Movement</h1>
 
-<%= render 'form', movement: @movement %>
+<!-- <%= render 'form', movement: @movement %> -->
+<%= render account_form(@account), movement: @movement %>
+
 
 <%= link_to 'Show', account_movement_path(@account, @movement) %> |
 <%= link_to 'Back', account_movements_path(@account) %>
