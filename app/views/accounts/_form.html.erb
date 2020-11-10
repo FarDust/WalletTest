@@ -22,7 +22,7 @@
             <p class="card-category">Complete your account</p>
           </div>
           <div class="card-body">
-            <form>
+            <%= form_with(model: account, local: true) do |form| %>
               <div class="row">
                 <div class="col-md-8">
                   <div class="form-group">
@@ -60,9 +60,9 @@
                 </div>
                 <% end %>
               </div>
-              <%= form.submit('Summit new changes', class: 'btn btn-primary pull-right') %>
+              <%= form.submit() %>
               <div class="clearfix"></div>
-            </form>
+            <% end %>
           </div>
         </div>
       </div>

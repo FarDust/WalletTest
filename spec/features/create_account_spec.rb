@@ -6,13 +6,13 @@ describe "create account process", type: :feature do
   include_context 'When authenticated'
 
   it "creat debt account" do
-    visit '/accounts/new'
-    within("form") do
+    click_on 'Accounts'
+    click_on 'New Account'
+    within("form#create_form") do
       fill_in 'account_balance', with: '300'
-      fill_in 'account_quota', with: '5000'
-      find('#organizationSelect').find(:xpath, 'option[2]').select_option
+      fill_in 'Quota', with: '5000'
     end
-    click_button 'commit'
+    click_on 'commit'
     expect(page).to have_css("p#notice", text: "Account was successfully created.")
   end
 

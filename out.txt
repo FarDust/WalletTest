@@ -1,0 +1,154 @@
+I, [2020-11-10T00:23:55.340058 #370]  INFO -- sentry: ** [Raven] Raven 3.1.1 ready to catch errors
+DEPRECATION WARNING: Initialization autoloaded the constants ActionText::ContentHelper and ActionText::TagHelper.
+
+Being able to do this is deprecated. Autoloading during initialization is going
+to be an error condition in future versions of Rails.
+
+Reloading does not reboot the application, and therefore code executed during
+initialization does not run again. So, if you reload ActionText::ContentHelper, for example,
+the expected changes won't be reflected in that stale Module object.
+
+These autoloaded constants have been unloaded.
+
+Please, check the "Autoloading and Reloading Constants" guide for solutions.
+ (called from <top (required)> at /walletest/config/environment.rb:7)
+#<Devise::Mapping:0x00005644b13792f8>
+123
+[WARNING] The default rounding mode will change from `ROUND_HALF_EVEN` to `ROUND_HALF_UP` in the next major release. Set it explicitly using `Money.rounding_mode=` to avoid potential problems.
+#<Capybara::Node::Element:0x00005644af468508>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WalleTest</title>
+    <meta name="description" content="Save money with WalletTest">
+    
+    
+
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" media="all" href="/assets/application-a39576ac7f75eed200a853359950c088cd03a0c6e40ada6ff32785578b3fd403.css" data-turbolinks-track="reload" />
+    <script src="/packs-test/js/application-407880b0bf84845f0ba7.js" data-turbolinks-track="reload"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-static-top navbar-expand-md">
+    <div class="container">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span>
+        </button>
+        <div class="navbar-wrapper">
+            <a class="navbar-brand" href="/">WalleTest</a>
+          </div>
+        <div class="collapse navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav mr-auto">
+                <li class='nav-item'><a class="nav-link" href="/">Home</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/accounts">Accounts</a>
+                        </li>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <span class="nav-link">user@example.com</span>
+                    </li>
+                    <li class='nav-item'>
+                        <form class="button_to" method="post" action="/users/sign_out"><input type="hidden" name="_method" value="delete" /><input class="btn nav-link" type="submit" value="Logout" /></form>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+    </header>
+    <div class="content">
+      <main role="main">
+        <form id="create_form" action="/accounts" accept-charset="UTF-8" method="post">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-2">
+      </div>
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <h4 class="card-title">Account Management Form</h4>
+            <p class="card-category">Complete your account</p>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group">
+                    <label class="bmd-label-floating" for="account_balance">Balance</label>
+                    <input class="form-control" type="number" value="0" name="account[balance]" id="account_balance" />
+                  </div>
+                </div>
+
+              </div>
+              <div class="row">
+                  <div class="col-md-5">
+                    <div class="form-group">
+                      <label for="account_account_type">Account type</label>
+                      <select class="form-control selectpicker" data-style="btn btn-link" name="account[account_type]" id="account_account_type"><option selected="selected" value="common">common</option>
+<option value="debt">debt</option>
+<option value="credit">credit</option></select>
+                    </div>
+                  </div>
+                  <div class="col-md-3">
+                    <div class="form-group">
+                      <label for="account_currency">Currency</label>
+                      <select class="form-control selectpicker" data-style="btn btn-link" hideen="true" name="account[currency]" id="account_currency"><option selected="selected" value="CLP">CLP</option>
+<option value="USD">USD</option></select>
+                    </div>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="col-md-8">
+                  <div class="form-group bmd-form-group">
+                    <label class="bmd-label-floating" for="account_quota">Quota</label>
+                    <input class="form-control" min="0" type="number" name="account[quota]" id="account_quota" />
+                  </div>
+                </div>
+              </div>
+              <input type="submit" name="commit" value="Submmit new changes" id="submit_form" data-disable-with="Submmit new changes" />
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<a href="/accounts">Back</a>
+
+      </main>
+    </div>
+    <script src="/packs-test/js/material-dashboard-2684204e7e6a99082698.js" data-turbolinks-track="reload"></script>
+  </body>
+</html>
+[31mF[0m
+
+Failures:
+
+  1) create account process creat debt account
+     [31mFailure/Error: expect(page).to have_css("p#notice", text: "Account was successfully created.")[0m
+     [31m  expected to find css "p#notice" but there were no matches[0m
+     [36m# ./spec/features/create_account_spec.rb:17:in `block (2 levels) in <top (required)>'[0m
+
+Finished in 0.71551 seconds (files took 2.17 seconds to load)
+[31m1 example, 1 failure[0m
+
+Failed examples:
+
+[31mrspec ./spec/features/create_account_spec.rb:8[0m [36m# create account process creat debt account[0m
+
+Coverage report generated for RSpec to /walletest/coverage. 67 / 412 LOC (16.26%) covered.
+Stopped processing SimpleCov as a previous error not related to SimpleCov has been detected

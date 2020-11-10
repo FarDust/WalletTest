@@ -14,6 +14,6 @@ RSpec.shared_context 'When authenticated' do
       fill_in 'user_email', :with => "user@example.com"
       fill_in 'user_password', :with => "123456"
     end
-    click_on 'commit'
+      click_on 'commit'
     end
   end
