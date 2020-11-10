@@ -5,6 +5,7 @@ require 'rails_helper'
 describe 'create account process', type: :feature do
   include_context 'when authenticated'
   before do
+    create(:category)
     visit('/accounts/new')
   end
 
