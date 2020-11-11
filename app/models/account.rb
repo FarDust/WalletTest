@@ -93,6 +93,14 @@ class Account < ApplicationRecord
     end
   end
 
+  def personal_account_identifier
+    "##{id} - #{account_type} (#{balance_cents} #{balance_currency})"
+  end
+
+  def public_account_identifier
+    "#{user.email} - ##{id} - #{account_type} (#{balance_currency})"
+  end
+
   private
 
   # Como una cuenta corriente puede tener saldo positivo o negativo,
