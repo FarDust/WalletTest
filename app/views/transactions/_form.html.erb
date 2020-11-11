@@ -46,6 +46,26 @@
                   </div>
                 </div>
               </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <%= form.label(:category_id, class: 'bmd-label-floating') %>
+                    <%= form.select(:category_id,
+                                    Category.all.pluck(:name, :id),
+                                    {
+                                      include_blank: 'Selecciona categoría'
+                                    },
+                                    class: 'form-control',
+                                    required: true) %>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-group bmd-form-group">
+                    <%= form.label(:comment, class: 'bmd-label-floating') %>
+                    <%= form.text_area(:comment, class: 'form-control') %>
+                  </div>
+                </div>
+              </div>                
               <%= form.submit('Create transaction', class: 'btn btn-info pull-right') %>
               <div class="clearfix"></div>
             </form>
