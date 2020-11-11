@@ -28,6 +28,8 @@ Layout/LineLength:
 
 RSpec/ExampleLength:
   Max: 6
+  Exclude:
+    - 'spec/features/*'
 
 Metrics/BlockLength:
   Max: 30
