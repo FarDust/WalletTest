@@ -26,15 +26,15 @@
                 <div class="col-md-12">
                   <div class="form-group">
                     <%= form.label(:origin_account, class: 'bmd-label-floating') %>
-                    <%= form.collection_select(:origin_account_id, @accounts, :id, :personal_account_identifier, 
-                    {}, { :class=>'form-control' }) %>
+                    <%= form.collection_select(:origin_account_id, @accounts, :id, :personal_account_identifier,
+                                               {}, { class: 'form-control' }) %>
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
                     <%= form.label(:target_account, class: 'bmd-label-floating') %>
-                    <%= form.collection_select(:target_account_id, Account.all, :id, :public_account_identifier, 
-                    {}, { :class=>'form-control' }) %>
+                    <%= form.collection_select(:target_account_id, Account.all, :id, :public_account_identifier,
+                                               {}, { class: 'form-control' }) %>
                   </div>
                 </div>
               </div>
@@ -65,7 +65,7 @@
                     <%= form.text_area(:comment, class: 'form-control') %>
                   </div>
                 </div>
-              </div>                
+              </div>
               <%= form.submit('Create transaction', class: 'btn btn-info pull-right') %>
               <div class="clearfix"></div>
             </form>
