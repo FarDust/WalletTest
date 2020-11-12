@@ -28,13 +28,13 @@ class TransactionsController < ApplicationController
         save_movements
         @transaction = current_user.transactions.create!(movements_params)
         msg = 'Transaction was successfully created.'
-        format.html { redirect_to @transaction, notice: msg }
-        format.json { render :show, status: :created, location: @transaction }
+        format.html { redirect_to(@transaction, notice: msg) }
+        format.json { render(:show, status: :created, location: @transaction) }
       else
         set_transaction_errors
         @accounts = current_user.accounts
-        format.html { render :new }
-        format.json { render json: @transaction.errors, status: :unprocessable_entity }
+        format.html { render(:new) }
+        format.json { render(json: @transaction.errors, status: :unprocessable_entity) }
       end
     end
   end
@@ -48,8 +48,8 @@ class TransactionsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def transaction_params
       params.require(:transaction)
-        .permit(%i[comment category_id :user_id origin_movement_id
-                target_movement_id origin_account_id target_account_id amount])
+        .permit(%i[comment category_id origin_account_id
+                target_account_id amount])
     end
 
     def set_movement_params(category_id, amount, comment)

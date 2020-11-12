@@ -4,7 +4,7 @@ require('rails_helper')
 
 # Deshabilitamos esta regla para poder hacer tests con @variable.
 
-RSpec.describe('movements/new') do # rubocop:disable RSpec/DescribeClass
+RSpec.describe('transactions/index') do # rubocop:disable RSpec/DescribeClass
   it 'display transaction account name' do
     transaction = create(:transaction)
     @transactions = transaction.user.transactions
