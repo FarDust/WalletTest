@@ -34,4 +34,10 @@ FactoryBot.define do
     final_balance { 2322 }
     amount { 2323 }
   end
+
+  factory :transaction do
+    user
+    association :origin_movement, factory: :movement
+    association :target_movement, factory: :movement
+  end
 end

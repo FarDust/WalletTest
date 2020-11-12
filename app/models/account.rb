@@ -97,13 +97,13 @@ class Account < ApplicationRecord
     "##{id} - #{account_type}"
   end
 
-  def personal_account_identifier
-    "##{id} - #{account_type} (#{balance_cents} #{balance_currency})"
-  end
+  # def personal_account_identifier
+  #   "##{id} - #{account_type} (#{balance_cents} #{balance_currency})"
+  # end
 
-  def public_account_identifier
-    "#{user.email} - ##{id} - #{account_type} (#{balance_currency})"
-  end
+  # def public_account_identifier
+  #   "#{user.email} - ##{id} - #{account_type} (#{balance_currency})"
+  # end
 
   private
 
