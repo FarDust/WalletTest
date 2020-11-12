@@ -25,7 +25,8 @@ class TransactionsController < ApplicationController
   def create
     respond_to do |format|
       if @origin_movement.valid? && @target_movement.valid? && !same_accounts?
-        @transaction = current_user.transactions.create(movements_params)
+        save_movements
+        @transaction = current_user.transactions.create!(movements_params)
         msg = 'Transaction was successfully created.'
         format.html { redirect_to @transaction, notice: msg }
         format.json { render :show, status: :created, location: @transaction }
@@ -91,5 +92,10 @@ class TransactionsController < ApplicationController
       @transaction.errors.merge!(@target_movement.errors)
       msg = "Must te different than target account"
       @transaction.errors.add("Origin Account", msg) if same_accounts?
+    end
+
+    def save_movements
+      @origin_movement.save
+      @target_movement.save
     end
 end

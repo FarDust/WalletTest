@@ -16,6 +16,14 @@
 class Movement < ApplicationRecord
   belongs_to :category
   belongs_to :account
+  has_many :transactions_as_origin,
+           class_name: 'Transaction',
+           foreign_key: :origin_movement_id,
+           dependent: :destroy
+  has_many :transactions_as_target,
+           class_name: 'Transaction',
+           foreign_key: :target_movement_id,
+           dependent: :destroy
   validates :amount, presence: true
   validates :final_balance, presence: true
   validates :amount, numericality: { other_than: 0 }

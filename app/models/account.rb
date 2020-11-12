@@ -93,6 +93,10 @@ class Account < ApplicationRecord
     end
   end
 
+  def name
+    "##{id} - #{account_type}"
+  end
+
   def personal_account_identifier
     "##{id} - #{account_type} (#{balance_cents} #{balance_currency})"
   end

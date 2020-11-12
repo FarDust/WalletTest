@@ -6,8 +6,9 @@
   <thead>
     <tr>
       <th>User</th>
-      <th>Origin movement</th>
-      <th>Target movement</th>
+      <th>Origin Account</th>
+      <th>Target Account</th>
+      <th>Amount</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,8 +17,9 @@
     <% @transactions.each do |transaction| %>
       <tr>
         <td><%= transaction.user_id %></td>
-        <td><%= transaction.origin_movement_id %></td>
-        <td><%= transaction.target_movement_id %></td>
+        <td><%= transaction.origin_movement&.account&.name %></td>
+        <td><%= transaction.origin_movement&.account&.name %></td>
+        <td><%= transaction&.target_movement&.amount.to_i.abs %></td>
       </tr>
     <% end %>
   </tbody>
