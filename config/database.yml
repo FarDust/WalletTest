@@ -9,8 +9,8 @@ development:
   <<: *default
   database: walletest_development
   username: postgres
-  password: 
-  host: postgres
+  password: postgres
+  host: localhost
   port: 5432
 
 # Warning: The database defined as "test" will be erased and
@@ -21,7 +21,7 @@ test:
   database: walletest_test
   username: postgres
   password: postgres
-  host: postgres
+  host: localhost
   port: 5432
 
 production:

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  resources :transactions
+  resources :transactions, only: %i[index show create new]
   resources :debts
   resources :accounts do
     resources :movements
