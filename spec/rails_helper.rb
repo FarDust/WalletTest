@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'capybara/rspec'
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require('spec_helper')
 ENV['RAILS_ENV'] ||= 'test'
@@ -12,6 +13,7 @@ require('rspec/rails')
 # note: require 'devise' after require 'rspec/rails'
 require('devise')
 require('support/controller_macros')
+require('support/when_authenticated')
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

@@ -11,7 +11,7 @@ RSpec.describe('routes for Users', type: :routing) do
     expect(get('/users/sign_up')).to(route_to('users/registrations#new'))
   end
 
-  it 'routes /users/password/new to the devise/paswords controller' do
+  it 'routes /users/password/new to the devise/passwords controller' do
     expect(get('/users/password/new')).to(route_to('devise/passwords#new'))
   end
 

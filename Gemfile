@@ -57,6 +57,8 @@ group :development, :test do
   gem 'rubycritic', require: false
   # Configurable tool for writing clean and consistent SCSS
   gem 'scss_lint', '~> 0.59.0', require: false
+  # Capybara is an integration testing tool for rack based web applications.
+  gem 'capybara', '~> 3.33.0'
 end
 
 group :test do
