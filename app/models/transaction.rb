@@ -1,3 +1,5 @@
+# frozen_string_literal: false
+
 class Transaction < ApplicationRecord
   belongs_to :user
   belongs_to :origin_movement,

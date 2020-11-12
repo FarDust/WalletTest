@@ -34,7 +34,7 @@ class MovementsController < ApplicationController
           redirect_to(account_movements_path(@account),
                       notice: 'Movement was successfully created.')
         end
-        format.json { render json: @movement, status: :created }
+        format.json { render(json: @movement, status: :created) }
       else
         format.html { render(:new) }
         format.json do
