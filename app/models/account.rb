@@ -28,7 +28,7 @@ class Account < ApplicationRecord
   before_save :debt_guard
   after_update :debt_guard
 
-  VALID_TYPES = %w[common debt credit].to_set()
+  VALID_TYPES = %w[common debt credit].to_set() 
 
   COMMON_TYPE = 'common'
   DEBT_TYPE = 'debt'
@@ -51,9 +51,8 @@ class Account < ApplicationRecord
 
   def types_guard
     if VALID_TYPES.exclude?(account_type)
-      error = 'Must be type '
-      error += VALID_TYPES.map(&:inspect).join(' or ')
-      error += 'and we get ' + account_type # rubocop:disable Style/StringConcatenation
+      error = "Must be type #{VALID_TYPES.map(&:inspect).join(' or ')} "
+      error += "and we get #{account_type}"# rubocop:disable Style/StringConcatenation
       errors[:base] << error
       return false
     end
@@ -67,7 +66,7 @@ class Account < ApplicationRecord
   def transaction_type_error
     case account_type
     when DEBT_TYPE
-      'Error de validación por cuenta débito'
+      'A debt account cannot have a negative balance.'
     when CREDIT_TYPE
       'Credit account cannot have a positive balance after'\
       ' a transaction nor exceed quota.'
@@ -75,6 +74,20 @@ class Account < ApplicationRecord
       'Monto no corresponde'
     end
   end
+
+  def name
+    "##{id} - #{account_type}"
+  end
+
+  def personal_account_identifier
+    "##{id} - #{account_type} (#{balance_cents} #{balance_currency})"
+  end
+
+  def public_account_identifier
+    "#{user.email} - ##{id} - #{account_type} (#{balance_currency})"
+  end
+
+  private
 
   def credit_account_is_valid
     if account_type == CREDIT_TYPE
@@ -92,20 +105,6 @@ class Account < ApplicationRecord
       end
     end
   end
-
-  def name
-    "##{id} - #{account_type}"
-  end
-
-  def personal_account_identifier
-    "##{id} - #{account_type} (#{balance_cents} #{balance_currency})"
-  end
-
-  def public_account_identifier
-    "#{user.email} - ##{id} - #{account_type} (#{balance_currency})"
-  end
-
-  private
 
   # Como una cuenta corriente puede tener saldo positivo o negativo,
   # no necesita validacion
@@ -127,7 +126,7 @@ class Account < ApplicationRecord
       if balance.negative?
         errors.add(
           :negative_balance,
-          'A credit account cannot have a negative balance.'
+          transaction_type_error
         )
       end
     end

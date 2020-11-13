@@ -31,6 +31,7 @@ RSpec.describe(Account, type: :model) do
     it 'use valid data' do
       account = build(:account)
       expect(account).to(be_valid)
+      expect(account.types_guard).to(eq(true))
     end
 
     it 'debit cannot have negative balance' do
@@ -52,7 +53,63 @@ RSpec.describe(Account, type: :model) do
       account = build(:account, account_type: 'credit', balance: -2, quota: 1)
       expect(account).not_to(be_valid)
     end
+
+    it 'dont have proper type' do
+      account = build(:account, account_type: 'test')
+      expect(account.types_guard).to(eq(false))
+    end
     # falta generar validor para que otros tipos de cuentan no tengan balance negativo
+  end
+
+  context 'when exists common_account' do
+    it 'accepts new ammount' do
+      account = create(:account)
+      expect(account.can_transact?(200)).to(eq(true))
+    end
+
+    it 'doesnt accepts amount 0' do
+      account = create(:account)
+      expect(account.can_transact?(nil)).to(eq(false))
+    end
+
+    it 'match his names' do
+      account = create(:account)
+      expect(account.name).to(match(account.id.to_s))
+      expect(account.personal_account_identifier)
+        .to(match(account.account_type))
+      expect(account.public_account_identifier)
+        .to(match(account.user.email))
+    end
+  end
+
+  context 'when exists debt_account' do
+    it 'accepts new amount' do
+      account = create(:account, account_type: 'debt')
+      expect(account.can_transact?(200)).to(eq(true))
+    end
+
+    it 'cant transact with negative balance' do
+      account = create(:account, account_type: 'debt')
+      expect(account.can_transact?(-6000)).to(eq(false))
+    end
+  end
+
+  context 'when exists creadit_account' do
+    it 'accepts new amount' do
+      account = create(:account,
+                       account_type: 'credit',
+                       balance: -200,
+                       quota: 3000)
+      expect(account.can_transact?(100)).to(eq(true))
+    end
+
+    it 'cant transact with positive balance' do
+      account = create(:account,
+                       account_type: 'credit',
+                       balance: -200,
+                       quota: 3000)
+      expect(account.can_transact?(300)).to(eq(false))
+    end
   end
 
   context 'when update debt account' do
