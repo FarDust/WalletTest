@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class MovementsController < ApplicationController
+class MovementsController < AuthenticatedController
   before_action :set_account
   before_action :set_movement, only: %i[show edit update destroy]
 

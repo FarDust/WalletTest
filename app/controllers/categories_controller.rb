@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class CategoriesController < ApplicationController
+class CategoriesController < AuthenticatedController
   before_action :set_category, only: %i[show edit update destroy]
 
   # GET /categories

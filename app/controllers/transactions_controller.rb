@@ -1,6 +1,6 @@
 # frozen_string_literal: false
 
-class TransactionsController < ApplicationController
+class TransactionsController < AuthenticatedController
   before_action :set_transaction, only: %i[show]
   before_action :set_create_params, :set_movements, only: %i[create]
 

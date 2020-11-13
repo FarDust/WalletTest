@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class NaturalPeopleController < ApplicationController
+class NaturalPeopleController < AuthenticatedController
   before_action :set_natural_person, only: %i[show edit update destroy]
 
   # GET /natural_people

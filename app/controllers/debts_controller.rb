@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class DebtsController < ApplicationController
+class DebtsController < AuthenticatedController
   before_action :set_debt, only: %i[show edit update destroy]
 
   # GET /debts
