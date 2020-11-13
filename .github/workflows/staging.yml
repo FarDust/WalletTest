@@ -16,3 +16,4 @@ jobs:
           heroku_app_name: "walletest-reborn"
           heroku_email: "gabriel.faundez@gmail.com"
           healthcheck: "https://walletest-reborn.herokuapp.com"
+          branch: "development"
