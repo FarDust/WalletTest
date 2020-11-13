@@ -8,4 +8,12 @@ FactoryBot.define do
     balance_currency { 'CLP' }
     quota { 0 }
   end
+
+  factory :account do
+    user
+    balance { 3000 }
+    account_type { 'common' }
+    balance_currency { 'CLP' }
+    quota { 200 }
+  end
 end
