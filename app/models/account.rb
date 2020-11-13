@@ -28,7 +28,7 @@ class Account < ApplicationRecord
   before_save :debt_guard
   after_update :debt_guard
 
-  VALID_TYPES = %w[common debt credit].to_set() 
+  VALID_TYPES = %w[common debt credit].to_set()
 
   COMMON_TYPE = 'common'
   DEBT_TYPE = 'debt'
@@ -52,7 +52,7 @@ class Account < ApplicationRecord
   def types_guard
     if VALID_TYPES.exclude?(account_type)
       error = "Must be type #{VALID_TYPES.map(&:inspect).join(' or ')} "
-      error += "and we get #{account_type}"# rubocop:disable Style/StringConcatenation
+      error += "and we get #{account_type}"
       errors[:base] << error
       return false
     end

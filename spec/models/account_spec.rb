@@ -31,7 +31,6 @@ RSpec.describe(Account, type: :model) do
     it 'use valid data' do
       account = build(:account)
       expect(account).to(be_valid)
-      expect(account.types_guard).to(eq(true))
     end
 
     it 'debit cannot have negative balance' do
@@ -54,11 +53,15 @@ RSpec.describe(Account, type: :model) do
       expect(account).not_to(be_valid)
     end
 
+    it 'has proper type' do
+      account = build(:account)
+      expect(account.types_guard).to(eq(true))
+    end
+
     it 'dont have proper type' do
       account = build(:account, account_type: 'test')
       expect(account.types_guard).to(eq(false))
     end
-    # falta generar validor para que otros tipos de cuentan no tengan balance negativo
   end
 
   context 'when exists common_account' do
@@ -72,11 +75,19 @@ RSpec.describe(Account, type: :model) do
       expect(account.can_transact?(nil)).to(eq(false))
     end
 
-    it 'match his names' do
+    it 'matches his names' do
       account = create(:account)
       expect(account.name).to(match(account.id.to_s))
+    end
+
+    it 'matches his personal identifier' do
+      account = create(:account)
       expect(account.personal_account_identifier)
         .to(match(account.account_type))
+    end
+
+    it 'matches his public identifier' do
+      account = create(:account)
       expect(account.public_account_identifier)
         .to(match(account.user.email))
     end
