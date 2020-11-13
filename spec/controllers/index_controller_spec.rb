@@ -4,7 +4,7 @@ require('rails_helper')
 
 RSpec.describe(IndexController, type: :controller) do
   describe 'GET /' do
-    login_user
+    login_admin
 
     context 'with login user' do
       it 'returns 200 OK' do
@@ -16,9 +16,9 @@ RSpec.describe(IndexController, type: :controller) do
 
   describe 'GET root' do
     context 'without login user' do
-      it 'returns 302 redirect' do
+      it 'returns 200 OK' do
         get(:index)
-        expect(response).to(have_http_status(:found))
+        expect(response).to(have_http_status(:success))
       end
     end
   end
