@@ -97,7 +97,7 @@ class Account < ApplicationRecord
           'A credit account cannot have a positive balance.'
         )
       end
-      if balance.amount.abs > quota
+      if quota.nil? || balance.amount.abs > quota
         errors.add(
           :exceeds_quota,
           'The balance exceeds the defined quota.'
