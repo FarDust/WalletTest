@@ -27,7 +27,7 @@ gem('jbuilder', '~> 2.7')
 # gem 'bcrypt', '~> 3.1.7'
 
 gem('bootstrap-sass')
-gem('cancan')
+gem('cancancan', '~>3.1')
 gem('devise')
 gem('money-rails', '~>1.12')
 gem('sentry-raven')
