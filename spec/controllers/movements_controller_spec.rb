@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe(MovementsController, type: :controller) do
   describe 'GET #index' do
-    login_user
+    login_admin
     before do
       account = create(:account)
       get :index, params: { account_id: account.id }
@@ -14,7 +14,7 @@ RSpec.describe(MovementsController, type: :controller) do
   end
 
   describe 'GET #new' do
-    login_user
+    login_admin
     before do
       account = create(:account)
       movement = Movement.new
@@ -25,7 +25,7 @@ RSpec.describe(MovementsController, type: :controller) do
   end
 
   describe 'POST #create failed' do
-    login_user
+    login_admin
     before do
       account = create(:account)
       movement = account.movements.create(amount: 300)
@@ -40,7 +40,7 @@ RSpec.describe(MovementsController, type: :controller) do
   end
 
   describe 'POST #create success' do
-    login_user
+    login_admin
     before do
       account = create(:account)
       category = create(:category)
@@ -53,7 +53,7 @@ RSpec.describe(MovementsController, type: :controller) do
   end
 
   describe 'POST #update success' do
-    login_user
+    login_admin
     before do
       account = create(:account)
       category = create(:category)
@@ -69,7 +69,7 @@ RSpec.describe(MovementsController, type: :controller) do
   end
 
   describe 'POST #update failed' do
-    login_user
+    login_admin
     before do
       account = create(:account)
       category = create(:category)
@@ -85,7 +85,7 @@ RSpec.describe(MovementsController, type: :controller) do
   end
 
   describe 'DELETE #destroy failed' do
-    login_user
+    login_admin
     before do
       account = create(:account)
       category = create(:category)

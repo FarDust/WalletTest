@@ -3,6 +3,7 @@
 class TransactionsController < AuthenticatedController
   before_action :set_transaction, only: %i[show]
   before_action :set_create_params, :set_movements, only: %i[create]
+  skip_load_resource only: %i[new create]
 
   # GET /transactions
   # GET /transactions.json

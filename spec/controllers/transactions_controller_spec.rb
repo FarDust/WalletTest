@@ -4,21 +4,21 @@ require 'rails_helper'
 
 RSpec.describe(TransactionsController, type: :controller) do
   describe 'GET #index' do
-    login_user
+    login_admin
     before { get :index }
 
     it { is_expected.to(respond_with(200)) }
   end
 
   describe 'GET #new' do
-    login_user
+    login_admin
     before { get :new }
 
     it { is_expected.to(respond_with(200)) }
   end
 
   describe 'GET #show' do
-    login_user
+    login_admin
     before do
       transaction = create(:transaction)
       get(:show, params: { id: transaction.id })
@@ -28,7 +28,7 @@ RSpec.describe(TransactionsController, type: :controller) do
   end
 
   describe 'POST #create failed with no amount' do
-    login_user
+    login_admin
     before do
       origin = create(:account)
       target = create(:account)
@@ -47,7 +47,7 @@ RSpec.describe(TransactionsController, type: :controller) do
   end
 
   describe 'POST #create failed with same accounts' do
-    login_user
+    login_admin
     before do
       origin = create(:account)
       post :create,
@@ -65,7 +65,7 @@ RSpec.describe(TransactionsController, type: :controller) do
   end
 
   describe 'POST #create success' do
-    login_user
+    login_admin
     before do
       origin = create(:account)
       target = create(:account)
