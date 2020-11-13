@@ -15,4 +15,5 @@
 
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 @import '../vendor/material-dashboard/scss/material-dashboard';
-li.alert-message.list-group-item { padding: 0.75rem 1.25rem; }
+li { padding: .75rem 1.25rem; }
+.alert-message.list-group-item { padding: .75rem 1.25rem; }
