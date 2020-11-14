@@ -28,6 +28,8 @@ Layout/LineLength:
 
 RSpec/ExampleLength:
   Max: 6
+  Exclude:
+    - 'spec/features/*'
 
 Metrics/BlockLength:
   Max: 30
@@ -36,6 +38,7 @@ Metrics/BlockLength:
     - 'config/routes.rb'
     - 'config/environments/**/*'
     - 'spec/controllers/*'
+    - 'spec/features/*'
 
 Layout/EndOfLine:
   Enabled: false

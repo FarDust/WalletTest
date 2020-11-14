@@ -27,7 +27,7 @@ gem('jbuilder', '~> 2.7')
 # gem 'bcrypt', '~> 3.1.7'
 
 gem('bootstrap-sass')
-gem('cancan')
+gem('cancancan', '~>3.1')
 gem('devise')
 gem('money-rails', '~>1.12')
 gem('sentry-raven')
@@ -57,6 +57,8 @@ group :development, :test do
   gem 'rubycritic', require: false
   # Configurable tool for writing clean and consistent SCSS
   gem 'scss_lint', '~> 0.59.0', require: false
+  # Capybara is an integration testing tool for rack based web applications.
+  gem 'capybara', '~> 3.33.0'
 end
 
 group :test do

@@ -4,21 +4,21 @@ require 'rails_helper'
 
 RSpec.describe(AccountsController, type: :controller) do
   describe 'GET #index' do
-    login_user
+    login_admin
     before { get :index }
 
     it { is_expected.to(respond_with(200)) }
   end
 
   describe 'GET #new' do
-    login_user
+    login_admin
     before { get :new }
 
     it { is_expected.to(respond_with(200)) }
   end
 
   describe 'POST #create failed' do
-    login_user
+    login_admin
     before do
       account = build(:account, account_type: nil)
       post :create, params: { account: account.as_json, format: :json }
@@ -28,7 +28,7 @@ RSpec.describe(AccountsController, type: :controller) do
   end
 
   describe 'POST #create success' do
-    login_user
+    login_admin
     before do
       account = build(:account)
       request_params = account.as_json
@@ -40,7 +40,7 @@ RSpec.describe(AccountsController, type: :controller) do
   end
 
   describe 'POST #update success' do
-    login_user
+    login_admin
     before do
       account = create(:account)
       put :update, params: { id: account.id, account: { balance_cents: 400 } }
@@ -50,7 +50,7 @@ RSpec.describe(AccountsController, type: :controller) do
   end
 
   describe 'POST #update failed' do
-    login_user
+    login_admin
     before do
       account = create(:account)
       put :update,
@@ -62,7 +62,7 @@ RSpec.describe(AccountsController, type: :controller) do
   end
 
   describe 'DELETE #destroy failed' do
-    login_user
+    login_admin
     before do
       account = create(:account)
       delete :destroy, params: { id: account.id }

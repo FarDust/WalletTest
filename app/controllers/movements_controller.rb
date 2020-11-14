@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-class MovementsController < ApplicationController
+class MovementsController < AuthenticatedController
   before_action :set_account
   before_action :set_movement, only: %i[show edit update destroy]
 
   # GET /movements
   # GET /movements.json
   def index
-    @movements = Movement.all
+    @movements = Movement.where(account_id: params['account_id'])
   end
 
   # GET /movements/1

@@ -20,7 +20,7 @@ test:
   <<: *default
   database: walletest_test
   username: postgres
-  password: postgres
+  password: 
   host: postgres
   port: 5432
 

@@ -4,21 +4,21 @@ require('rails_helper')
 
 RSpec.describe(NaturalPeopleController, type: :controller) do
   describe 'GET #index' do
-    login_user
+    login_admin
     before { get :index }
 
     it { is_expected.to(respond_with(200)) }
   end
 
   describe 'GET #new' do
-    login_user
+    login_admin
     before { get :new }
 
     it { is_expected.to(respond_with(200)) }
   end
 
   describe 'POST #create failed' do
-    login_user
+    login_admin
     before do
       natural_person = build(:natural_person, nombre: nil)
       post :create, params: {
@@ -31,7 +31,7 @@ RSpec.describe(NaturalPeopleController, type: :controller) do
   end
 
   describe 'POST #create success' do
-    login_user
+    login_admin
     before do
       natural_person = build(:natural_person)
       post :create, params: {
@@ -44,7 +44,7 @@ RSpec.describe(NaturalPeopleController, type: :controller) do
   end
 
   describe 'POST #update success' do
-    login_user
+    login_admin
     before do
       natural_person = create(:natural_person)
       put :update, params: {
@@ -57,7 +57,7 @@ RSpec.describe(NaturalPeopleController, type: :controller) do
   end
 
   describe 'POST #update failed' do
-    login_user
+    login_admin
     before do
       natural_person = create(:natural_person)
       put :update, params: {
@@ -71,7 +71,7 @@ RSpec.describe(NaturalPeopleController, type: :controller) do
   end
 
   describe 'DELETE #destroy failed' do
-    login_user
+    login_admin
     before do
       natural_person = create(:natural_person)
       delete :destroy, params: { id: natural_person.id }

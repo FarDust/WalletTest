@@ -23,4 +23,5 @@ class User < ApplicationRecord
   has_many :debts, as: :deudor, dependent: :destroy
   has_many :debts, as: :acreedor, dependent: :destroy
   has_many :accounts, dependent: :destroy
+  has_many :transactions, dependent: :destroy
 end
