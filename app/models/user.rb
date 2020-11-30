@@ -24,4 +24,25 @@ class User < ApplicationRecord
   has_many :debts, as: :acreedor, dependent: :destroy
   has_many :accounts, dependent: :destroy
   has_many :transactions, dependent: :destroy
+
+  scope :availables, -> { where.not(deleted: true) }
+
+  def admin?
+    admin
+  end
+
+  def can_be_destroyed?
+    debts = 0 # Falta actualizar este monto con el monto de deudas q tenga el compadre
+    (credit_balance + debts).zero?
+  end
+
+  def disable
+    update(deleted: true)
+  end
+
+  private
+
+  def credit_balance
+    accounts.credits.pluck(:balance_cents).compact.sum
+  end
 end

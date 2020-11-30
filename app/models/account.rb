@@ -28,6 +28,8 @@ class Account < ApplicationRecord
   before_save :debt_guard
   after_update :debt_guard
 
+  scope :credits, -> { where(account_type: Account::CREDIT_TYPE) }
+
   VALID_TYPES = %w[common debt credit].to_set()
 
   COMMON_TYPE = 'common'

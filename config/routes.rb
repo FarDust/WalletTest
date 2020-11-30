@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   end
   resources :natural_people
   resources :categories
+  resources :users, only: %i[index destroy] do
+    get :enable, on: :member
+  end
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
