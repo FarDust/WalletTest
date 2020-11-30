@@ -1,0 +1,81 @@
+
+<div class="container-fluid">  
+  <div class="row">
+    <div class="col-md-9" style="overflow: auto;">
+      <div class="row">
+        <div class="col-md-12" style="height: 30vh;">
+          <table class="table" style="overflow: auto">
+            <thead>
+              <tr>
+                  <th>Account</th>
+                  <th>Category</th>
+                  <th>To</th>
+                  <th>Amount</th>
+                  <th>Balance</th>
+                  <th>Created at</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% for movement in @relevant_movements do %>
+                  <tr>
+                    <td class="td-name"><h6><%= fancyUUID(movement.account.id) %></h6></td>
+                    <td><%= movement.category.name %></td>
+                    <td><%= get_destination(movement) %></td>
+                    <td class="text-right">$ <%= movement.amount.to_s.rjust(16) %></td>
+                    <td class="text-right">$ <%= movement.final_balance.to_s.rjust(16) %></td>
+                    <td><%= movement.created_at.to_formatted_s(:short)  %></td>
+                  </tr>
+                <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3" style="overflow: auto; height: 80vh;">
+      <h3>Per Account Transactions</h3>
+      <% for account in @accounts  do %>
+          <div class="card card-stats">
+            <a data-toggle="collapse" href="#collapseHelper-<%= fancyUUID(account.id) %>" role="button" aria-expanded="false" aria-controls="collapseExample">
+              <div class="card-header">
+                <p class="card-category"><%= account.account_type.capitalize() %></p>
+                <h3 class="card-title">
+                  <%= account.account_type.capitalize() %> Account UUID
+                </h3>
+                <h6 class="card-subtitle mb-2 text-muted"><%= fancyUUID(account.id) %></h6>
+              </div>
+            </a>
+            <div class="card-body">
+              <div id="collapseHelper-<%= fancyUUID(account.id) %>" class="collapse">
+                <table class="table" style="overflow: auto; height: 30vh;">
+                  <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Created at</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <% for movement in account.movements.order("movements.created_at desc") do %>
+                        <tr>
+                          <td class="td-name"><%= movement.category.name %></td>
+                          <td class="text-right">$ <%= movement.amount.to_s.rjust(16) %></td>
+                          <td><%= movement.created_at.to_formatted_s(:short)  %></td>
+                        </tr>
+                      <% end %>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <span><i class="material-icons">admin_panel_settings</i><%= link_to 'Show', account %></span>
+                <span><i class="material-icons">build</i><%= link_to 'Edit', edit_account_path(account) %></span>
+                <span class="text-danger"><i class="material-icons">delete_forever</i><%= link_to 'Destroy', account, method: :delete, data: { confirm: 'Are you sure?' } %></span>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   end
   resources :natural_people
   resources :categories
+  get('/dashboard', to: 'dashboard#index')
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'

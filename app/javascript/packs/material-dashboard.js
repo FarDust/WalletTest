@@ -8,7 +8,7 @@ require("../../assets/vendor/material-dashboard/js/plugins/jquery.validate.min")
 require("../../assets/vendor/material-dashboard/js/plugins/jquery.bootstrap-wizard")
 require("../../assets/vendor/material-dashboard/js/plugins/bootstrap-selectpicker")
 // require("../../assets/vendor/material-dashboard/js/plugins/bootstrap-datetimepicker.min"
-// require("../../assets/vendor/material-dashboard/js/plugins/jquery.dataTables.min"
+// require("../../assets/vendor/material-dashboard/js/plugins/jquery.dataTables.min")
 // require("../../assets/vendor/material-dashboard/js/plugins/bootstrap-tagsinput")
 // require("../../assets/vendor/material-dashboard/js/plugins/jasny-bootstrap.min"
 // require("../../assets/vendor/material-dashboard/js/plugins/fullcalendar.min"

@@ -13,4 +13,8 @@ module AccountsHelper
       'movements/form'
     end
   end
+
+  def get_accounts(user)
+    Account.where(user: user)
+  end
 end
