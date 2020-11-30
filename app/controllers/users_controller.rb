@@ -20,7 +20,7 @@ class UsersController < AuthenticatedController
   def destroy
     respond_to do |format|
       if @user.can_be_destroyed?
-        @user.destriy
+        @user.destroy
         msg = t('users.actions.destroy.success')
         format.html { redirect_to(users_path, notice: msg) }
         format.json { render(:show, status: :ok, location: @debt) }
