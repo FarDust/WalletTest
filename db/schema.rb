@@ -85,7 +85,6 @@ ActiveRecord::Schema.define(version: 2020_11_29_221442) do
     t.string "role"
     t.boolean "admin", default: false
     t.boolean "enabled", default: true
-    t.boolean "deleted", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

@@ -3,6 +3,7 @@
 class MovementsController < AuthenticatedController
   before_action :set_account
   before_action :set_movement, only: %i[show edit update destroy]
+  load_and_authorize_resource
 
   # GET /movements
   # GET /movements.json

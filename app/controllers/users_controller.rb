@@ -2,9 +2,10 @@
 
 class UsersController < AuthenticatedController
   before_action :set_user, only: %i[enable destroy]
+  load_and_authorize_resource
 
   def index
-    @users = User.availables
+    @users = User.all
   end
 
   def enable
@@ -19,7 +20,7 @@ class UsersController < AuthenticatedController
   def destroy
     respond_to do |format|
       if @user.can_be_destroyed?
-        @user.disable
+        @user.destriy
         msg = t('users.actions.destroy.success')
         format.html { redirect_to(users_path, notice: msg) }
         format.json { render(:show, status: :ok, location: @debt) }
