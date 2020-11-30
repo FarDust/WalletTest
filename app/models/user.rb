@@ -26,7 +26,7 @@ class User < ApplicationRecord
   has_many :transactions, dependent: :destroy
 
   def can_be_destroyed?
-    debts = 0 # Falta actualizar este monto con el monto de deudas q tenga el compadre
+    debts = 0 # Falta actualizar este monto con deudas
     (credit_balance + debts).zero?
   end
 

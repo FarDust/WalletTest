@@ -23,11 +23,11 @@ class UsersController < AuthenticatedController
         @user.destroy
         msg = t('users.actions.destroy.success')
         format.html { redirect_to(users_path, notice: msg) }
-        format.json { render(:show, status: :ok, location: @debt) }
+        format.json { head(:no_content) }
       else
         msg = t('users.actions.destroy.failed')
         format.html { redirect_to(users_path, notice: msg) }
-        format.json { render(:show, status: :ok, location: @debt) }
+        format.json { render(:show, status: :ok, location: @user) }
       end
     end
   end
