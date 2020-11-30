@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<p id='notice'><%= notice %></p>
 
 <h1>Users</h1>
 
@@ -18,16 +18,16 @@
         <td><%= user.enabled ? 'Si' : 'No' %></td>
         <td>
           <%= link_to(enable_user_path(user),
-                      class: "btn btn-sm btn-primary mr-2",
-                      title: user.enabled ? "Disable" : "Enable") do %>
-            <i class="material-icons">
-              <%= user.enabled ? "toggle_on" : "toggle_off" %>
+                      class: 'btn btn-sm btn-primary mr-2',
+                      title: user.enabled ? 'Disable' : 'Enable') do %>
+            <i class='material-icons'>
+              <%= user.enabled ? 'toggle_on' : 'toggle_off' %>
             </i>
           <% end %>
           <%= link_to(user_path(user),
-                      class: "btn btn-sm btn-primary mr-2",
+                      class: 'btn btn-sm btn-primary mr-2',
                       method: :delete) do %>
-            <i class="material-icons">delete</i>
+            <i class='material-icons'>delete</i>
           <% end %>
         </td>
       </tr>
