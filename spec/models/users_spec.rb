@@ -19,4 +19,14 @@ RSpec.describe(Users, type: :model) do
       expect(user.save).to(eq(false))
     end
   end
+
+  # disable
+  context 'when deleting user' do
+    it 'doesnt have debts' do
+      user = create(:user)
+      acc = create(:credit_account, balance: -100, quota: 200, user: user)
+      create(:movement, account: acc, amount: 100)
+      expect(user.can_be_destroyed?).to(eq(true))
+    end
+  end
 end

@@ -10,6 +10,13 @@ RSpec.describe(CategoriesController, type: :controller) do
     it { is_expected.to(respond_with(200)) }
   end
 
+  describe 'GET #index with common_user' do
+    login_user
+    before { get :index }
+
+    it { is_expected.to(respond_with(302)) }
+  end
+
   describe 'GET #new' do
     login_admin
     before { get :new }
