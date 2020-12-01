@@ -7,7 +7,7 @@
   <div class='card-body'>
     <h6 class='card-category text-gray'><%= account.account_type %> account</h6>
     <h4 class='card-title'>Account with UUID</h4>
-    <h6><%= fancyUUID(account.id) %></h6>
+    <h6><%= fancy_uuid(account.id) %></h6>
     <p class='card-description'>
       Current balance: $<%= account.balance %> <%= account.balance_currency %>
       <%= link_to account_movements_path(account), "data-toggle" => "tooltip", "data-placement" => "bottom", title: "Transactions" do %>

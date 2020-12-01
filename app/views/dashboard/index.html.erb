@@ -22,17 +22,17 @@
                     <tr>
                       <td class="td-name">
                         <%= link_to account_dashboard_path(movement.account), class: "text-muted", "data-toggle" => "tooltip", "data-placement" => "top", title: "Go to account" do %>
-                          <h6><%= fancyUUID(movement.account.id) %></h6>
+                          <h6><%= fancy_uuid(movement.account.id) %></h6>
                         <% end %>
                       </td>
                       <td><%= movement.category.name %></td>
                       <td>
                       <% if can?(:read, get_destination(movement).account)%>
                         <%= link_to account_dashboard_path(get_destination(movement).account), class: "text-muted", "data-toggle" => "tooltip", "data-placement" => "top", title: "Go to account" do %>
-                          <h6><%= fancyUUID(get_destination(movement).id) %></h6>
+                          <h6><%= fancy_uuid(get_destination(movement).id) %></h6>
                         <% end %>
                       <% else %>
-                        <h6><%= fancyUUID(get_destination(movement).id) %></h6>
+                        <h6><%= fancy_uuid(get_destination(movement).id) %></h6>
                       <% end %>
                       </td>
                       <td class="text-right"><%= get_money(movement, movement.amount).format %></td>
@@ -50,17 +50,17 @@
       <h3>Per Account Transactions</h3>
       <% for account in @accounts  do %>
           <div class="card card-stats">
-            <a data-toggle="collapse" href="#collapseHelper-<%= fancyUUID(account.id) %>" role="button" aria-expanded="false" aria-controls="collapseHelper-<%= fancyUUID(account.id) %>">
+            <a data-toggle="collapse" href="#collapseHelper-<%= fancy_uuid(account.id) %>" role="button" aria-expanded="false" aria-controls="collapseHelper-<%= fancy_uuid(account.id) %>">
               <div class="card-header">
                 <p class="card-category"><%= account.account_type.capitalize() %></p>
                 <h3 class="card-title">
                   <%= account.account_type.capitalize() %> Account UUID
                 </h3>
-                <h6 class="card-subtitle mb-2 text-muted"><%= fancyUUID(account.id) %></h6>
+                <h6 class="card-subtitle mb-2 text-muted"><%= fancy_uuid(account.id) %></h6>
               </div>
             </a>
             <div class="card-body">
-              <div id="collapseHelper-<%= fancyUUID(account.id) %>" class="collapse">
+              <div id="collapseHelper-<%= fancy_uuid(account.id) %>" class="collapse">
                 <div style="overflow: auto; height: 30vh;">
                   <table class="table">
                     <thead>

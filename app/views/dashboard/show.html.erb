@@ -22,10 +22,10 @@
                   <td>
                   <% if can?(:read, get_destination(movement).account)%>
                     <%= link_to account_dashboard_path(get_destination(movement).account), class: "text-muted", "data-toggle" => "tooltip", "data-placement" => "right", title: "Go to account" do %>
-                      <h6><%= fancyUUID(get_destination(movement).id) %></h6>
+                      <h6><%= fancy_uuid(get_destination(movement).id) %></h6>
                     <% end %>
                   <% else %>
-                    <h6><%= fancyUUID(get_destination(movement).id) %></h6>
+                    <h6><%= fancy_uuid(get_destination(movement).id) %></h6>
                   <% end %>
                   </td>
                   <td class="text-right"><%= get_money(movement, movement.amount).format %></td>

@@ -1,3 +1,5 @@
+# frozen_string_literal: false
+
 class DashboardController < ApplicationController
   helper DashboardHelper
   helper MovementsHelper
@@ -12,5 +14,4 @@ class DashboardController < ApplicationController
   def show
     @account = Account.find(params[:id])
   end
-
 end
