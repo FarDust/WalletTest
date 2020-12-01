@@ -18,3 +18,7 @@ require("../../assets/vendor/material-dashboard/js/plugins/arrive.min")
 require("../../assets/vendor/material-dashboard/js/plugins/chartist.min")
 require("../../assets/vendor/material-dashboard/js/plugins/bootstrap-notify")
 require("../../assets/vendor/material-dashboard/js/material-dashboard")
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})

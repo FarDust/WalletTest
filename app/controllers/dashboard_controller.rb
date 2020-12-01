@@ -9,4 +9,8 @@ class DashboardController < ApplicationController
     @relevant_movements = get_relevant_movements(current_user)
   end
 
+  def show
+    @account = Account.find(params[:id])
+  end
+
 end

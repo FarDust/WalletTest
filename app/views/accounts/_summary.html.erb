@@ -6,21 +6,27 @@
   </div>
   <div class='card-body'>
     <h6 class='card-category text-gray'><%= account.account_type %> account</h6>
-    <h4 class='card-title'><%= current_user.name %> account <%= account.id %></h4>
+    <h4 class='card-title'>Account with UUID</h4>
+    <h6><%= fancyUUID(account.id) %></h6>
     <p class='card-description'>
-      Current balance: $<%= account.balance %> <%= account.balance_currency %> <br>
-      Quota: <%= account.quota %>
+      Current balance: $<%= account.balance %> <%= account.balance_currency %>
+      <%= link_to account_movements_path(account), "data-toggle" => "tooltip", "data-placement" => "bottom", title: "Transactions" do %>
+        <i class="material-icons text-danger">compare_arrows</i>
+      <% end %>
+      <br>
+      <%if !account.quota.nil? %>
+        Quota: <%= account.quota %>
+      <% end %>
     </p>
-    <%= link_to 'Transacciones', account_movements_path(account) %>
   </div>
   <div class="card-footer">
     <span>
-      <%= link_to edit_account_path(account), title: 'Edit' do %>
+      <%= link_to edit_account_path(account), "data-toggle" => "tooltip", "data-placement" => "right", title: 'Edit' do %>
         <i class="material-icons">build</i>
       <% end %>
     </span>
     <span>
-      <%= link_to account, method: :delete, data: { confirm: 'Are you sure?' }, title: 'Destroy' do %>
+      <%= link_to account, method: :delete, data: { confirm: 'Are you sure?' }, "data-toggle" => "tooltip", "data-placement" => "left", title: 'Destroy' do %>
         <i class="material-icons text-danger">delete_forever</i>
       <% end %>
     </span>

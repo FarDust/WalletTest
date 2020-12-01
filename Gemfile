@@ -28,6 +28,7 @@ gem('jbuilder', '~> 2.7')
 
 gem('bootstrap-sass')
 gem('cancancan', '~>3.1')
+gem('chartkick')
 gem('devise')
 gem('money-rails', '~>1.12')
 gem('sentry-raven')

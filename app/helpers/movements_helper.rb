@@ -6,12 +6,10 @@ module MovementsHelper
   end
 
   def get_destination(movement)
-    result = "stupid"
-    movement.transaction.each do |transaction|
-      if !transaction.nil?
-        raise
-      end
+    transaction = Transaction.where(origin_movement: movement).first || Transaction.where(target_movement: movement).first
+    if transaction.nil?
+      return movement
     end
-    # Movement.where(id: transaction.target_movement_id)
+    transaction.origin_movement == movement ? transaction.target_movement : transaction.origin_movement
   end
 end
