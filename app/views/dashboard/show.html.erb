@@ -20,8 +20,8 @@
                 <tr>
                   <td><%= movement.category.name %></td>
                   <td>
-                  <% if can?(:read, get_destination(movement).account)%>
-                    <%= link_to account_dashboard_path(get_destination(movement).account), class: "text-muted", "data-toggle" => "tooltip", "data-placement" => "right", title: "Go to account" do %>
+                  <% if can?(:read, get_destination(movement).account) %>
+                    <%= link_to account_dashboard_path(get_destination(movement).account), class: 'text-muted', 'data-toggle' => 'tooltip', 'data-placement' => 'right', title: 'Go to account' do %>
                       <h6><%= fancy_uuid(get_destination(movement).id) %></h6>
                     <% end %>
                   <% else %>
@@ -30,7 +30,7 @@
                   </td>
                   <td class="text-right"><%= get_money(movement, movement.amount).format %></td>
                   <td class="text-right"><%= get_money(movement, movement.final_balance).format %></td>
-                  <td><%= movement.created_at.to_formatted_s(:db)  %></td>
+                  <td><%= movement.created_at.to_formatted_s(:db) %></td>
                 </tr>
               <% end %>
           </tbody>
@@ -38,10 +38,10 @@
       </div>
     </div>
     <div class="col-md-6">
-      <%= column_chart(get_category_data(@account), xtitle: "Amount", ytitle: "Category", prefix: "$") %>
+      <%= column_chart(get_category_data(@account), xtitle: 'Amount', ytitle: 'Category', prefix: '$') %>
     </div>
     <div class="col-md-6">
-      <%= line_chart(get_final_balances(@account), xtitle: "Date", ytitle: "Balance", prefix: "$")%>
+      <%= line_chart(get_final_balances(@account), xtitle: 'Date', ytitle: 'Balance', prefix: '$') %>
     </div>
   </div>
 </div>

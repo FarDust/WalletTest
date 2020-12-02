@@ -10,23 +10,23 @@
     <h6><%= fancy_uuid(account.id) %></h6>
     <p class='card-description'>
       Current balance: $<%= account.balance %> <%= account.balance_currency %>
-      <%= link_to account_movements_path(account), "data-toggle" => "tooltip", "data-placement" => "bottom", title: "Transactions" do %>
+      <%= link_to account_movements_path(account), 'data-toggle' => 'tooltip', 'data-placement' => 'bottom', title: 'Transactions' do %>
         <i class="material-icons text-danger">compare_arrows</i>
       <% end %>
       <br>
-      <%if !account.quota.nil? %>
+      <% if !account.quota.nil? %>
         Quota: <%= account.quota %>
       <% end %>
     </p>
   </div>
   <div class="card-footer">
     <span>
-      <%= link_to edit_account_path(account), "data-toggle" => "tooltip", "data-placement" => "right", title: 'Edit' do %>
+      <%= link_to edit_account_path(account), 'data-toggle' => 'tooltip', 'data-placement' => 'right', title: 'Edit' do %>
         <i class="material-icons">build</i>
       <% end %>
     </span>
     <span>
-      <%= link_to account, method: :delete, data: { confirm: 'Are you sure?' }, "data-toggle" => "tooltip", "data-placement" => "left", title: 'Destroy' do %>
+      <%= link_to account, method: :delete, data: { confirm: 'Are you sure?' }, 'data-toggle' => 'tooltip', 'data-placement' => 'left', title: 'Destroy' do %>
         <i class="material-icons text-danger">delete_forever</i>
       <% end %>
     </span>

@@ -1,5 +1,5 @@
 
-<div class="container-fluid">  
+<div class="container-fluid">
   <div class="row">
     <div class="col-md-9" style="overflow: auto;">
       <div class="row">
@@ -21,14 +21,14 @@
                   <% for movement in @relevant_movements do %>
                     <tr>
                       <td class="td-name">
-                        <%= link_to account_dashboard_path(movement.account), class: "text-muted", "data-toggle" => "tooltip", "data-placement" => "top", title: "Go to account" do %>
+                        <%= link_to account_dashboard_path(movement.account), class: 'text-muted', 'data-toggle' => 'tooltip', 'data-placement' => 'top', title: 'Go to account' do %>
                           <h6><%= fancy_uuid(movement.account.id) %></h6>
                         <% end %>
                       </td>
                       <td><%= movement.category.name %></td>
                       <td>
-                      <% if can?(:read, get_destination(movement).account)%>
-                        <%= link_to account_dashboard_path(get_destination(movement).account), class: "text-muted", "data-toggle" => "tooltip", "data-placement" => "top", title: "Go to account" do %>
+                      <% if can?(:read, get_destination(movement).account) %>
+                        <%= link_to account_dashboard_path(get_destination(movement).account), class: 'text-muted', 'data-toggle' => 'tooltip', 'data-placement' => 'top', title: 'Go to account' do %>
                           <h6><%= fancy_uuid(get_destination(movement).id) %></h6>
                         <% end %>
                       <% else %>
@@ -37,7 +37,7 @@
                       </td>
                       <td class="text-right"><%= get_money(movement, movement.amount).format %></td>
                       <td class="text-right"><%= get_money(movement, movement.final_balance).format %></td>
-                      <td><%= movement.created_at.to_formatted_s(:short)  %></td>
+                      <td><%= movement.created_at.to_formatted_s(:short) %></td>
                     </tr>
                   <% end %>
               </tbody>
@@ -75,7 +75,7 @@
                           <tr>
                             <td class="td-name"><%= movement.category.name %></td>
                             <td class="text-right">$ <%= movement.amount.to_s %></td>
-                            <td><%= movement.created_at.to_formatted_s(:short)  %></td>
+                            <td><%= movement.created_at.to_formatted_s(:short) %></td>
                           </tr>
                         <% end %>
                     </tbody>
