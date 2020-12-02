@@ -7,6 +7,8 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.3.0",
     "bootstrap": "^4.5.2",
+    "chart.js": "^2.9.4",
+    "chartkick": "^3.2.1",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1",
     "turbolinks": "^5.2.0"
@@ -16,8 +18,8 @@
     "babel-eslint": "^10.1.0",
     "eslint": "7.7.0",
     "eslint-config-google": "^0.14.0",
-    "webpack-dev-server": "^3.11.0",
-    "sass-lint-auto-fix": "^0.21.2"
+    "sass-lint-auto-fix": "^0.21.2",
+    "webpack-dev-server": "^3.11.0"
   },
   "scripts": {
     "eslint": "eslint --ext .js,.es6 app/javascript",

@@ -7,8 +7,10 @@
           </div>
         <div class="collapse navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav mr-auto">
-                <li class='nav-item'><%= link_to 'Home', root_path, class: 'nav-link' %></li>
                     <% if current_user %>
+                        <li class="nav-item">
+                            <%= link_to('Dashboard', dashboard_path(), class: 'nav-link') %>
+                        </li>
                         <li class="nav-item">
                             <%= link_to('Accounts', accounts_path(), class: 'nav-link') %>
                         </li>

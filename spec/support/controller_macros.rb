@@ -16,4 +16,17 @@ module ControllerMacros
       sign_in(user)
     end
   end
+
+  def complete_account
+    account = create(:account)
+    account.save()
+    movement1 = create(:movement)
+    movement1.account = account
+    movement1.amount = -20
+    movement1.save()
+    movement2 = create(:movement)
+    movement2.account = account
+    movement2.save()
+    [account, movement1, movement2]
+  end
 end
