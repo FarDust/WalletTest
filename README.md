@@ -18,7 +18,9 @@
 + [HU](https://github.com/IIC3745-2020-2/grupo02/issues) se encuentran en las issue del repo 
 + La planificación de las HU se encuentra en forma de ([milestones](https://github.com/IIC3745-2020-2/grupo02/milestones), lo cual se encuentran en las issue del repo 
 
+## Entrega 4
 
++ El informe de pruebas de usuarios se encuentra en la carpeta [docs.](https://github.com/IIC3745-2020-2/grupo02/tree/master/docs) El enlace al material adicional de las pruebas se encuentra en el informe.
 
 ## Development setup
 
