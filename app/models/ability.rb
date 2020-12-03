@@ -13,6 +13,7 @@ class Ability
         can(:manage, Transaction, user_id: user.id)
         can(:manage, Movement)
         can(:manage, NaturalPerson)
+        can(:manage, Debt, id: user.id)
         can(:read, Category)
       end
     end

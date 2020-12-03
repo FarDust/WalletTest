@@ -42,7 +42,7 @@ class Account < ApplicationRecord
 
   def debt_guard
     if account_type == DEBT_TYPE && quota != 0
-      errors[:base] << "debt accounts dosen't have any quota"
+      errors[:base] << "debt accounts doesn't have any quota"
       quota = 0
       return false
     end
