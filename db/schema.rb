@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_13_154059) do
+ActiveRecord::Schema.define(version: 2020_12_03_040959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_11_13_154059) do
     t.bigint "deudor_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "currency", default: "CLP", null: false
     t.index ["acreedor_type", "acreedor_id"], name: "index_debts_on_acreedor_type_and_acreedor_id"
     t.index ["deudor_type", "deudor_id"], name: "index_debts_on_deudor_type_and_deudor_id"
   end
@@ -59,9 +60,9 @@ ActiveRecord::Schema.define(version: 2020_11_13_154059) do
   create_table "natural_people", force: :cascade do |t|
     t.string "nombre"
     t.string "apellido"
-    t.string "rut"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "related_account"
   end
 
   create_table "transactions", force: :cascade do |t|
@@ -92,6 +93,4 @@ ActiveRecord::Schema.define(version: 2020_11_13_154059) do
   add_foreign_key "movements", "accounts"
   add_foreign_key "movements", "categories"
   add_foreign_key "transactions", "users"
-  # add_foreign_key "debts", "natural_people"
-  # add_foreign_key "debts", "natural_people"
 end
