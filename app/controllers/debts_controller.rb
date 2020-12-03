@@ -6,7 +6,7 @@ class DebtsController < AuthenticatedController
   # GET /debts
   # GET /debts.json
   def index
-    @debts = Debt.all
+    @debts = Debt.where(acreedor_id: current_user.id, acreedor_type: 'User').or(Debt.where(deudor_id: current_user.id, deudor_type: 'User'))
   end
 
   # GET /debts/1

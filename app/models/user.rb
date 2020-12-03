@@ -24,4 +24,8 @@ class User < ApplicationRecord
   has_many :debts, as: :acreedor, dependent: :destroy
   has_many :accounts, dependent: :destroy
   has_many :transactions, dependent: :destroy
+
+  def public_identifier
+    "User ##{id} - Email:#{email} - Nombre:#{name}"
+  end
 end
