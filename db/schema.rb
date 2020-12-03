@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_12_03_040959) do
 
-  # These are extensions that must be enabled in order to support this database
+  # These are extensions that must be enabAccounAccount.where(id: current_user.id).namet.where(id: current_user.id).nameled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
