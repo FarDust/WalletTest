@@ -24,8 +24,9 @@ Category.create!(
   ]
 )
 
-NaturalPerson.create!(
-  [
-    { nombre: 'Persona Natural', apellido: 'Numero 1', rut:'12882394-8'}
-  ]
-)
+# Quitar comentarios solo si importa. Por ahora es innecesario
+# NaturalPerson.create!(
+#  [
+#    { nombre: 'Persona Natural', apellido: 'Numero 1', rut:'12882394-8'}
+#  ]
+#)
