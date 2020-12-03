@@ -23,12 +23,22 @@
 
   <div class="field">
     <%= form.label(:acreedor_id) %>
-    <%= form.text_field(:acreedor_id) %>
+    <%= form.number_field(:acreedor_id) %>
+  </div>
+
+  <div class="field">
+    <%= form.label(:acreedor_type) %>
+    <%= form.text_field(:acreedor_type) %>
   </div>
 
   <div class="field">
     <%= form.label(:deudor_id) %>
-    <%= form.text_field(:deudor_id) %>
+    <%= form.number_field(:deudor_id) %>
+  </div>
+
+  <div class="field">
+    <%= form.label(:deudor_type) %>
+    <%= form.text_field(:deudor_type) %>
   </div>
 
   <div class="actions">

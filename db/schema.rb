@@ -92,4 +92,6 @@ ActiveRecord::Schema.define(version: 2020_11_13_154059) do
   add_foreign_key "movements", "accounts"
   add_foreign_key "movements", "categories"
   add_foreign_key "transactions", "users"
+  # add_foreign_key "debts", "natural_people"
+  # add_foreign_key "debts", "natural_people"
 end
