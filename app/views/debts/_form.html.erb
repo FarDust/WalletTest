@@ -22,8 +22,9 @@
     <p>
       You must select deudor/acreedor and its related type, else you'll
        select a random user/natural person or get an error
-    <p>
+    </p>
   <div>
+
   <div class="field">
     <%= form.label(:interest, 'Interest (*0,001%)') %>
     <%= form.number_field(:interest) %>
@@ -61,7 +62,7 @@
                       required: true) %>
       <%= form.label(:acreedor_id, 'Acreedor id') %>
       <%= form.collection_select(:acreedor_id, NaturalPerson.all + User.all, :id, :public_identifier,
-                                               {}, { class: 'form-control' }) %>
+                                 {}, { class: 'form-control' }) %>
     </div>
   </div>
 
@@ -79,7 +80,8 @@
                       'data-style' => 'btn btn-link',
                       required: true) %>
       <%= form.label(:deudor_id) %>
-      <%= form.number_field(:deudor_id) %>
+      <%= form.collection_select(:deudor_id, NaturalPerson.all + User.all, :id, :public_identifier,
+                                 {}, { class: 'form-control' }) %>
     </div>
   </div>
 

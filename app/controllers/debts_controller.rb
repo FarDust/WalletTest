@@ -6,7 +6,9 @@ class DebtsController < AuthenticatedController
   # GET /debts
   # GET /debts.json
   def index
-    @debts = Debt.where(acreedor_id: current_user.id, acreedor_type: 'User').or(Debt.where(deudor_id: current_user.id, deudor_type: 'User'))
+    @debts = Debt.where(acreedor_id: current_user.id, acreedor_type: 'User')
+                 .or(Debt.where(deudor_id: current_user.id,
+                                deudor_type: 'User'))
   end
 
   # GET /debts/1
@@ -32,11 +34,19 @@ class DebtsController < AuthenticatedController
     # print(debt_params)
     @debt = Debt.new(debt_params)
     # print('Tipo de deudor', @debt.deudor_id, ' y tmbn ', @debt.deudor_type)
+    # approved = (@debt.acreedor_id == current_user.id || @debt.deudor_id == current_user.id) ? true : false
+    # if !approved
+    # @debt.errors = 'Your account must be an acreedor or deudor'
+    # print('FFFFFFFFFFFFFFFFFF')
+    # Deberia anadirse un bloqueo para evitar que el usuario cree deudas
+    # o prestamos que no lo involucren
+    # end
+    # print('ERRORES ', @debt.errors)
     respond_to do |format|
-      if @debt.save
+      if @debt.save #  && approved
         msg = 'Debt was successfully created.'
         format.html { redirect_to(@debt, notice: msg) }
-        format.json { render(:show, status: :created, location: @debt) }
+        format.json { render(:index, status: :created, location: @debt) }
       else
         format.html { render(:new) }
         format.json do

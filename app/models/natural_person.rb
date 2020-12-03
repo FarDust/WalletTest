@@ -19,9 +19,8 @@ class NaturalPerson < ApplicationRecord
 
   has_many :debts, as: :deudor, dependent: :restrict_with_error
   has_many :debts, as: :acreedor, dependent: :restrict_with_error
-  
+
   def public_identifier
     "NP ##{id} - Nombre:#{nombre} - Apellido:#{apellido}"
   end
-
 end

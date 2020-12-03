@@ -12,12 +12,12 @@
 
 <p>
   <strong>Acreedor:</strong>
-  <%= "#{@debt.acreedor_type} --> id: #{@debt.acreedor_id}" %>
+  <%= "#{@debt.acreedor_id == current_user.id ? 'You, ' : ''}#{@debt.acreedor_type} --> id: #{@debt.acreedor_id}" %>
 </p>
 
 <p>
   <strong>Deudor:</strong>
-  <%= "#{@debt.deudor_type} --> id: #{@debt.deudor_id}" %>
+  <%= "#{@debt.deudor_id == current_user.id ? 'You, ' : ''}#{@debt.deudor_type} --> id: #{@debt.deudor_id}" %>
 </p>
 
 <%= link_to 'Edit', edit_debt_path(@debt) %> |
