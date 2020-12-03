@@ -25,6 +25,7 @@ class AccountsController < AuthenticatedController
 
   # Deshabilitamos esta regla para mantener la logica del test
   # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
 
   # POST /accounts
   # POST /accounts.json
@@ -34,12 +35,12 @@ class AccountsController < AuthenticatedController
     respond_to do |format|
       if @account.save
         user = User.find(current_user.id)
-        doesnt_exists = NaturalPerson.where(related_account: current_user.id).empty?
-        if doesnt_exists 
-          np_params = { nombre: user.email.split('@',-1)[0],
-                        apellido: user.email.split('@',-1)[0],
-                        related_account: user.id 
-                      }
+        doesnt_exists = NaturalPerson.where(related_account: current_user.id)
+                                     .empty?
+        if doesnt_exists
+          np_params = { nombre: user.email.split('@', -1)[0],
+                        apellido: user.email.split('@', -1)[0],
+                        related_account: user.id }
           @np = NaturalPerson.new(np_params)
           @np.save
         end
@@ -56,6 +57,7 @@ class AccountsController < AuthenticatedController
     end
   end
   # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 
   # PATCH/PUT /accounts/1
   # PATCH/PUT /accounts/1.json

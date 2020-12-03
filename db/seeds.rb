@@ -29,4 +29,4 @@ Category.create!(
 #  [
 #    { nombre: 'Persona Natural', apellido: 'Numero 1', rut:'12882394-8'}
 #  ]
-#)
+# )

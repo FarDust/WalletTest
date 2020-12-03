@@ -26,12 +26,12 @@ class DebtsController < AuthenticatedController
   # POST /debts
   # POST /debts.json
   def create
-    NaturalPerson.all.each do |i|
-      print("PONER PERSONAS NATURALS", i.id)
-    end
-    print(debt_params)
+    # NaturalPerson.all.each do |i|
+    #   print("PONER PERSONAS NATURALS", i.id)
+    # end
+    # print(debt_params)
     @debt = Debt.new(debt_params)
-    print('Tipo de deudor', @debt.deudor_id, ' y tmbn ', @debt.deudor_type)
+    # print('Tipo de deudor', @debt.deudor_id, ' y tmbn ', @debt.deudor_type)
     respond_to do |format|
       if @debt.save
         msg = 'Debt was successfully created.'

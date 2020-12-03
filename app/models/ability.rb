@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# es la config del cancan, no deberia estar tan regulado
+# rubocop:disable Metrics/AbcSize
+
 class Ability
   include CanCan::Ability
 
@@ -14,9 +17,10 @@ class Ability
         can(:manage, Movement)
         can(:manage, NaturalPerson)
         can(:manage, Debt, acreedor_id: user.id)
-        can(:manage, Debt, deudor_id: user.id) # podría restringirse
+        can(:manage, Debt, deudor_id: user.id) # podria restringirse
         can(:read, Category)
       end
     end
   end
 end
+# rubocop:enable Metrics/AbcSize

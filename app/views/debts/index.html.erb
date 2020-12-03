@@ -17,8 +17,8 @@
   <tbody>
     <% @debts.each do |debt| %>
       <tr>
-        <td><%= debt.acreedor_id == current_user.id ? 'Loan ': 'Debt '%></td>
-        <td><%= (debt.interest * 0.001).to_s + '%' %></td>
+        <td><%= debt.acreedor_id == current_user.id ? 'Loan ' : 'Debt ' %></td>
+        <td><%= "#{(debt.interest * 0.001)}%" %></td>
         <td><%= debt.amount %></td>
         <td><%= "#{debt.acreedor_type}(#{debt.acreedor_id})" %></td>
         <td><%= "#{debt.deudor_type}(#{debt.deudor_id})" %></td>

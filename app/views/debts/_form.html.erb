@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label(:interest) + ' (*0,001%)' %>
+    <%= "#{form.label(:interest)} (*0,001%)" %>
     <%= form.number_field(:interest) %>
   </div>
 
@@ -23,8 +23,8 @@
 
   <div class="field">
     <%= form.label(:acreedor_type) %>
-    <%= form.select(:acreedor_type, 
-                    ['NaturalPerson', 'User'],
+    <%= form.select(:acreedor_type,
+                    %w[NaturalPerson User],
                     {
                       include_blank: 'Selecciona categoría'
                     },
@@ -39,15 +39,15 @@
 
   <div class="field">
     <%= form.label(:deudor_type) %>
-    <%= form.select(:deudor_type, 
-                    ['NaturalPerson', 'User'],
+    <%= form.select(:deudor_type,
+                    %w[NaturalPerson User],
                     {
                       include_blank: 'Selecciona categoría'
                     },
                     class: 'form-control',
                     required: true) %>
   </div>
-  
+
   <div class="field">
     <%= form.label(:deudor_id) %>
     <%= form.number_field(:deudor_id) %>
