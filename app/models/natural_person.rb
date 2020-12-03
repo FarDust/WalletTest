@@ -7,7 +7,7 @@
 #  id         :bigint           not null, primary key
 #  nombre     :string
 #  apellido   :string
-#  related_account    :bigint
+#  related_account    :bigint     # OJO que pudo salir mal
 #########  rut        :string
 #  created_at :datetime         not null
 #  updated_at :datetime         not null

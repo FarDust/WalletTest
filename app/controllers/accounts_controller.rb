@@ -33,6 +33,18 @@ class AccountsController < AuthenticatedController
     @account.quota = 0 if @account.account_type == 'debt'
     respond_to do |format|
       if @account.save
+        # Esta fallando el related account y todo esto en gral.
+        doesnt_exists = NaturalPerson.where(related_account: current_user.id).empty?
+        print('No existe?', doesnt_exists)
+        if doesnt_exists 
+          print('Entroo')
+          @np = NaturalPerson.new({ nombre: @current_user.name,
+                                       apellido: @current_user.name,
+                                       related_account: @current_user.id 
+                                      })
+          @np.save
+          print(@np)
+        end
         msg = 'Account was successfully created.'
         format.html { redirect_to(@account, notice: msg) }
         format.json { render(:show, status: :created, location: @account) }
