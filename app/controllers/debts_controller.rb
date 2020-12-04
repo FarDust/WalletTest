@@ -29,30 +29,30 @@ class DebtsController < AuthenticatedController
   # POST /debts
   # POST /debts.json
   def create
-    # NaturalPerson.all.each do |i|
-    #   print("PONER PERSONAS NATURALS", i.id)
-    # end
-    # print(debt_params)
     @debt = Debt.new(debt_params)
     # print('Tipo de deudor', @debt.deudor_id, ' y tmbn ', @debt.deudor_type)
-    # approved = (@debt.acreedor_id == current_user.id || @debt.deudor_id == current_user.id) ? true : false
-    # if !approved
-    # @debt.errors = 'Your account must be an acreedor or deudor'
-    # print('FFFFFFFFFFFFFFFFFF')
-    # Deberia anadirse un bloqueo para evitar que el usuario cree deudas
-    # o prestamos que no lo involucren
-    # end
-    # print('ERRORES ', @debt.errors)
-    respond_to do |format|
-      if @debt.save #  && approved
-        msg = 'Debt was successfully created.'
+    approved = (@debt.acreedor_id == current_user.id || @debt.deudor_id == current_user.id) ? true : false
+    if !approved
+      # Perdon lo feo
+      respond_to do |format|
+        msg = 'You tried to create a debt/loan for others'
         format.html { redirect_to(@debt, notice: msg) }
-        format.json { render(:index, status: :created, location: @debt) }
-      else
-        format.html { render(:new) }
         format.json do
-          render(json: @debt.errors,
-                 status: :unprocessable_entity)
+          render(:index, status: :unṕrocessable_entity, location: @debt)
+        end
+      end
+    else
+      respond_to do |format|
+        if @debt.save
+          msg = 'Debt was successfully created.'
+          format.html { redirect_to(@debt, notice: msg) }
+          format.json { render(:index, status: :created, location: @debt) }
+        else
+          format.html { render(:new) }
+          format.json do
+            render(json: @debt.errors,
+                   status: :unprocessable_entity)
+          end
         end
       end
     end

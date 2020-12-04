@@ -8,21 +8,21 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# Category.create!(
-#   [
-#     { name: 'Business', description: '' },
-#     { name: 'Charity', description: '' },
-#     { name: 'Debts', description: '' },
-#     { name: 'Education', description: '' },
-#     { name: 'Enterteinment', description: '' },
-#     { name: 'Health', description: '' },
-#     { name: 'Incomes', description: '' },
-#     { name: 'Restaurants', description: '' },
-#     { name: 'Subcriptions', description: '' },
-#     { name: 'Travels', description: '' },
-#     { name: 'Others', description: '' }
-#   ]
-# )
+Category.create!(
+  [
+    { name: 'Business', description: '' },
+    { name: 'Charity', description: '' },
+    { name: 'Debts', description: '' },
+    { name: 'Education', description: '' },
+    { name: 'Enterteinment', description: '' },
+    { name: 'Health', description: '' },
+    { name: 'Incomes', description: '' },
+    { name: 'Restaurants', description: '' },
+    { name: 'Subcriptions', description: '' },
+    { name: 'Travels', description: '' },
+    { name: 'Others', description: '' }
+  ]
+)
 
 # Quitar comentarios solo si importa. Por ahora es innecesario
 # NaturalPerson.create!(
