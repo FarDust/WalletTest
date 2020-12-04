@@ -28,4 +28,15 @@ class User < ApplicationRecord
   def public_identifier
     "User ##{id} - Email:#{email} - Nombre:#{name}"
   end
+
+  def can_be_destroyed?
+    debts = 0 # Falta actualizar este monto con deudas
+    (credit_balance + debts).zero?
+  end
+
+  private
+
+  def credit_balance
+    accounts.credits.pluck(:balance_cents).compact.sum
+  end
 end

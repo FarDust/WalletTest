@@ -3,7 +3,7 @@
 class TransactionsController < AuthenticatedController
   before_action :set_transaction, only: %i[show]
   before_action :set_create_params, :set_movements, only: %i[create]
-  skip_load_resource only: %i[new create]
+  load_and_authorize_resource
 
   # GET /transactions
   # GET /transactions.json
@@ -47,9 +47,7 @@ class TransactionsController < AuthenticatedController
 
   # Only allow a list of trusted parameters through.
   def transaction_params
-    params.require(:transaction)
-          .permit(%i[comment category_id origin_account_id
-                     target_account_id amount])
+    params.require(:transaction).permit(%i[id])
   end
 
   def set_movement_params(category_id, amount, comment)
@@ -61,16 +59,16 @@ class TransactionsController < AuthenticatedController
   end
 
   def set_create_params
-    category_id = transaction_params['category_id']
-    comment = transaction_params['comment']
-    amount = transaction_params['amount']
+    category_id = params['transaction']['category_id']
+    comment = params['transaction']['comment']
+    amount = params['transaction']['amount']
     @origin_params = set_movement_params(category_id, - amount.to_f, comment)
     @target_params = set_movement_params(category_id, amount.to_f, comment)
   end
 
   def set_movements
-    @origin_account = Account.find(transaction_params['origin_account_id'])
-    @target_account = Account.find(transaction_params['target_account_id'])
+    @origin_account = Account.find(params['transaction']['origin_account_id'])
+    @target_account = Account.find(params['transaction']['target_account_id'])
     @origin_movement = @origin_account.movements.new(@origin_params)
     @target_movement = @target_account.movements.new(@target_params)
   end
