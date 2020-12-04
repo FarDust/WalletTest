@@ -40,7 +40,9 @@ RSpec.describe(DebtsController, type: :controller) do
   describe 'POST #update success' do
     login_admin
     before do
-      debt = create(:debt)
+      # rubocop:disable RSpec/NamedSubject
+      debt = create(:debt, acreedor: subject.current_user)
+      # rubocop:enable RSpec/NamedSubject
       put :update, params: { id: debt.id, debt: { balance_cents: 400 } }
     end
 
@@ -50,7 +52,9 @@ RSpec.describe(DebtsController, type: :controller) do
   describe 'POST #update failed' do
     login_admin
     before do
-      debt = create(:debt)
+      # rubocop:disable RSpec/NamedSubject
+      debt = create(:debt, acreedor: subject.current_user)
+      # rubocop:enable RSpec/NamedSubject
       put :update, params: { id: debt.id, debt: { amount: nil }, format: :json }
     end
 
@@ -60,7 +64,9 @@ RSpec.describe(DebtsController, type: :controller) do
   describe 'DELETE #destroy failed' do
     login_admin
     before do
-      debt = create(:debt)
+      # rubocop:disable RSpec/NamedSubject
+      debt = create(:debt, acreedor: subject.current_user)
+      # rubocop:enable RSpec/NamedSubject
       delete :destroy, params: { id: debt.id }
     end
 

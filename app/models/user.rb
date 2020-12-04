@@ -20,8 +20,14 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :debts, as: :deudor, dependent: :destroy
-  has_many :debts, as: :acreedor, dependent: :destroy
+  has_many :debts_as_deudor,
+           as: :deudor,
+           dependent: :destroy,
+           class_name: 'Debt'
+  has_many :debts_as_acreedor,
+           as: :acreedor,
+           dependent: :destroy,
+           class_name: 'Debt'
   has_many :accounts, dependent: :destroy
   has_many :transactions, dependent: :destroy
 
@@ -30,13 +36,17 @@ class User < ApplicationRecord
   end
 
   def can_be_destroyed?
-    debts = 0 # Falta actualizar este monto con deudas
-    (credit_balance + debts).zero?
+    credit_balance.zero? && debt_balance.zero?
   end
 
   private
 
   def credit_balance
     accounts.credits.pluck(:balance_cents).compact.sum
+  end
+
+  def debt_balance
+    debts_as_acreedor.pluck(:amount).compact.sum -
+      debts_as_deudor.pluck(:amount).compact.sum
   end
 end

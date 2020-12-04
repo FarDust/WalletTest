@@ -49,13 +49,17 @@ RSpec.describe(DashboardHelper, type: :helper) do
     # rubocop:enable RSpec/MultipleExpectations
 
     it 'creates a list with valid data' do
-      account, movement1, = complete_account()
+      account = create(:account)
+      movement1 = create(:movement, account: account, amount: -20)
+      movement2 = create(:movement, account: account)
       final_list = helper.get_category_data(account)
       expect(final_list[0][:data][movement1.category.name.to_sym]).to(be(2323))
     end
 
     it 'has 2 movements' do
-      account, = complete_account()
+      account = create(:account)
+      movement1 = create(:movement, account: account, amount: -20)
+      movement2 = create(:movement, account: account)
       balances = helper.get_final_balances(account)
       expect(balances.length).to(be(2))
     end

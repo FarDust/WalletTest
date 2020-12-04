@@ -20,7 +20,9 @@ RSpec.describe(TransactionsController, type: :controller) do
   describe 'GET #show' do
     login_admin
     before do
-      transaction = create(:transaction)
+      # rubocop:disable RSpec/NamedSubject
+      transaction = create(:transaction, user: subject.current_user)
+      # rubocop:enable RSpec/NamedSubject
       get(:show, params: { id: transaction.id })
     end
 

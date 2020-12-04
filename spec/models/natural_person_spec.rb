@@ -17,6 +17,5 @@ RSpec.describe(NaturalPerson, type: :model) do
   context 'with attributes val' do
     it { is_expected.to(validate_presence_of(:nombre)) }
     it { is_expected.to(validate_presence_of(:apellido)) }
-    it { is_expected.to(validate_presence_of(:rut)) }
   end
 end

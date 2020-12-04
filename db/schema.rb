@@ -10,13 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2020_12_03_040959) do
-=======
-ActiveRecord::Schema.define(version: 2020_11_29_221442) do
->>>>>>> admin
 
-  # These are extensions that must be enabAccounAccount.where(id: current_user.id).namet.where(id: current_user.id).nameled in order to support this database
+  # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
