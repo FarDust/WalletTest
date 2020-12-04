@@ -29,4 +29,12 @@ RSpec.describe(Users, type: :model) do
       expect(user.can_be_destroyed?).to(eq(true))
     end
   end
+
+  context 'when user is created' do
+    it 'render his public_identifier' do
+      user = create(:user)
+      expect(user.public_identifier)
+        .to(match(/#{user.id}/))
+    end
+  end
 end

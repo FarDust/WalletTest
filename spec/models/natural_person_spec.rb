@@ -18,4 +18,12 @@ RSpec.describe(NaturalPerson, type: :model) do
     it { is_expected.to(validate_presence_of(:nombre)) }
     it { is_expected.to(validate_presence_of(:apellido)) }
   end
+
+  context 'when is created' do
+    it 'render his public_identifier' do
+      natural = create(:natural_person)
+      expect(natural.public_identifier)
+        .to(match(/#{natural.id}/))
+    end
+  end
 end
