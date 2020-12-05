@@ -30,6 +30,9 @@ RSpec.describe(AccountsController, type: :controller) do
   describe 'POST #create success' do
     login_admin
     before do
+      # rubocop:disable RSpec/NamedSubject
+      np = create(:natural_person, related_account: subject.current_user.id)
+      # rubocop:enable RSpec/NamedSubject
       account = build(:account)
       request_params = account.as_json
       request_params[:currency] = request_params[:balance_currency]
