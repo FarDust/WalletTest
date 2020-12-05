@@ -14,7 +14,7 @@
 - [X] Lógica de sesiones
 - [X] Tests de modelos / controladores / vistas / rutas
 
-+ Modelo de datos y Mock-ups se encuentran en la carpeta [docs](https://github.com/IIC3745-2020-2/grupo02/tree/master/docs)
++ Modelo de datos y Mock-ups se encuentran en la carpeta [docs](https://github.com/IIC3745-2020-2/grupo02/tree/master/docs). Actualmente está desactualizado
 + [HU](https://github.com/IIC3745-2020-2/grupo02/issues) se encuentran en las issue del repo 
 + La planificación de las HU se encuentra en forma de ([milestones](https://github.com/IIC3745-2020-2/grupo02/milestones), lo cual se encuentran en las issue del repo 
 
@@ -54,3 +54,4 @@
 * Fix erblint offences automatically: `docker-compose exec web bundle exec erblint --lint-all -a`
 
 * Populate database `docker-compose run --rm web rails db:seed` (works and doesn't die) and [useful website](https://makeitrealcamp.gitbook.io/ruby-on-rails-5/seeds)
+* Execute migrations `docker-compose run --rm web rails db:migrate`

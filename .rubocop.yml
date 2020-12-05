@@ -38,6 +38,7 @@ Metrics/BlockLength:
     - 'config/routes.rb'
     - 'config/environments/**/*'
     - 'spec/controllers/*'
+    - 'spec/helpers/*'
     - 'spec/features/*'
 
 Layout/EndOfLine:

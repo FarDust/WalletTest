@@ -42,7 +42,9 @@ RSpec.describe(AccountsController, type: :controller) do
   describe 'POST #update success' do
     login_admin
     before do
-      account = create(:account)
+      # rubocop:disable RSpec/NamedSubject
+      account = create(:account, user: subject.current_user)
+      # rubocop:enable RSpec/NamedSubject
       put :update, params: { id: account.id, account: { balance_cents: 400 } }
     end
 
@@ -52,7 +54,9 @@ RSpec.describe(AccountsController, type: :controller) do
   describe 'POST #update failed' do
     login_admin
     before do
-      account = create(:account)
+      # rubocop:disable RSpec/NamedSubject
+      account = create(:account, user: subject.current_user)
+      # rubocop:enable RSpec/NamedSubject
       put :update,
           params: { id: account.id, account: { balance: nil } },
           format: :json
@@ -64,7 +68,9 @@ RSpec.describe(AccountsController, type: :controller) do
   describe 'DELETE #destroy failed' do
     login_admin
     before do
-      account = create(:account)
+      # rubocop:disable RSpec/NamedSubject
+      account = create(:account, user: subject.current_user)
+      # rubocop:enable RSpec/NamedSubject
       delete :destroy, params: { id: account.id }
     end
 

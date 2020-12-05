@@ -28,6 +28,8 @@ class Account < ApplicationRecord
   before_save :debt_guard
   after_update :debt_guard
 
+  scope :credits, -> { where(account_type: Account::CREDIT_TYPE) }
+
   VALID_TYPES = %w[common debt credit].to_set()
 
   COMMON_TYPE = 'common'
@@ -42,7 +44,7 @@ class Account < ApplicationRecord
 
   def debt_guard
     if account_type == DEBT_TYPE && quota != 0
-      errors[:base] << "debt accounts dosen't have any quota"
+      errors[:base] << "debt accounts doesn't have any quota"
       quota = 0
       return false
     end

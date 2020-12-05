@@ -23,7 +23,6 @@ FactoryBot.define do
   factory :natural_person do
     nombre { 'Jhon' }
     apellido { 'Doe' }
-    rut { '11111111-1' }
   end
 
   factory :movement do

@@ -27,7 +27,6 @@ class NaturalPeopleController < AuthenticatedController
   # POST /natural_people.json
   def create
     @natural_person = NaturalPerson.new(natural_person_params)
-
     respond_to do |format|
       var = @natural_person
       if @natural_person.save
@@ -79,6 +78,6 @@ class NaturalPeopleController < AuthenticatedController
 
   # Only allow a list of trusted parameters through.
   def natural_person_params
-    params.require(:natural_person).permit(:nombre, :apellido, :rut)
+    params.require(:natural_person).permit(:nombre, :apellido, :related_account)
   end
 end
