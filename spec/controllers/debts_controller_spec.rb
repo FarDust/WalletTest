@@ -17,10 +17,12 @@ RSpec.describe(DebtsController, type: :controller) do
     it { is_expected.to(respond_with(200)) }
   end
 
+  # REFACTOR: Hay que ver una forma mas buena de sacar el id
   describe 'POST #create failed' do
     login_admin
     before do
       debt = build(:debt, amount: nil)
+      debt.acreedor_id = subject.current_user.id
       post :create, params: { debt: debt.as_json, format: :json }
     end
 
@@ -31,6 +33,7 @@ RSpec.describe(DebtsController, type: :controller) do
     login_admin
     before do
       debt = create(:debt, :for_user)
+      debt.acreedor_id = subject.current_user.id
       post :create, params: { debt: debt.as_json, format: :json }
     end
 
