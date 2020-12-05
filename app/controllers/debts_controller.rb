@@ -42,7 +42,7 @@ class DebtsController < AuthenticatedController
         msg = 'You tried to create a debt/loan for others and that is forbidden'
         format.html { redirect_to(@debt, notice: msg) }
         format.json do
-          render(json: @debt.errors, status: :unṕrocessable_entity)
+          render(json: @debt.errors, status: :not_modified)
         end
       end
     else
