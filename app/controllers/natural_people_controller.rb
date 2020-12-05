@@ -2,7 +2,6 @@
 
 class NaturalPeopleController < AuthenticatedController
   before_action :set_natural_person, only: %i[show edit update destroy]
-  load_and_authorize_resource
 
   # GET /natural_people
   # GET /natural_people.json

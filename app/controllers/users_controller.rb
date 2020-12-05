@@ -2,7 +2,6 @@
 
 class UsersController < AuthenticatedController
   before_action :set_user, only: %i[enable destroy]
-  load_and_authorize_resource
 
   def index
     @users = User.all
