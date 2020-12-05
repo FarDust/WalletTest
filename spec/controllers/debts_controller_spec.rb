@@ -31,6 +31,16 @@ RSpec.describe(DebtsController, type: :controller) do
     it { is_expected.to(respond_with(:unprocessable_entity)) }
   end
 
+  describe 'POST #create disapproved' do
+    login_admin
+    before do
+      debt = build(:debt, amount: nil)
+      post :create, params: { debt: debt.as_json, format: :json }
+    end
+
+    it { is_expected.to(respond_with(:not_modified)) }
+  end
+
   describe 'POST #create success' do
     login_admin
     before do
