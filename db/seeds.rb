@@ -23,3 +23,12 @@ Category.create!(
     { name: 'Others', description: '' }
   ]
 )
+
+# Quitar comentarios solo si importa. Por ahora es innecesario
+# NaturalPerson.create!(
+#  [
+#    { nombre: 'Persona Natural', apellido: 'Numero 1', rut:'12882394-8'}
+#  ]
+# )
+
+User.create(email: 'admin@test.cl', password: 'test123', admin: true)

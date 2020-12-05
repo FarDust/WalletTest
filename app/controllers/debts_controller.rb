@@ -6,7 +6,9 @@ class DebtsController < AuthenticatedController
   # GET /debts
   # GET /debts.json
   def index
-    @debts = Debt.all
+    @debts = Debt.where(acreedor_id: current_user.id, acreedor_type: 'User')
+                 .or(Debt.where(deudor_id: current_user.id,
+                                deudor_type: 'User'))
   end
 
   # GET /debts/1
@@ -23,24 +25,44 @@ class DebtsController < AuthenticatedController
   def edit
   end
 
+  # Desactivado hasta el refactor, para pasar esos tests de forma
+  # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Metrics/MethodLength
+
   # POST /debts
   # POST /debts.json
   def create
     @debt = Debt.new(debt_params)
-    respond_to do |format|
-      if @debt.save
-        msg = 'Debt was successfully created.'
+    # print('Tipo de deudor', @debt.deudor_id, ' y tmbn ', @debt.deudor_type)
+    id = current_user.id
+    approved = [@debt.acreedor_id, @debt.deudor_id].include?(id) ? true : false
+    if !approved
+      # Perdon lo feo - REFACTOR PLS
+      respond_to do |format|
+        msg = 'You tried to create a debt/loan for others and that is forbidden'
         format.html { redirect_to(@debt, notice: msg) }
-        format.json { render(:show, status: :created, location: @debt) }
-      else
-        format.html { render(:new) }
         format.json do
-          render(json: @debt.errors,
-                 status: :unprocessable_entity)
+          render(json: @debt.errors, status: :unṕrocessable_entity)
+        end
+      end
+    else
+      respond_to do |format|
+        if @debt.save
+          msg = 'Debt was successfully created.'
+          format.html { redirect_to(@debt, notice: msg) }
+          format.json { render(:index, status: :created, location: @debt) }
+        else
+          format.html { render(:new) }
+          format.json do
+            render(json: @debt.errors,
+                   status: :unprocessable_entity)
+          end
         end
       end
     end
   end
+  # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Metrics/MethodLength
 
   # PATCH/PUT /debts/1
   # PATCH/PUT /debts/1.json
@@ -79,7 +101,7 @@ class DebtsController < AuthenticatedController
 
   # Only allow a list of trusted parameters through.
   def debt_params
-    params.require(:debt).permit(:interest, :amount,
+    params.require(:debt).permit(:interest, :amount, :currency,
                                  :acreedor_id, :acreedor_type,
                                  :deudor_id, :deudor_type)
   end

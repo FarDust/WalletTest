@@ -11,8 +11,22 @@
     </div>
   <% end %>
 
+  <div>
+    <p>
+      Select NaturalPerson when the other person isn't a member of our bank
+       or when you don't want him/her to notice this action.
+    </p>
+    <p>
+      If you don't find him/her, you can create a new NaturalPerson here.
+    </p>
+    <p>
+      You must select deudor/acreedor and its related type, else you'll
+       select a random user/natural person or get an error
+    </p>
+  </div>
+
   <div class="field">
-    <%= form.label(:interest) %>
+    <%= form.label(:interest, 'Interest (*0,001%)') %>
     <%= form.number_field(:interest) %>
   </div>
 
@@ -21,14 +35,54 @@
     <%= form.number_field(:amount) %>
   </div>
 
-  <div class="field">
-    <%= form.label(:acreedor_id) %>
-    <%= form.text_field(:acreedor_id) %>
+  <div class="col-md-3">
+    <div class="form-group">
+      <%= form.label(:currency) %>
+      <%= form.select(:currency,
+                      options_for_select(%w[CLP USD], 'CLP'),
+                      {},
+                      { class: 'form-control selectpicker',
+                        'data-style' => 'btn btn-link',
+                        hideen: true }) %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label(:deudor_id) %>
-    <%= form.text_field(:deudor_id) %>
+  <div class="col-md-3">
+    <br>
+    <h4> Configure acreedor properties </h4>
+    <div class="form-group">
+      <%= form.label(:acreedor_type) %>
+      <%= form.select(:acreedor_type,
+                      %w[NaturalPerson User],
+                      {
+                        include_blank: 'Selecciona categoría'
+                      },
+                      class: 'form-control selectpicker',
+                      'data-style' => 'btn btn-link',
+                      required: true) %>
+      <%= form.label(:acreedor_id, 'Acreedor id') %>
+      <%= form.collection_select(:acreedor_id, NaturalPerson.all + User.all, :id, :public_identifier,
+                                 {}, { class: 'form-control' }) %>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <br>
+    <h4> Configure deudor properties </h4>
+    <div class="form-group">
+      <%= form.label(:deudor_type, 'Deudor id') %>
+      <%= form.select(:deudor_type,
+                      %w[NaturalPerson User],
+                      {
+                        include_blank: 'Selecciona categoría'
+                      },
+                      class: 'form-control selectpicker',
+                      'data-style' => 'btn btn-link',
+                      required: true) %>
+      <%= form.label(:deudor_id) %>
+      <%= form.collection_select(:deudor_id, NaturalPerson.all + User.all, :id, :public_identifier,
+                                 {}, { class: 'form-control' }) %>
+    </div>
   </div>
 
   <div class="actions">

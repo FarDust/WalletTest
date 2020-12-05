@@ -55,7 +55,9 @@ RSpec.describe(MovementsController, type: :controller) do
   describe 'POST #update success' do
     login_admin
     before do
-      account = create(:account)
+      # rubocop:disable RSpec/NamedSubject
+      account = create(:account, user: subject.current_user)
+      # rubocop:enable RSpec/NamedSubject
       category = create(:category)
       movement = account.movements.create!(amount: 300, category: category)
       put :update,
@@ -71,7 +73,9 @@ RSpec.describe(MovementsController, type: :controller) do
   describe 'POST #update failed' do
     login_admin
     before do
-      account = create(:account)
+      # rubocop:disable RSpec/NamedSubject
+      account = create(:account, user: subject.current_user)
+      # rubocop:enable RSpec/NamedSubject
       category = create(:category)
       movement = account.movements.create!(amount: 300, category: category)
       put :update,
@@ -87,7 +91,9 @@ RSpec.describe(MovementsController, type: :controller) do
   describe 'DELETE #destroy failed' do
     login_admin
     before do
-      account = create(:account)
+      # rubocop:disable RSpec/NamedSubject
+      account = create(:account, user: subject.current_user)
+      # rubocop:enable RSpec/NamedSubject
       category = create(:category)
       movement = account.movements.create!(amount: 300, category: category)
       delete :destroy,
