@@ -17,12 +17,14 @@ RSpec.describe(DebtsController, type: :controller) do
     it { is_expected.to(respond_with(200)) }
   end
 
-  # REFACTOR: Hay que ver una forma mas buena de sacar el id
+  # REFACTOR: Hay que ver una mejor de sacar el id sin llamar a subject
   describe 'POST #create failed' do
     login_admin
     before do
       debt = build(:debt, amount: nil)
+      # rubocop:disable RSpec/NamedSubject
       debt.acreedor_id = subject.current_user.id
+      # rubocop:enable RSpec/NamedSubject
       post :create, params: { debt: debt.as_json, format: :json }
     end
 
@@ -33,7 +35,9 @@ RSpec.describe(DebtsController, type: :controller) do
     login_admin
     before do
       debt = create(:debt, :for_user)
+      # rubocop:disable RSpec/NamedSubject
       debt.acreedor_id = subject.current_user.id
+      # rubocop:enable RSpec/NamedSubject
       post :create, params: { debt: debt.as_json, format: :json }
     end
 
