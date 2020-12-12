@@ -38,6 +38,7 @@ gem('sentry-raven')
 
 # Reduces boot times through caching; required in config/boot.rb
 gem('bootsnap', '>= 1.4.2', require: false)
+gem('faker')
 
 group :development, :test do
   # Brakeman detects security vulnerabilities in Ruby on Rails
@@ -60,7 +61,6 @@ group :development, :test do
   gem 'scss_lint', '~> 0.59.0', require: false
   # Capybara is an integration testing tool for rack based web applications.
   gem 'capybara', '~> 3.33.0'
-  gem 'faker'
 end
 
 group :test do
