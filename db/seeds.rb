@@ -33,7 +33,7 @@ require "faker"
 # )
 
 # User.create(email: 'admin@test.cl', password: 'test123', admin: true)
-for i in (1..20)
+for i in (1..10)
   User.create(email: Faker::Internet.email, password: "test123")
 end
 User.all.each do |u|
