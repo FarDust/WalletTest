@@ -32,6 +32,7 @@ gem('chartkick')
 gem('devise')
 gem('money-rails', '~>1.12')
 gem('newrelic_rpm')
+gem('scout_apm')
 gem('sentry-raven')
 
 # Use Active Storage variant
