@@ -31,6 +31,7 @@ gem('cancancan', '~>3.1')
 gem('chartkick')
 gem('devise')
 gem('money-rails', '~>1.12')
+gem('newrelic_rpm')
 gem('sentry-raven')
 
 # Use Active Storage variant
