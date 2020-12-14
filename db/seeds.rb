@@ -33,23 +33,25 @@ require "faker"
 # )
 
 # User.create(email: 'admin@test.cl', password: 'test123', admin: true)
-for i in (1..10)
-  User.create(email: Faker::Internet.email, password: "test123")
-end
+# for i in (1..10)
+#   User.create(email: Faker::Internet.email, password: "test123")
+# end
+categories = Category.all.pluck(:id)
 User.all.each do |u|
   r = Random.new
-  acc = u.accounts.create(account_type: 'common', balance: r.rand(-10000..10000))
-  for j in (1..Random.rand(1000..2000))
-    category = Category.order('RANDOM()').first
+  acc = u.accounts.last
+  next if acc.nil?
+  for j in (1..r.rand(500..1500))
+    category_id = categories.sample
     acc.movements
-      .create(category: category, amount: r.rand(-1000..1000))
+      .create(category_id: category_id, amount: r.rand(-1000..1000))
   end
 end
-Account.all.each do |acc|
-  category = Category.order('RANDOM()').first
-  other = Account.where.not(id: acc.id).order('RANDOM()').first
-  amount = Random.new.rand(-1000..10000)
-  origin = acc.movements.create(category: category, amount: amount, comment: "test")
-  destiny = other.movements.create(category: category, amount: -amount, comment: "test")
-  acc.user.transactions.create(origin_movement: origin, target_movement: destiny)
-end
+# Account.all.each do |acc|
+#   category = Category.order('RANDOM()').first
+#   other = Account.where.not(id: acc.id).order('RANDOM()').first
+#   amount = Random.new.rand(-1000..10000)
+#   origin = acc.movements.create(category: category, amount: amount, comment: "test")
+#   destiny = other.movements.create(category: category, amount: -amount, comment: "test")
+#   acc.user.transactions.create(origin_movement: origin, target_movement: destiny)
+# end
