@@ -1,5 +1,6 @@
 # frozen_string_literal: true
-require "faker"
+
+require 'faker'
 
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
@@ -37,14 +38,15 @@ require "faker"
 #   User.create(email: Faker::Internet.email, password: "test123")
 # end
 categories = Category.all.pluck(:id)
-User.all.each do |u|
+for u in User.all.each do
   r = Random.new
   acc = u.accounts.last
   next if acc.nil?
+
   for j in (1..r.rand(500..1500))
     category_id = categories.sample
     acc.movements
-      .create(category_id: category_id, amount: r.rand(-1000..1000))
+       .create(category_id: category_id, amount: r.rand(-1000..1000))
   end
 end
 # Account.all.each do |acc|
