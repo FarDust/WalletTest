@@ -10,7 +10,7 @@ development:
   database: walletest_development
   username: postgres
   password: postgres
-  host: localhost
+  host: postgres
   port: 5432
 
 # Warning: The database defined as "test" will be erased and
