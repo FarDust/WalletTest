@@ -1,9 +1,13 @@
-# Group 02 Wallet App
+# WalletTest
+
+[![Maintainability](https://api.codeclimate.com/v1/badges/66750ac440765b28d8df/maintainability)](https://codeclimate.com/github/FarDust/WalletTest/maintainability)
+
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/FarDust/WalletTest.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/FarDust/WalletTest/context:javascript)
 
 - Staging server linked to development branch: https://walletest-reborn.herokuapp.com/
 - Production server linked to master branch: https://walletest-born.herokuapp.com/
 
-## Entrega 1 (16/09)
+## Features
 
 - [X] Modelo de datos
 - [X] Mock-ups
@@ -18,7 +22,7 @@
 + [HU](https://github.com/IIC3745-2020-2/grupo02/issues) se encuentran en las issue del repo 
 + La planificación de las HU se encuentra en forma de ([milestones](https://github.com/IIC3745-2020-2/grupo02/milestones), lo cual se encuentran en las issue del repo 
 
-## Entrega 4
+## User testing
 
 + El informe de pruebas de usuarios se encuentra en la carpeta [docs.](https://github.com/IIC3745-2020-2/grupo02/tree/master/docs) El enlace al material adicional de las pruebas se encuentra en el informe.
 
