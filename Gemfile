@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby('2.7.1')
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem('rails', '~> 6.0.3', '>= 6.0.3.4')
+gem('rails', '~> 6.0.3', '>= 6.0.3.5')
 # Use postgresql as the database for Active Record
 gem('pg', '>= 0.18', '< 2.0')
 # Use Puma as the app server
@@ -31,6 +31,7 @@ gem('cancancan', '~>3.1')
 gem('chartkick')
 gem('devise')
 gem('money-rails', '~>1.12')
+gem('newrelic_rpm')
 gem('sentry-raven')
 
 # Use Active Storage variant
@@ -38,6 +39,7 @@ gem('sentry-raven')
 
 # Reduces boot times through caching; required in config/boot.rb
 gem('bootsnap', '>= 1.4.2', require: false)
+gem('faker')
 
 group :development, :test do
   # Brakeman detects security vulnerabilities in Ruby on Rails

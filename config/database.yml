@@ -9,7 +9,7 @@ development:
   <<: *default
   database: walletest_development
   username: postgres
-  password:
+  password: postgres
   host: postgres
   port: 5432
 
